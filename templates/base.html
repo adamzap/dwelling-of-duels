@@ -56,7 +56,24 @@
       </div>
     </div>
 
-    {% block content %}{% endblock %}
+    {% if not exclude_latest_winners %}
+      {% include "latest-winners.html" %}
+    {% endif %}
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-{{ '12' if exclude_sidebar else '8' }}">
+          {% block content %}{% endblock %}
+        </div>
+
+        {% if not exclude_sidebar %}
+          <div class="col-lg-4">
+            {% include "sidebar.html" %}
+          </div>
+        {% endif %}
+        </div>
+      </div>
+    </div>
 
     <br />
 
