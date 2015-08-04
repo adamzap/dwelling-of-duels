@@ -2,7 +2,15 @@
 
 import os
 import sys
+import jinja2
+import shutil
 import collections
+
+
+OUT_DIR = 'deploy' + os.sep
+TEMPLATE_DIR = 'templates' + os.sep
+
+TEMPLATES = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
 
 
 def get_argument():
@@ -52,7 +60,23 @@ def get_song_data(filename):
 
 
 def build_site(data):
-    pass
+    try:
+        shutil.rmtree(OUT_DIR)
+    except OSError:
+        pass
+
+    os.mkdir(OUT_DIR)
+
+    build_index(data)
+
+    shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
+
+
+def build_index(data):
+    with open(OUT_DIR + 'index.html', 'w') as out:
+        template = TEMPLATES.get_template('index.html')
+
+        out.write(template.render())
 
 
 if __name__ == '__main__':
