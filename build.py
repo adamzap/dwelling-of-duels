@@ -4,6 +4,7 @@ import os
 import sys
 import jinja2
 import shutil
+import calendar
 import collections
 
 
@@ -68,6 +69,7 @@ def build_site(data):
     os.mkdir(OUT_DIR)
 
     build_index(data)
+    build_duels(data)
 
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
@@ -77,6 +79,25 @@ def build_index(data):
         template = TEMPLATES.get_template('index.html')
 
         out.write(template.render())
+
+
+def build_duels(data):
+    template = TEMPLATES.get_template('duels.html')
+
+    objs = []
+
+    for k, v in data.items():
+        parts = k.split('-')
+
+        objs.append({
+            'year': '20' + parts[0],
+            'month': calendar.month_name[int(parts[1])],
+            'theme': parts[2],
+            'num_songs': len(v)
+        })
+
+    with open(OUT_DIR + 'duels.html', 'w') as out:
+        out.write(template.render({'objs': objs}))
 
 
 if __name__ == '__main__':

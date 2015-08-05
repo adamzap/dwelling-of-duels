@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="ctitle">Duels</h1>
+
+<div class="hline-r"></div>
+
+{% for group in objs|groupby('year') %}
+  <h3>{{ group.grouper }}</h3>
+
+  <div class="hline-r"></div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Month</th>
+        <th>Theme</th>
+        <th>♫</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for obj in group.list|reverse %}
+      <tr>
+        <td><a href="{{ obj.theme|lower }}.html">{{ obj.month }}</a></td>
+        <td>{{ obj.theme }}</td>
+        <td>{{ obj.num_songs }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endfor %}
+
+{% endblock %}
