@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import os
-import sys
 import jinja2
 import shutil
 import calendar
@@ -9,28 +8,17 @@ import collections
 
 
 OUT_DIR = 'deploy' + os.sep
+ARCHIVE_DIR = 'dodarchive' + os.sep
 TEMPLATE_DIR = 'templates' + os.sep
 
 TEMPLATES = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
 
 
-def get_argument():
-    if len(sys.argv) == 1:
-        sys.exit('Missing `dodarchive` directory path. Exiting...')
-
-    archive_dir = sys.argv[1]
-
-    if not os.path.isdir(archive_dir):
-        sys.exit('`{}` is not a directory. Exiting...'.format(archive_dir))
-
-    return archive_dir
-
-
-def build_data(archive_dir):
+def build_data():
     data = collections.OrderedDict()
 
-    for d in os.listdir(archive_dir):
-        path = os.path.join(archive_dir, d)
+    for d in os.listdir(ARCHIVE_DIR):
+        path = os.path.join(ARCHIVE_DIR, d)
 
         if not os.path.isdir(path):
             continue
@@ -110,8 +98,6 @@ def build_duels(data):
 
 
 if __name__ == '__main__':
-    archive_dir = get_argument()
-
-    data = build_data(archive_dir)
+    data = build_data()
 
     build_site(data)
