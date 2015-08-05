@@ -74,16 +74,20 @@ def build_site(data):
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
 
-def build_index(data):
-    with open(OUT_DIR + 'index.html', 'w') as out:
-        template = TEMPLATES.get_template('index.html')
+def write_page(name, context, path=''):
+    out_path = OUT_DIR + path + os.sep + name + '.html'
 
-        out.write(template.render())
+    with open(out_path, 'w') as out:
+        template = TEMPLATES.get_template(name + '.html')
+
+        out.write(template.render(context))
+
+
+def build_index(data):
+    write_page('index', {})
 
 
 def build_duels(data):
-    template = TEMPLATES.get_template('duels.html')
-
     objs = []
 
     for k, v in data.items():
@@ -96,8 +100,7 @@ def build_duels(data):
             'num_songs': len(v)
         })
 
-    with open(OUT_DIR + 'duels.html', 'w') as out:
-        out.write(template.render({'objs': objs}))
+    write_page('duels', {'objs': objs})
 
 
 if __name__ == '__main__':
