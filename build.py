@@ -74,8 +74,10 @@ def build_site(data):
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
 
-def write_page(name, context, path=''):
-    out_path = OUT_DIR + path + os.sep + name + '.html'
+def write_page(name, context, path='', filename=None):
+    filename = filename or name
+
+    out_path = OUT_DIR + path + os.sep + filename + '.html'
 
     with open(out_path, 'w') as out:
         template = TEMPLATES.get_template(name + '.html')
@@ -90,8 +92,12 @@ def build_index(data):
 def build_duels(data):
     objs = []
 
+    os.mkdir(OUT_DIR + 'duel')
+
     for k, v in data.items():
         parts = k.split('-')
+
+        write_page('duel', {'objs': v}, 'duel' + os.sep, parts[2].lower())
 
         objs.append({
             'year': '20' + parts[0],

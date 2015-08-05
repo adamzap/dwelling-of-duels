@@ -22,7 +22,7 @@
     <tbody>
     {% for obj in group.list|reverse %}
       <tr>
-        <td><a href="{{ obj.theme|lower }}.html">{{ obj.month }}</a></td>
+        <td><a href="duel/{{ obj.theme|lower }}.html">{{ obj.month }}</a></td>
         <td>{{ obj.theme }}</td>
         <td>{{ obj.num_songs }}</td>
       </tr>

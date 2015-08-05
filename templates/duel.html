@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="ctitle">Duels</h1>
+
+<div class="hline-r"></div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Artist</th>
+      <th>Song</th>
+      <th>Game</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for obj in objs %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ obj.artist }}</td>
+      <td>{{ obj.title }}</td>
+      <td>{{ obj.game }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
