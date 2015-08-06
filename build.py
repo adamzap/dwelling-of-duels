@@ -14,19 +14,17 @@ TEMPLATE_DIR = 'templates' + os.sep
 
 TEMPLATES = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
 
+DATA = collections.OrderedDict()
+
 
 def build_data():
-    data = collections.OrderedDict()
-
     for d in os.listdir(ARCHIVE_DIR):
         path = os.path.join(ARCHIVE_DIR, d)
 
         if not os.path.isdir(path):
             continue
 
-        data[d] = get_month_data(path)
-
-    return data
+        DATA[d] = get_month_data(path)
 
 
 def get_month_data(month_dir):
@@ -49,7 +47,7 @@ def get_song_data(filename):
     }
 
 
-def build_site(data):
+def build_site():
     try:
         shutil.rmtree(OUT_DIR)
     except OSError:
@@ -57,8 +55,8 @@ def build_site(data):
 
     os.mkdir(OUT_DIR)
 
-    build_index(data)
-    build_duels(data)
+    build_index()
+    build_duels()
 
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
@@ -74,16 +72,16 @@ def write_page(name, context, path='', filename=None):
         out.write(template.render(context))
 
 
-def build_index(data):
+def build_index():
     write_page('index', {})
 
 
-def build_duels(data):
+def build_duels():
     objs = []
 
     os.mkdir(OUT_DIR + 'duel')
 
-    for k, v in data.items():
+    for k, v in DATA.items():
         parts = k.split('-')
 
         write_page('duel', {'objs': v}, 'duel' + os.sep, parts[2].lower())
@@ -102,6 +100,5 @@ if __name__ == '__main__':
     if not os.path.isdir(ARCHIVE_DIR):
         sys.exit('Error: `{}` must be in {}'.format(ARCHIVE_DIR, os.getcwd()))
 
-    data = build_data()
-
-    build_site(data)
+    build_data()
+    build_site()
