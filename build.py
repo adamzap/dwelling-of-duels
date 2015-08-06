@@ -8,8 +8,8 @@ import calendar
 import collections
 
 
+ARCHIVE_DIR = 'dodarchive'
 OUT_DIR = 'deploy' + os.sep
-ARCHIVE_DIR = 'dodarchive' + os.sep
 TEMPLATE_DIR = 'templates' + os.sep
 
 TEMPLATES = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
