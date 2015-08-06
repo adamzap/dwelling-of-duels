@@ -5,6 +5,7 @@ import sys
 import jinja2
 import shutil
 import calendar
+import livereload
 import collections
 
 
@@ -96,9 +97,22 @@ def build_duels():
     write_page('duels', {'objs': objs})
 
 
+def build():
+    build_data()
+    build_site()
+
+
 if __name__ == '__main__':
     if not os.path.isdir(ARCHIVE_DIR):
         sys.exit('Error: `{}` must be in {}'.format(ARCHIVE_DIR, os.getcwd()))
 
-    build_data()
-    build_site()
+    build()
+
+    if 'watch' in sys.argv:
+        server = livereload.Server()
+
+        server.watch('build.py', build)
+        server.watch('dodarchive', build)
+        server.watch('templates', build_site)
+
+        server.serve(root='deploy', open_url_delay=1)
