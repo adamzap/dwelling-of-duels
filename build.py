@@ -8,6 +8,8 @@ import calendar
 import livereload
 import collections
 
+from slugify import slugify
+
 
 ARCHIVE_DIR = 'dodarchive'
 OUT_DIR = 'deploy' + os.sep
@@ -85,7 +87,7 @@ def build_duels():
     for k, v in DATA.items():
         parts = k.split('-')
 
-        write_page('duel', {'objs': v}, 'duel' + os.sep, parts[2].lower())
+        write_page('duel', {'objs': v}, 'duel' + os.sep, slugify(parts[2]))
 
         objs.append({
             'year': '20' + parts[0],
