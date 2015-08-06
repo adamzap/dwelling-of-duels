@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="ctitle">Artists</h1>
+
+<div class="hline-r"></div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>♫</th>
+      <th class="gold">&bull;</th>
+      <th class="silver">&bull;</th>
+      <th class="bronze">&bull;</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for obj in objs|sort(attribute='name') %}
+    <tr>
+      <td><a href="artist/{{ obj.name|lower }}/">{{ obj.name }}</a></td>
+      <td>{{ obj.songs }}</td>
+      <td>{{ obj.gold }}</td>
+      <td>{{ obj.silver }}</td>
+      <td>{{ obj.bronze }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

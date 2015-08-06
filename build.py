@@ -5,6 +5,7 @@ import sys
 import jinja2
 import shutil
 import calendar
+import itertools
 import livereload
 import collections
 
@@ -60,6 +61,7 @@ def build_site():
 
     build_index()
     build_duels()
+    build_artists()
 
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
@@ -105,6 +107,31 @@ def build_duels():
         })
 
     write_page('duels', {'objs': objs})
+
+
+def build_artists():
+    artists = {}
+
+    for song in itertools.chain(*DATA.values()):
+        if song['artist'] not in artists:
+            artists[song['artist']] = []
+
+        artists[song['artist']].append(song['rank'])
+
+    objs = []
+
+    for k, v in artists.items():
+        counter = collections.Counter(v)
+
+        objs.append({
+            'name': k,
+            'songs': sum(counter.values()),
+            'gold': counter['01'],
+            'silver': counter['02'],
+            'bronze': counter['03'],
+        })
+
+    write_page('artists', {'objs': objs})
 
 
 def build():
