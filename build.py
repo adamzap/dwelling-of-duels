@@ -64,30 +64,38 @@ def build_site():
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
 
-def write_page(name, context, path='', filename=None):
-    filename = filename or name
+def write_page(template_name, context, path=None):
+    if path is None:
+        path = template_name
 
-    out_path = OUT_DIR + path + os.sep + filename + '.html'
+    dir_path = os.path.join(OUT_DIR, path)
+
+    if not os.path.isdir(dir_path):
+        os.mkdir(dir_path)
+
+    out_path = os.path.join(dir_path, 'index.html')
+
+    template = TEMPLATES.get_template(template_name + '.html')
 
     with open(out_path, 'w') as out:
-        template = TEMPLATES.get_template(name + '.html')
-
         out.write(template.render(context))
 
 
 def build_index():
-    write_page('index', {})
+    write_page('index', {}, '')
 
 
 def build_duels():
     objs = []
 
-    os.mkdir(OUT_DIR + 'duel')
+    os.mkdir(os.path.join(OUT_DIR, 'duel'))
 
     for k, v in DATA.items():
         year, month, theme = k.split('-')
 
-        write_page('duel', {'objs': v}, 'duel' + os.sep, slugify(theme))
+        path = os.path.join('duel', slugify(theme))
+
+        write_page('duel', {'objs': v}, path)
 
         objs.append({
             'year': '20' + year,
