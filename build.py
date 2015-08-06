@@ -85,14 +85,14 @@ def build_duels():
     os.mkdir(OUT_DIR + 'duel')
 
     for k, v in DATA.items():
-        parts = k.split('-')
+        year, month, theme = k.split('-')
 
-        write_page('duel', {'objs': v}, 'duel' + os.sep, slugify(parts[2]))
+        write_page('duel', {'objs': v}, 'duel' + os.sep, slugify(theme))
 
         objs.append({
-            'year': '20' + parts[0],
-            'month': calendar.month_name[int(parts[1])],
-            'theme': parts[2],
+            'year': '20' + year,
+            'month': calendar.month_name[int(month)],
+            'theme': theme,
             'num_songs': len(v)
         })
 
