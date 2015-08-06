@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 import jinja2
 import shutil
 import calendar
@@ -98,6 +99,9 @@ def build_duels(data):
 
 
 if __name__ == '__main__':
+    if not os.path.isdir(ARCHIVE_DIR):
+        sys.exit('Error: `{}` must be in {}'.format(ARCHIVE_DIR, os.getcwd()))
+
     data = build_data()
 
     build_site(data)
