@@ -100,13 +100,11 @@ def build_index():
 def build_page_type(page_type):
     key_func = lambda o: o[page_type].lower()
 
-    objs = sorted(DATA, key=key_func)
-
     song_lists = []
 
     os.mkdir(os.path.join(OUT_DIR, page_type))
 
-    for key, songs in itertools.groupby(objs, key=key_func):
+    for key, songs in itertools.groupby(DATA, key=key_func):
         path = os.path.join(page_type, slugify(key))
 
         song_list = list(songs)
