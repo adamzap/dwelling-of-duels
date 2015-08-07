@@ -10,6 +10,7 @@ import livereload
 import collections
 
 from slugify import slugify
+from hsaudiotag import auto as parse_id3
 
 
 ARCHIVE_DIR = 'dodarchive'
@@ -37,23 +38,22 @@ def get_month_data(month_dir):
     songs = []
 
     for f in [f for f in os.listdir(month_dir) if f.endswith('.mp3')]:
-        songs.append(get_song_data(f))
+        song_path = os.path.join(month_dir, f)
+
+        song_data = parse_id3.File(song_path)
+
+        songs.append({
+            'rank': f.split('-')[0],
+            'artist': song_data.artist,
+            'game': song_data.genre,
+            'title': song_data.title,
+            'duel': song_data.album
+        })
 
     for song in songs:
         song['max_rank'] = len(songs)
 
     return songs
-
-
-def get_song_data(filename):
-    parts = filename.split('-')
-
-    return {
-        'rank': parts[0],
-        'artist': parts[1],
-        'game': parts[2],
-        'title': parts[3]
-    }
 
 
 def build_site():
