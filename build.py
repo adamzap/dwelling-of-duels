@@ -70,8 +70,8 @@ def build_site():
 
     build_index()
     build_page_type('duel')
-    build_page_type('artist')
     build_page_type('game')
+    build_page_type('artist')
 
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
@@ -98,11 +98,11 @@ def build_index():
 
 
 def build_page_type(page_type):
-    key_func = lambda o: o[page_type].lower()
+    os.mkdir(os.path.join(OUT_DIR, page_type))
 
     song_lists = []
 
-    os.mkdir(os.path.join(OUT_DIR, page_type))
+    key_func = lambda o: o[page_type].lower()
 
     for key, songs in itertools.groupby(DATA, key=key_func):
         path = os.path.join(page_type, slugify(key))
