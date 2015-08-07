@@ -21,7 +21,7 @@
       <td>{{ obj.title }}</td>
       <td>{{ obj.game }}</td>
       <td>{{ obj.month }}</td>
-      <td>{{ obj.rank }}/{{ obj.max_rank }}</td>
+      <td>{{ obj.rank|int }}/{{ obj.max_rank }}</td>
     </tr>
   {% endfor %}
   </tbody>
