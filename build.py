@@ -39,6 +39,9 @@ def get_month_data(month_dir):
     for f in [f for f in os.listdir(month_dir) if f.endswith('.mp3')]:
         songs.append(get_song_data(f))
 
+    for song in songs:
+        song['max_rank'] = len(songs)
+
     return songs
 
 
