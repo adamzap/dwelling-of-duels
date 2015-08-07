@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for artist_name, song_list in objs|dictsort %}
+  {% for song_list in objs %}
     <tr>
       <td><a href="/artist/{{ song_list[0].artist|slugify }}/">{{ song_list[0].artist }}</a></td>
       <td>{{ song_list|count }}</td>

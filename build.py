@@ -117,19 +117,22 @@ def build_duels():
 
 
 def build_artists():
-    objs = collections.defaultdict(list)
+    objs = sorted(sum(DATA.values(), []), key=lambda o: o['artist'].lower())
 
-    for song in itertools.chain(*DATA.values()):
-        objs[song['artist']].append(song)
-
-    write_page('artists', {'objs': objs})
+    song_lists = []
 
     os.mkdir(os.path.join(OUT_DIR, 'artist'))
 
-    for songs in objs.values():
-        path = os.path.join('artist', slugify(songs[0]['artist']))
+    for artist, songs in itertools.groupby(objs):
+        path = os.path.join('artist', slugify(artist))
 
-        write_page('artist', {'objs': songs}, path)
+        song_list = list(songs)
+
+        write_page('artist', {'objs': song_list}, path)
+
+        song_lists.append(song_list)
+
+    write_page('artists', {'objs': song_lists})
 
 
 def build_games():
