@@ -7,7 +7,6 @@ import shutil
 import calendar
 import itertools
 import livereload
-import collections
 
 from slugify import slugify
 from hsaudiotag import auto as parse_id3
@@ -21,7 +20,7 @@ TEMPLATES = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
 
 TEMPLATES.filters['slugify'] = slugify
 
-DATA = collections.OrderedDict()
+DATA = []
 
 
 def build_data():
@@ -31,7 +30,7 @@ def build_data():
         if not os.path.isdir(path):
             continue
 
-        DATA[d] = get_month_data(path)
+        DATA.extend(get_month_data(path))
 
 
 def get_month_data(month_dir):
@@ -101,7 +100,7 @@ def build_index():
 def build_page_type(page_type):
     key_func = lambda o: o[page_type].lower()
 
-    objs = sorted(sum(DATA.values(), []), key=key_func)
+    objs = sorted(DATA, key=key_func)
 
     song_lists = []
 
