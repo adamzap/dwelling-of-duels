@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for song_list in objs %}
+  {% for song_list in objs|reverse %}
     <tr>
       <td>{{ song_list[0].year }}</td>
       <td><a href="/duel/{{ song_list[0].duel|slugify }}/">{{ song_list[0].month }}</a></td>
