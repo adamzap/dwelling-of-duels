@@ -42,12 +42,17 @@ def get_month_data(month_dir):
 
         song_data = parse_id3.File(song_path)
 
+        duel = song_data.album.replace('DoD', '', 1)
+
         songs.append({
             'rank': f.split('-')[0],
             'artist': song_data.artist,
             'game': song_data.genre,
             'title': song_data.title,
-            'duel': song_data.album
+            'duel': duel,
+            'theme': duel.split(': ', 1)[1],
+            'year': '20' + duel.split('-')[0],
+            'month': calendar.month_name[int(duel.split('-')[1].split(':')[0])]
         })
 
     for song in songs:
@@ -65,7 +70,7 @@ def build_site():
     os.mkdir(OUT_DIR)
 
     build_index()
-    build_duels()
+    build_page_type('duel')
     build_page_type('artist')
     build_page_type('game')
 
@@ -112,29 +117,6 @@ def build_page_type(page_type):
         song_lists.append(song_list)
 
     write_page(page_type + 's', {'objs': song_lists})
-
-
-def build_duels():
-    objs = []
-
-    os.mkdir(os.path.join(OUT_DIR, 'duel'))
-
-    for k, v in DATA.items():
-        year, month, theme = k.split('-')
-
-        path = os.path.join('duel', slugify(k))
-
-        write_page('duel', {'objs': v}, path)
-
-        objs.append({
-            'year': '20' + year,
-            'month': calendar.month_name[int(month)],
-            'theme': theme,
-            'slug': slugify(k),
-            'num_songs': len(v)
-        })
-
-    write_page('duels', {'objs': objs})
 
 
 def build():

@@ -6,29 +6,25 @@
 
 <div class="hline-r"></div>
 
-{% for group in objs|groupby('year') %}
-  <h3>{{ group.grouper }}</h3>
-
-  <div class="hline-r"></div>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Month</th>
-        <th>Theme</th>
-        <th>♫</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for obj in group.list|reverse %}
-      <tr>
-        <td><a href="/duel/{{ obj.slug }}/">{{ obj.month }}</a></td>
-        <td>{{ obj.theme }}</td>
-        <td>{{ obj.num_songs }}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-{% endfor %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Month</th>
+      <th>Theme</th>
+      <th>♫</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for song_list in objs %}
+    <tr>
+      <td>{{ song_list[0].year }}</td>
+      <td><a href="/duel/{{ song_list[0].duel|slugify }}/">{{ song_list[0].month }}</a></td>
+      <td>{{ song_list[0].theme }}</td>
+      <td>{{ song_list|count }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}
