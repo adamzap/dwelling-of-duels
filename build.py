@@ -18,6 +18,8 @@ TEMPLATE_DIR = 'templates' + os.sep
 
 TEMPLATES = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
 
+TEMPLATES.filters['slugify'] = slugify
+
 DATA = collections.OrderedDict()
 
 
@@ -110,28 +112,19 @@ def build_duels():
 
 
 def build_artists():
-    artists = {}
+    objs = collections.defaultdict(list)
 
     for song in itertools.chain(*DATA.values()):
-        if song['artist'] not in artists:
-            artists[song['artist']] = []
-
-        artists[song['artist']].append(song['rank'])
-
-    objs = []
-
-    for k, v in artists.items():
-        counter = collections.Counter(v)
-
-        objs.append({
-            'name': k,
-            'songs': sum(counter.values()),
-            'gold': counter['01'],
-            'silver': counter['02'],
-            'bronze': counter['03'],
-        })
+        objs[song['artist']].append(song)
 
     write_page('artists', {'objs': objs})
+
+    os.mkdir(os.path.join(OUT_DIR, 'artist'))
+
+    for songs in objs.values():
+        path = os.path.join('artist', slugify(songs[0]['artist']))
+
+        write_page('artist', {'objs': songs}, path)
 
 
 def build():

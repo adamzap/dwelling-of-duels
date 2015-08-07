@@ -17,13 +17,13 @@
     </tr>
   </thead>
   <tbody>
-  {% for obj in objs|sort(attribute='name') %}
+  {% for artist_name, song_list in objs|dictsort %}
     <tr>
-      <td><a href="artist/{{ obj.name|lower }}/">{{ obj.name }}</a></td>
-      <td>{{ obj.songs }}</td>
-      <td>{{ obj.gold }}</td>
-      <td>{{ obj.silver }}</td>
-      <td>{{ obj.bronze }}</td>
+      <td><a href="/artist/{{ song_list[0].artist|slugify }}/">{{ song_list[0].artist }}</a></td>
+      <td>{{ song_list|count }}</td>
+      <td>{{ song_list|selectattr("rank", "equalto", "01")|list|count }}</td>
+      <td>{{ song_list|selectattr("rank", "equalto", "02")|list|count }}</td>
+      <td>{{ song_list|selectattr("rank", "equalto", "03")|list|count }}</td>
     </tr>
   {% endfor %}
   </tbody>

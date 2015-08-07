@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="ctitle">Songs by {{ objs[0].artist }}</h1>
+
+<div class="hline-r"></div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Game</th>
+      <th>Month</th>
+      <th>Rank</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for obj in objs|sort(attribute='title') %}
+    <tr>
+      <td>{{ obj.title }}</td>
+      <td>{{ obj.game }}</td>
+      <td>{{ obj.month }}</td>
+      <td>{{ obj.rank }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
