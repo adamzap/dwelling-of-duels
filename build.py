@@ -67,7 +67,7 @@ def build_site():
     build_index()
     build_duels()
     build_page_type('artist')
-    build_games()
+    build_page_type('game')
 
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
@@ -135,22 +135,6 @@ def build_duels():
         })
 
     write_page('duels', {'objs': objs})
-
-
-def build_games():
-    objs = collections.defaultdict(list)
-
-    for song in itertools.chain(*DATA.values()):
-        objs[song['game']].append(song)
-
-    write_page('games', {'objs': objs})
-
-    os.mkdir(os.path.join(OUT_DIR, 'game'))
-
-    for songs in objs.values():
-        path = os.path.join('game', slugify(songs[0]['game']))
-
-        write_page('game', {'objs': songs}, path)
 
 
 def build():
