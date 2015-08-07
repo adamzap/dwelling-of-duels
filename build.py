@@ -100,7 +100,7 @@ def build_duels():
     for k, v in DATA.items():
         year, month, theme = k.split('-')
 
-        path = os.path.join('duel', slugify(theme))
+        path = os.path.join('duel', slugify(k))
 
         write_page('duel', {'objs': v}, path)
 
@@ -108,6 +108,7 @@ def build_duels():
             'year': '20' + year,
             'month': calendar.month_name[int(month)],
             'theme': theme,
+            'slug': slugify(k),
             'num_songs': len(v)
         })
 
