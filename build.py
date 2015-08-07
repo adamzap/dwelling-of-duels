@@ -66,7 +66,7 @@ def build_site():
 
     build_index()
     build_duels()
-    build_artists()
+    build_page_type('artist')
     build_games()
 
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
@@ -93,6 +93,27 @@ def build_index():
     write_page('index', {}, '')
 
 
+def build_page_type(page_type):
+    key_func = lambda o: o[page_type].lower()
+
+    objs = sorted(sum(DATA.values(), []), key=key_func)
+
+    song_lists = []
+
+    os.mkdir(os.path.join(OUT_DIR, page_type))
+
+    for key, songs in itertools.groupby(objs, key=key_func):
+        path = os.path.join(page_type, slugify(key))
+
+        song_list = list(songs)
+
+        write_page(page_type, {'objs': song_list}, path)
+
+        song_lists.append(song_list)
+
+    write_page(page_type + 's', {'objs': song_lists})
+
+
 def build_duels():
     objs = []
 
@@ -114,25 +135,6 @@ def build_duels():
         })
 
     write_page('duels', {'objs': objs})
-
-
-def build_artists():
-    objs = sorted(sum(DATA.values(), []), key=lambda o: o['artist'].lower())
-
-    song_lists = []
-
-    os.mkdir(os.path.join(OUT_DIR, 'artist'))
-
-    for artist, songs in itertools.groupby(objs):
-        path = os.path.join('artist', slugify(artist))
-
-        song_list = list(songs)
-
-        write_page('artist', {'objs': song_list}, path)
-
-        song_lists.append(song_list)
-
-    write_page('artists', {'objs': song_lists})
 
 
 def build_games():
