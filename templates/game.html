@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="ctitle">Songs from {{ objs[0].game }}</h1>
+
+<div class="hline-r"></div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Artist</th>
+      <th>Month</th>
+      <th>Rank</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for obj in objs|sort(attribute='title') %}
+    <tr>
+      <td>{{ obj.title }}</td>
+      <td>{{ obj.artist }}</td>
+      <td>{{ obj.duel }}</td>
+      <td>{{ obj.rank|int }}/{{ obj.max_rank }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

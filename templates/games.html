@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="ctitle">Games</h1>
+
+<div class="hline-r"></div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>♫</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for game_name, song_list in objs|dictsort %}
+    <tr>
+      <td><a href="/game/{{ song_list[0].game|slugify }}/">{{ song_list[0].game }}</a></td>
+      <td>{{ song_list|count }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
