@@ -18,8 +18,8 @@
   <thead>
     <tr>
       <th>Rank</th>
-      <th>Artist</th>
       <th>Song</th>
+      <th>Artist</th>
       <th>Game</th>
     </tr>
   </thead>
@@ -31,10 +31,10 @@
     {% else %}
       <td>{{ loop.index }}</td>
     {% endif %}
+      <td>{{ get_song_link(obj) }}</td>
       <td>
         <a href="/artists/{{ obj.artist|slugify }}">{{ obj.artist }}</a>
       </td>
-      <td>{{ get_song_link(obj) }}</td>
       <td>
         <a href="/games/{{ obj.game|slugify }}">{{ obj.game }}</a>
       </td>
