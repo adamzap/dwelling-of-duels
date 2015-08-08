@@ -18,7 +18,11 @@
   <tbody>
   {% for obj in objs %}
     <tr>
+    {% if obj.rank == "ZZ" %}
+      <td>ALT</td>
+    {% else %}
       <td>{{ loop.index }}</td>
+    {% endif %}
       <td>
         <a href="/artist/{{ obj.artist|slugify }}">{{ obj.artist }}</a>
       </td>

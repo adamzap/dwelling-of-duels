@@ -23,7 +23,11 @@
         <a href="/artist/{{ obj.artist|slugify }}/">{{ obj.artist }}</a>
       </td>
       <td>{{ obj.duel }}</td>
+    {% if obj.rank == "ZZ" %}
+      <td>ALT</td>
+    {% else %}
       <td>{{ obj.rank|int }}/{{ obj.max_rank }}</td>
+    {% endif %}
     </tr>
   {% endfor %}
   </tbody>
