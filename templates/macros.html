@@ -31,3 +31,15 @@
 {% macro get_simple_rank(song) -%}
   {{ "ALT" if song.rank == "ZZ" else song.rank|int }}
 {%- endmacro %}
+
+{% macro get_detailed_rank(song) -%}
+  {% if song.rank == "ZZ" %}
+    ALT
+  {% else %}
+    {% if song.rank|int < 4 %}
+      <span class="{{ trophy_string(song) }}">&bull;</span>
+    {% endif %}
+
+    {{ song.rank|int }}/{{ song.max_rank }}
+  {% endif %}
+{%- endmacro %}
