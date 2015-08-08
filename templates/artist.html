@@ -27,6 +27,12 @@
       <td>{{ obj.duel }}</td>
     {% if obj.rank == "ZZ" %}
       <td>ALT</td>
+    {% elif obj.rank == "01" %}
+      <td><span class="gold">&bull;</span> {{ obj.rank|int }}/{{ obj.max_rank }}</td>
+    {% elif obj.rank == "02" %}
+      <td><span class="silver">&bull;</span> {{ obj.rank|int }}/{{ obj.max_rank }}</td>
+    {% elif obj.rank == "03" %}
+      <td><span class="bronze">&bull;</span> {{ obj.rank|int }}/{{ obj.max_rank }}</td>
     {% else %}
       <td>{{ obj.rank|int }}/{{ obj.max_rank }}</td>
     {% endif %}
