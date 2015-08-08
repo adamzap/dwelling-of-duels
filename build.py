@@ -105,6 +105,8 @@ def build_page_type(page_type):
 
     key_func = lambda o: o[page_type].lower()
 
+    DATA.sort(key=key_func)
+
     for key, songs in itertools.groupby(DATA, key=key_func):
         path = os.path.join(page_type, slugify(key))
 
