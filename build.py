@@ -5,6 +5,7 @@ import sys
 import jinja2
 import shutil
 import calendar
+import datetime
 import itertools
 import livereload
 
@@ -50,6 +51,7 @@ def get_month_data(month_dir):
             'artist': song_data.artist,
             'game': song_data.genre,
             'title': song_data.title,
+            'duration': song_data.duration,
             'duel': duel,
             'link': os.sep + song_path,
             'theme': duel.split(': ', 1)[1],
@@ -73,6 +75,14 @@ def set_template_globals():
 
     TEMPLATES.globals['latest_winners'] = winners
 
+    start_delta = datetime.date.today() - datetime.date(2003, 9, 1)
+
+    TEMPLATES.globals['stats'] = {
+        'songs': len(DATA),
+        'hours': sum([s['duration'] for s in DATA]) / 60 / 60,
+        'years': start_delta.days / 365
+    }
+
 
 def build_site():
     try:
@@ -82,12 +92,12 @@ def build_site():
 
     os.mkdir(OUT_DIR)
 
-    write_page('index', {}, '')
-    write_page('rules', {})
-
     build_page_type('duel')
     build_page_type('game')
     build_page_type('artist')
+
+    write_page('index', {}, '')
+    write_page('rules', {})
 
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
@@ -126,6 +136,8 @@ def build_page_type(page_type):
         write_page(page_type, {'objs': song_list}, path)
 
         song_lists.append(song_list)
+
+    TEMPLATES.globals['stats'][page_type + 's'] = len(song_lists)
 
     write_page(page_type + 's', {'objs': song_lists})
 
