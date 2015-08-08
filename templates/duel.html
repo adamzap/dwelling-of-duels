@@ -26,7 +26,9 @@
       <td>
         <a href="/artist/{{ obj.artist|slugify }}">{{ obj.artist }}</a>
       </td>
-      <td>{{ obj.title }}</td>
+      <td>
+        <a href="{{ obj.link }}">{{ obj.title }}</a>
+      </td>
       <td>
         <a href="/game/{{ obj.game|slugify }}">{{ obj.game }}</a>
       </td>

@@ -49,6 +49,7 @@ def get_month_data(month_dir):
             'game': song_data.genre,
             'title': song_data.title,
             'duel': duel,
+            'link': os.sep + song_path,
             'theme': duel.split(': ', 1)[1],
             'year': '20' + duel.split('-')[0],
             'month': calendar.month_name[int(duel.split('-')[1].split(':')[0])]

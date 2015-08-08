@@ -18,7 +18,9 @@
   <tbody>
   {% for obj in objs|sort(attribute='title') %}
     <tr>
-      <td>{{ obj.title }}</td>
+      <td>
+        <a href="{{ obj.link }}">{{ obj.title }}</a>
+      </td>
       <td>
         <a href="/artist/{{ obj.artist|slugify }}/">{{ obj.artist }}</a>
       </td>
