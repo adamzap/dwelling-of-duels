@@ -29,7 +29,7 @@
     {% if obj.rank == "ZZ" %}
       <td>ALT</td>
     {% else %}
-      <td>{{ loop.index }}</td>
+      <td>{{ obj.rank|int }}</td>
     {% endif %}
       <td>{{ get_song_link(obj) }}</td>
       <td>{{ get_artist_link(obj) }}</td>
