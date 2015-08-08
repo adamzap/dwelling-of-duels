@@ -54,8 +54,10 @@ def get_month_data(month_dir):
             'month': calendar.month_name[int(duel.split('-')[1].split(':')[0])]
         })
 
+    max_rank = len([s for s in songs if s['rank'] != 'ZZ'])
+
     for song in songs:
-        song['max_rank'] = len(songs)
+        song['max_rank'] = max_rank
 
     return songs
 
