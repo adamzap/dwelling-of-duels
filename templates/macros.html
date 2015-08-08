@@ -11,3 +11,7 @@
     bronze
   {%- endif -%}
 {%- endmacro %}
+
+{% macro get_song_link(song) -%}
+  <a href="{{ song.link }}">{{ song.title }}</a>
+{%- endmacro %}
