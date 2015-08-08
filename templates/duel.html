@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ objs[0].duel }}{% endblock %}
+{% block title %}{{ prettify_duel(objs[0]) }}{% endblock %}
 
 {% block winners %}
   {% import "winners.html" as winners %}
