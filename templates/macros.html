@@ -23,3 +23,7 @@
 {% macro get_game_link(song) -%}
   <a href="/games/{{ song.game|slugify }}/">{{ song.game }}</a>
 {%- endmacro %}
+
+{% macro get_duel_link(song) -%}
+  <a href="/duels/{{ song.duel|slugify }}/">{{ prettify_duel(song) }}</a>
+{%- endmacro %}

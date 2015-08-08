@@ -22,9 +22,7 @@
     <tr>
       <td>{{ get_song_link(obj) }}</td>
       <td>{{ get_game_link(obj) }}</td>
-      <td>
-        <a href="/duels/{{ obj.duel|slugify }}/">{{ prettify_duel(obj) }}</a>
-      </td>
+      <td>{{ get_duel_link(obj) }}</td>
     {% if obj.rank == "ZZ" %}
       <td>ALT</td>
     {% elif obj.rank == "01" %}
