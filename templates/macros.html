@@ -27,3 +27,7 @@
 {% macro get_duel_link(song) -%}
   <a href="/duels/{{ song.duel|slugify }}/">{{ prettify_duel(song) }}</a>
 {%- endmacro %}
+
+{% macro get_simple_rank(song) -%}
+  {{ "ALT" if song.rank == "ZZ" else song.rank|int }}
+{%- endmacro %}

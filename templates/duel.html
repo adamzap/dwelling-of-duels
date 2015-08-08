@@ -26,11 +26,7 @@
   <tbody>
   {% for obj in objs %}
     <tr>
-    {% if obj.rank == "ZZ" %}
-      <td>ALT</td>
-    {% else %}
-      <td>{{ obj.rank|int }}</td>
-    {% endif %}
+      <td>{{ get_simple_rank(obj) }}</td>
       <td>{{ get_song_link(obj) }}</td>
       <td>{{ get_artist_link(obj) }}</td>
       <td>{{ get_game_link(obj) }}</td>
