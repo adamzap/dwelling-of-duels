@@ -99,7 +99,7 @@ def write_page(template_name, context, path=None):
 
 
 def build_page_type(page_type):
-    os.mkdir(os.path.join(OUT_DIR, page_type))
+    os.mkdir(os.path.join(OUT_DIR, page_type + 's'))
 
     song_lists = []
 
@@ -108,7 +108,7 @@ def build_page_type(page_type):
     DATA.sort(key=key_func)
 
     for key, songs in itertools.groupby(DATA, key=key_func):
-        path = os.path.join(page_type, slugify(key))
+        path = os.path.join(page_type + 's', slugify(key))
 
         song_list = list(songs)
 

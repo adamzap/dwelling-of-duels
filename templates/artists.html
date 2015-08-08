@@ -19,7 +19,7 @@
   <tbody>
   {% for song_list in objs %}
     <tr>
-      <td><a href="/artist/{{ song_list[0].artist|slugify }}/">{{ song_list[0].artist }}</a></td>
+      <td><a href="/artists/{{ song_list[0].artist|slugify }}/">{{ song_list[0].artist }}</a></td>
       <td>{{ song_list|count }}</td>
       <td>{{ song_list|selectattr("rank", "equalto", "01")|list|count }}</td>
       <td>{{ song_list|selectattr("rank", "equalto", "02")|list|count }}</td>
