@@ -71,8 +71,9 @@ def build_site():
 
     os.mkdir(OUT_DIR)
 
-    build_index()
+    write_page('index', {}, '')
     write_page('rules', {})
+
     build_page_type('duel')
     build_page_type('game')
     build_page_type('artist')
@@ -95,10 +96,6 @@ def write_page(template_name, context, path=None):
 
     with open(out_path, 'w') as out:
         out.write(template.render(context))
-
-
-def build_index():
-    write_page('index', {}, '')
 
 
 def build_page_type(page_type):
