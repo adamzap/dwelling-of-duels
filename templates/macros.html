@@ -15,3 +15,7 @@
 {% macro get_song_link(song) -%}
   <a href="{{ song.link }}">{{ song.title }}</a>
 {%- endmacro %}
+
+{% macro get_artist_link(song) -%}
+  <a href="/artists/{{ song.artist|slugify }}/">{{ song.artist }}</a>
+{%- endmacro %}

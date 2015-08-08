@@ -1,6 +1,7 @@
 {% from "macros.html" import prettify_duel %}
 {% from "macros.html" import trophy_string %}
 {% from "macros.html" import get_song_link %}
+{% from "macros.html" import get_artist_link %}
 
 {% macro render(songs) -%}
 <div id="twrap">
@@ -15,7 +16,7 @@
     {% for song in songs[:3] %}
       <div class="col-md-4">
         <img src="/static/img/{{ trophy_string(song) }}.png"/>
-        <h4><a href="/artists/{{ song.artist|slugify }}/">{{ song.artist }}</a></h4>
+        <h4>{{ get_artist_link(song) }}</h4>
         <p>
           <em>{{ get_song_link(song) }}</em>
           <br/>
