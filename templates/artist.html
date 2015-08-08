@@ -27,7 +27,7 @@
         <a href="/games/{{ obj.game|slugify }}/">{{ obj.game }}</a>
       </td>
       <td>
-        <a href="/duels/{{ obj.duel|slugify }}/">{{ obj.duel }}</a>
+        <a href="/duels/{{ obj.duel|slugify }}/">{{ prettify_duel(obj) }}</a>
       </td>
     {% if obj.rank == "ZZ" %}
       <td>ALT</td>
