@@ -32,12 +32,7 @@ def build_data():
 
         DATA.extend(get_month_data(path))
 
-        latest_duel = DATA[-1]['duel']
-
-    winners = [s for s in DATA if s['duel'] == latest_duel]
-    winners.sort(key=lambda s: s['rank'])
-
-    TEMPLATES.globals['latest_winners'] = winners
+    set_template_globals()
 
 
 def get_month_data(month_dir):
@@ -68,6 +63,15 @@ def get_month_data(month_dir):
         song['max_rank'] = max_rank
 
     return songs
+
+
+def set_template_globals():
+    latest_duel = DATA[-1]['duel']
+
+    winners = [s for s in DATA if s['duel'] == latest_duel]
+    winners.sort(key=lambda s: s['rank'])
+
+    TEMPLATES.globals['latest_winners'] = winners
 
 
 def build_site():
