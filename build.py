@@ -72,6 +72,7 @@ def build_site():
     os.mkdir(OUT_DIR)
 
     build_index()
+    write_page('rules', {})
     build_page_type('duel')
     build_page_type('game')
     build_page_type('artist')
