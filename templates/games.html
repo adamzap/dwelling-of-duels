@@ -18,7 +18,7 @@
   <tbody>
   {% for song_list in objs %}
     <tr>
-      <td><a href="/games/{{ song_list[0].game|slugify }}/">{{ song_list[0].game }}</a></td>
+      <td>{{ get_game_link(song_list[0]) }}
       <td>{{ song_list|count }}</td>
     </tr>
   {% endfor %}

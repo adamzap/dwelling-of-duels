@@ -21,9 +21,7 @@
   {% for obj in objs|sort(attribute='title') %}
     <tr>
       <td>{{ get_song_link(obj) }}</td>
-      <td>
-        <a href="/games/{{ obj.game|slugify }}/">{{ obj.game }}</a>
-      </td>
+      <td>{{ get_game_link(obj) }}</td>
       <td>
         <a href="/duels/{{ obj.duel|slugify }}/">{{ prettify_duel(obj) }}</a>
       </td>
