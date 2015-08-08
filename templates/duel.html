@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
+
+{% block winners %}
+  {% import "winners.html" as winners %}
+
+  {{ winners.render(objs) }}
+{% endblock %}
+
 {% block content %}
 
 <h1 class="ctitle">{{ objs[0].duel }}</h1>

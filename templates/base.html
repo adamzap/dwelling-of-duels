@@ -56,9 +56,11 @@
       </div>
     </div>
 
-    {% if not exclude_latest_winners %}
-      {% include "latest-winners.html" %}
-    {% endif %}
+    {% block winners %}
+      {% import "winners.html" as winners %}
+
+      {{ winners.render(latest_winners) }}
+    {% endblock %}
 
     <div class="container">
       <div class="row">

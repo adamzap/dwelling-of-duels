@@ -32,6 +32,13 @@ def build_data():
 
         DATA.extend(get_month_data(path))
 
+        latest_duel = DATA[-1]['duel']
+
+    winners = [s for s in DATA if s['duel'] == latest_duel]
+    winners.sort(key=lambda s: s['rank'])
+
+    TEMPLATES.globals['latest_winners'] = winners
+
 
 def get_month_data(month_dir):
     songs = []

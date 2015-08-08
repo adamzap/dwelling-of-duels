@@ -1,0 +1,27 @@
+{% macro render(songs) -%}
+<div id="twrap">
+  <div class="container centered">
+    <div class="row">
+      <div class="col-md-12">
+        <h1><a href="/duels/{{ songs[0].duel|slugify }}/">{{ songs[0].duel }} Winners</a></h1>
+        <br />
+      </div>
+    </div>
+    <div class="row">
+    {% for song in songs[:3] %}
+      <div class="col-md-4">
+        <img src="/static/img/gold.png"/>
+        <h4><a href="/artists/{{ song.artist|slugify }}/">{{ song.artist }}</a></h4>
+        <p>
+          <em><a href="{{ song.link }}">{{ song.title }}</a></em>
+          <br/>
+          <a href="/games/{{ song.game|slugify }}/">{{ song.game }}</a>
+        </p>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+<br />
+{%- endmacro %}
