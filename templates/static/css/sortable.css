@@ -68,5 +68,5 @@ table[data-sortable] th[data-sorted="true"] {
 }
 
 table[data-sortable] tbody > tr:nth-child(odd) > td {
-  background-color: #383838;
+  /* background-color: #383838; */
 }
