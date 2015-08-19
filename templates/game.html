@@ -23,7 +23,7 @@
       <td>{{ get_song_link(obj) }}</td>
       <td>{{ get_artist_link(obj) }}</td>
       <td>{{ get_duel_link(obj) }}</td>
-      <td>{{ get_detailed_rank(obj) }}</td>
+      <td {{ get_rank_sort_value(obj) }}>{{ get_detailed_rank(obj) }}</td>
     </tr>
   {% endfor %}
   </tbody>

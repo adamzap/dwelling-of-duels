@@ -43,3 +43,11 @@
     {{ song.rank|int }}/{{ song.max_rank }}
   {% endif %}
 {%- endmacro %}
+
+{% macro get_rank_sort_value(song) -%}
+  {% if song.rank == "ZZ" %}
+    data-value="99999999"
+  {% else %}
+    data-value="{{ song.rank }}"
+  {% endif %}
+{%- endmacro %}
