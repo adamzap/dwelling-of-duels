@@ -47,7 +47,7 @@ def get_month_data(month_dir):
         duel = song_data.album.replace('DoD', '', 1)
 
         songs.append({
-            'rank': f.split('-')[0],
+            'rank': f.split('-')[0].replace('tie', ''),
             'artist': song_data.artist,
             'game': song_data.genre,
             'title': song_data.title,
