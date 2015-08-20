@@ -56,6 +56,7 @@ def get_month_data(month_dir):
             'rank': f.split('-')[0].replace('tie', ''),
             'max_rank': max_rank,
             'artists': song_data.artist.split(', '),
+            'multiple_artists': len(song_data.artist.split(', ')) > 1,
             'games': song_data.genre.split(', '),
             'title': song_data.title,
             'duration': song_data.duration,
