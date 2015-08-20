@@ -61,10 +61,16 @@ def get_month_data(month_dir):
             'link': os.sep + song_path,
             'theme': duel.split(': ', 1)[1],
             'year': '20' + duel.split('-')[0],
-            'month': calendar.month_name[int(duel.split('-')[1].split(':')[0])]
+            'month': get_month_name(duel)
         })
 
     return songs
+
+
+def get_month_name(duel):
+    month_number = int(duel.split('-')[1].split(':')[0])
+
+    return calendar.month_name[month_number]
 
 
 def set_template_globals():
