@@ -50,6 +50,8 @@ def get_month_data(month_dir):
 
         duel = song_data.album.replace('DoD', '', 1)
 
+        month_number = duel.split('-')[1].split(':')[0]
+
         songs.append({
             'rank': f.split('-')[0].replace('tie', ''),
             'max_rank': max_rank,
@@ -61,16 +63,11 @@ def get_month_data(month_dir):
             'link': os.sep + song_path,
             'theme': duel.split(': ', 1)[1],
             'year': '20' + duel.split('-')[0],
-            'month': get_month_name(duel)
+            'month': month_number,
+            'month_name': calendar.month_name[int(month_number)]
         })
 
     return songs
-
-
-def get_month_name(duel):
-    month_number = int(duel.split('-')[1].split(':')[0])
-
-    return calendar.month_name[month_number]
 
 
 def set_template_globals():
