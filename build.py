@@ -58,6 +58,7 @@ def get_month_data(month_dir):
             'artists': song_data.artist.split(', '),
             'multiple_artists': len(song_data.artist.split(', ')) > 1,
             'games': song_data.genre.split(', '),
+            'multiple_games': len(song_data.genre.split(', ')) > 1,
             'title': song_data.title,
             'duration': song_data.duration,
             'duel': duel,

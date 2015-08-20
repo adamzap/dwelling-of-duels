@@ -4,29 +4,60 @@
 
 {% block content %}
 
-<h1 class="ctitle">Songs from {{ key }}</h1>
+{% if objs|rejectattr("multiple_games")|list|length > 0 %}
+  <h1 class="ctitle">Songs from {{ key }}</h1>
 
-<div class="hline-r"></div>
+  <div class="hline-r"></div>
 
-<table class="table" data-sortable>
-  <thead>
-    <tr>
-      <th data-sorted="true" data-sorted-direction="ascending">Name</th>
-      <th>Artist</th>
-      <th>Duel</th>
-      <th>Rank</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for obj in objs|sort(attribute='title') %}
-    <tr>
-      <td>{{ get_song_link(obj) }}</td>
-      <td>{{ get_artist_link(obj) }}</td>
-      <td>{{ get_duel_link(obj) }}</td>
-      <td {{ get_rank_sort_value(obj) }}>{{ get_detailed_rank(obj) }}</td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+  <table class="table" data-sortable>
+    <thead>
+      <tr>
+        <th data-sorted="true" data-sorted-direction="ascending">Name</th>
+        <th>Artist</th>
+        <th>Duel</th>
+        <th>Rank</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for obj in objs|sort(attribute='title') %}
+      <tr>
+        <td>{{ get_song_link(obj) }}</td>
+        <td>{{ get_artist_link(obj) }}</td>
+        <td>{{ get_duel_link(obj) }}</td>
+        <td {{ get_rank_sort_value(obj) }}>{{ get_detailed_rank(obj) }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+{% if objs|selectattr("multiple_games")|list|length > 0 %}
+  <h1 class="ctitle">Medleys featuring {{ key }}</h1>
+
+  <div class="hline-r"></div>
+
+  <table class="table" data-sortable>
+    <thead>
+      <tr>
+        <th data-sorted="true" data-sorted-direction="ascending">Name</th>
+        <th>Artist</th>
+        <th>Other Games</th>
+        <th>Duel</th>
+        <th>Rank</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for obj in objs|sort(attribute='title') %}
+      <tr>
+        <td>{{ get_song_link(obj) }}</td>
+        <td>{{ get_artist_link(obj) }}</td>
+        <td>{{ get_medley_game_links(key, obj) }}</td>
+        <td>{{ get_duel_link(obj) }}</td>
+        <td {{ get_rank_sort_value(obj) }}>{{ get_detailed_rank(obj) }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
 
 {% endblock %}

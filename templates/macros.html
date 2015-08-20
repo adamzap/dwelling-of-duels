@@ -71,3 +71,11 @@
     {% endif %}
   {% endfor %}
 {%- endmacro %}
+
+{% macro get_medley_game_links(game, song) -%}
+  {% for other_game in song.games %}
+    {% if game != other_game %}
+      {{ get_game_link(other_game) }}
+    {% endif %}
+  {% endfor %}
+{%- endmacro %}
