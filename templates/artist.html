@@ -41,8 +41,8 @@
       <tr>
         <th data-sorted="true" data-sorted-direction="ascending">Name</th>
         <th>Game</th>
-        <th>Duel</th>
         <th>Other Artists</th>
+        <th>Duel</th>
         <th>Rank</th>
       </tr>
     </thead>
@@ -51,8 +51,8 @@
       <tr>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_game_link(obj) }}</td>
-        <td>{{ get_duel_link(obj) }}</td>
         <td>{{ get_collaborator_links(key, obj) }}</td>
+        <td>{{ get_duel_link(obj) }}</td>
         <td {{ get_rank_sort_value(obj) }}>{{ get_detailed_rank(obj) }}</td>
       </tr>
     {% endfor %}
