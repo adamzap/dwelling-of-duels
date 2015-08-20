@@ -95,9 +95,9 @@ def build_site():
 
     os.mkdir(OUT_DIR)
 
-    build_page_type('duels')
-    build_page_type('games')
-    build_page_type('artists')
+    build_pages('duels')
+    build_pages('games')
+    build_pages('artists')
 
     write_page('index', {}, '')
     write_page('rules', {})
@@ -105,7 +105,7 @@ def build_site():
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
 
-def build_page_type(kind):
+def build_pages(kind):
     os.mkdir(os.path.join(OUT_DIR, kind))
 
     song_lists = collections.defaultdict(list)
