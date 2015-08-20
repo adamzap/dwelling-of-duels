@@ -63,3 +63,11 @@
     data-value="{{ song.rank }}"
   {% endif %}
 {%- endmacro %}
+
+{% macro get_collaborator_links(artist, song) -%}
+  {% for other_artist in song.artists %}
+    {% if artist != other_artist %}
+      {{ get_artist_link(other_artist) }}
+    {% endif %}
+  {% endfor %}
+{%- endmacro %}
