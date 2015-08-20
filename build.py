@@ -39,7 +39,11 @@ def build_data():
 def get_month_data(month_dir):
     songs = []
 
-    for f in [f for f in os.listdir(month_dir) if f.endswith('.mp3')]:
+    song_filenames = [f for f in os.listdir(month_dir) if f.endswith('.mp3')]
+
+    max_rank = len([f for f in song_filenames if not f.startswith('ZZ')])
+
+    for f in song_filenames:
         song_path = os.path.join(month_dir, f)
 
         song_data = parse_id3.File(song_path)
@@ -48,6 +52,7 @@ def get_month_data(month_dir):
 
         songs.append({
             'rank': f.split('-')[0].replace('tie', ''),
+            'max_rank': max_rank,
             'artist': song_data.artist,
             'game': song_data.genre,
             'title': song_data.title,
@@ -58,11 +63,6 @@ def get_month_data(month_dir):
             'year': '20' + duel.split('-')[0],
             'month': calendar.month_name[int(duel.split('-')[1].split(':')[0])]
         })
-
-    max_rank = len([s for s in songs if s['rank'] != 'ZZ'])
-
-    for song in songs:
-        song['max_rank'] = max_rank
 
     return songs
 
