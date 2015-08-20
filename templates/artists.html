@@ -19,9 +19,9 @@
     </tr>
   </thead>
   <tbody>
-  {% for song_list in objs %}
+  {% for artist, song_list in objs|dictsort %}
     <tr>
-      <td>{{ get_artist_link(song_list[0]) }}</td>
+      <td>{{ get_artist_link(artist) }}</td>
       <td>{{ song_list|count }}</td>
       <td>{{ song_list|selectattr("rank", "equalto", "01")|list|count }}</td>
       <td>{{ song_list|selectattr("rank", "equalto", "02")|list|count }}</td>

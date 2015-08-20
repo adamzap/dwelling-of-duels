@@ -16,12 +16,24 @@
   <a href="{{ song.link }}">{{ song.title }}</a>
 {%- endmacro %}
 
-{% macro get_artist_link(song) -%}
-  <a href="/artists/{{ song.artist|slugify }}/">{{ song.artist }}</a>
+{% macro get_artist_link(obj) -%}
+  {% if obj is string %}
+    <a href="/artists/{{ obj|slugify }}/">{{ obj }}</a>
+  {% else %}
+    {% for artist in obj.artists %}
+      <a href="/artists/{{ artist|slugify }}/">{{ artist }}</a>
+    {% endfor %}
+  {% endif %}
 {%- endmacro %}
 
-{% macro get_game_link(song) -%}
-  <a href="/games/{{ song.game|slugify }}/">{{ song.game }}</a>
+{% macro get_game_link(obj) -%}
+  {% if obj is string %}
+    <a href="/games/{{ obj|slugify }}/">{{ obj }}</a>
+  {% else %}
+    {% for game in obj.games %}
+      <a href="/games/{{ game|slugify }}/">{{ game }}</a>
+    {% endfor %}
+  {% endif %}
 {%- endmacro %}
 
 {% macro get_duel_link(song) -%}

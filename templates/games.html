@@ -16,9 +16,9 @@
     </tr>
   </thead>
   <tbody>
-  {% for song_list in objs %}
+  {% for game, song_list in objs|dictsort %}
     <tr>
-      <td>{{ get_game_link(song_list[0]) }}
+      <td>{{ get_game_link(game) }}</td>
       <td>{{ song_list|count }}</td>
     </tr>
   {% endfor %}

@@ -6,8 +6,8 @@ import jinja2
 import shutil
 import calendar
 import datetime
-import itertools
 import livereload
+import collections
 
 from slugify import slugify
 from hsaudiotag import auto as parse_id3
@@ -55,8 +55,8 @@ def get_month_data(month_dir):
         songs.append({
             'rank': f.split('-')[0].replace('tie', ''),
             'max_rank': max_rank,
-            'artist': song_data.artist,
-            'game': song_data.genre,
+            'artists': song_data.artist.split(', '),
+            'games': song_data.genre.split(', '),
             'title': song_data.title,
             'duration': song_data.duration,
             'duel': duel,
@@ -95,14 +95,38 @@ def build_site():
 
     os.mkdir(OUT_DIR)
 
-    build_page_type('duel')
-    build_page_type('game')
-    build_page_type('artist')
+    build_page_type('duels')
+    build_page_type('games')
+    build_page_type('artists')
 
     write_page('index', {}, '')
     write_page('rules', {})
 
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
+
+
+def build_page_type(kind):
+    os.mkdir(os.path.join(OUT_DIR, kind))
+
+    song_lists = collections.defaultdict(list)
+
+    field = kind if kind in DATA[0] else kind.rstrip('s')
+
+    for song in DATA:
+        if type(song[field]) is not list:
+            song_lists[song[field]].append(song)
+        else:
+            for key in song[kind]:
+                song_lists[key].append(song)
+
+    for key, song_list in song_lists.items():
+        path = os.path.join(kind, slugify(key))
+
+        write_page(kind.rstrip('s'), {'key': key, 'objs': song_list}, path)
+
+    TEMPLATES.globals['stats'][kind] = len(song_lists)
+
+    write_page(kind, {'objs': song_lists})
 
 
 def write_page(template_name, context, path=None):
@@ -120,29 +144,6 @@ def write_page(template_name, context, path=None):
 
     with open(out_path, 'w') as out:
         out.write(template.render(context))
-
-
-def build_page_type(page_type):
-    os.mkdir(os.path.join(OUT_DIR, page_type + 's'))
-
-    song_lists = []
-
-    key_func = lambda o: o[page_type].lower()
-
-    DATA.sort(key=key_func)
-
-    for key, songs in itertools.groupby(DATA, key=key_func):
-        path = os.path.join(page_type + 's', slugify(key))
-
-        song_list = list(songs)
-
-        write_page(page_type, {'objs': song_list}, path)
-
-        song_lists.append(song_list)
-
-    TEMPLATES.globals['stats'][page_type + 's'] = len(song_lists)
-
-    write_page(page_type + 's', {'objs': song_lists})
 
 
 def build():
