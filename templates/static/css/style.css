@@ -551,3 +551,27 @@ tbody tr:hover {
 #twrap a {
   color: white;
 }
+
+#filter {
+  color: #eeeeee;
+  background: none;
+  margin-left: 4px;
+  padding-left: 4px;
+  border: solid 2px #e11a1a;
+}
+
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+::-moz-placeholder {
+  font-style: italic;
+}
+
+:-ms-input-placeholder {
+  font-style: italic;
+}
+
+::-ms-input-placeholder {
+  font-style: italic;
+}

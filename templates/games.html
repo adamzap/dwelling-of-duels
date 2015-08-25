@@ -8,6 +8,10 @@
 
 <div class="hline-r"></div>
 
+<p>
+  Filter this table: <input id="filter" type="text" placeholder="Example: zelda"/>
+</p>
+
 <table class="table" data-sortable>
   <thead>
     <tr>
@@ -25,4 +29,18 @@
   </tbody>
 </table>
 
+{% endblock %}
+
+{% block extra_js %}
+  document.getElementById('filter').addEventListener('input', function (e) {
+    var query = e.target.value.toLowerCase();
+    var rows = document.querySelectorAll('tbody tr');
+    var length = rows.length;
+
+    for (var i = 0; i < length; i++) {
+      var s = rows[i].querySelectorAll('a')[0].textContent.toLowerCase();
+
+      rows[i].style.display = s.indexOf(query) !== -1 ? 'table-row' : 'none';
+    }
+  });
 {% endblock %}
