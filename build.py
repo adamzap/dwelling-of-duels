@@ -66,7 +66,8 @@ def get_month_data(month_dir):
             'theme': duel.split(': ', 1)[1],
             'year': '20' + duel.split('-')[0],
             'month': month_number,
-            'month_name': calendar.month_name[int(month_number)]
+            'month_name': calendar.month_name[int(month_number)],
+            'month_dir': month_dir.replace(ARCHIVE_DIR, '').strip(os.sep)
         })
 
     return songs
