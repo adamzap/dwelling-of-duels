@@ -1,4 +1,4 @@
-function make_filter(col) {
+function make_filter() {
   var input = document.getElementById('filter');
 
   input.addEventListener('click', function (e) {
