@@ -13,7 +13,10 @@
     <tr>
       <th data-sorted="true" data-sorted-direction="descending">Year</th>
       <th>Month</th>
-      <th>Theme</th>
+      <th>
+        Theme
+        <input id="filter" type="text" placeholder="Filter"/>
+      </th>
       <th>♫</th>
     </tr>
   </thead>
@@ -29,4 +32,8 @@
   </tbody>
 </table>
 
+{% endblock %}
+
+{% block extra_js %}
+  make_filter();
 {% endblock %}
