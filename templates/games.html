@@ -32,7 +32,13 @@
 {% endblock %}
 
 {% block extra_js %}
-  document.getElementById('filter').addEventListener('input', function (e) {
+  var input = document.getElementById('filter');
+
+  input.addEventListener('click', function (e) {
+    e.stopPropagation();
+  });
+
+  input.addEventListener('input', function (e) {
     var query = e.target.value.toLowerCase();
     var rows = document.querySelectorAll('tbody tr');
     var length = rows.length;
