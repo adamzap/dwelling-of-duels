@@ -553,10 +553,13 @@ tbody tr:hover {
 }
 
 #filter {
+  width: 120px;
   color: #eeeeee;
   background: none;
-  margin-left: 4px;
-  padding-left: 4px;
+  margin-left: 8px;
+  padding-left: 6px;
+  font-weight: normal;
+  border-radius: 16px;
   border: solid 2px #e11a1a;
 }
 
