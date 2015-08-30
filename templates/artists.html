@@ -11,7 +11,10 @@
 <table class="table" data-sortable>
   <thead>
     <tr>
-      <th data-sorted="true" data-sorted-direction="ascending">Name</th>
+      <th data-sorted="true" data-sorted-direction="ascending">
+        Name
+        <input id="filter" type="text" placeholder="Filter"/>
+      </th>
       <th>♫</th>
       <th class="gold">&bull;</th>
       <th class="silver">&bull;</th>
@@ -31,4 +34,8 @@
   </tbody>
 </table>
 
+{% endblock %}
+
+{% block extra_js %}
+  make_filter(0);
 {% endblock %}
