@@ -6,6 +6,7 @@ import jinja2
 import shutil
 import calendar
 import datetime
+import markdown
 import livereload
 import collections
 
@@ -102,7 +103,8 @@ def build_site():
     build_pages('games')
     build_pages('artists')
 
-    write_page('index', {}, '')
+    build_index()
+
     write_page('rules', {})
 
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
@@ -130,6 +132,14 @@ def build_pages(kind):
     TEMPLATES.globals['stats'][kind] = len(song_lists)
 
     write_page(kind, {'objs': song_lists})
+
+
+def build_index():
+    raw_content = open('front-page.md').read()
+
+    content = markdown.markdown(raw_content)
+
+    write_page('index', {'the_content': content}, '')
 
 
 def write_page(template_name, context, path=None):
