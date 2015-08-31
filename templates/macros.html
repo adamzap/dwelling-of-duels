@@ -79,3 +79,7 @@
     {% endif %}
   {% endfor %}
 {%- endmacro %}
+
+{% macro filter_input() -%}
+  <input id="filter" type="text" placeholder="Filter"/>
+{%- endmacro %}
