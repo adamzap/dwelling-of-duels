@@ -25,6 +25,19 @@ TEMPLATES.filters['slugify'] = slugify
 DATA = []
 
 
+DUEL_REPLACEMENTS = [
+    ('DoD04-CW', 'DoD04-10'),
+    ('DoD05-JO', 'DoD05-07'),
+    ('DoD05-TS', 'DoD05-02'),
+    ('DoD06-JO', 'DoD06-01'),
+    ('DoD06-TS', 'DoD06-02'),
+    ('DoD09-JO', 'DoD09-01'),
+    ('DoD10-JO', 'DoD10-01'),
+    ('DoD11-11S', 'DoD11-11'),
+    ('DoD13-0910', 'DoD13-09')
+]
+
+
 def build_data():
     for d in os.listdir(ARCHIVE_DIR):
         path = os.path.join(ARCHIVE_DIR, d)
@@ -35,6 +48,13 @@ def build_data():
         DATA.extend(get_month_data(path))
 
     set_template_globals()
+
+
+def fix_duel_name(duel):
+    for x, y in DUEL_REPLACEMENTS:
+        duel = duel.replace(x, y)
+
+    return duel
 
 
 def get_month_data(month_dir):
@@ -49,7 +69,7 @@ def get_month_data(month_dir):
 
         song_data = parse_id3.File(song_path)
 
-        duel = song_data.album.replace('DoD', '', 1)
+        duel = fix_duel_name(song_data.album).replace('DoD', '', 1)
 
         month_number = duel.split('-')[1].split(':')[0]
 
