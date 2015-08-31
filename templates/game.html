@@ -19,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-    {% for obj in objs|sort(attribute='title') %}
+    {% for obj in objs|rejectattr("multiple_games")|sort(attribute='title') %}
       <tr>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_artist_link(obj) }}</td>
@@ -47,7 +47,7 @@
       </tr>
     </thead>
     <tbody>
-    {% for obj in objs|sort(attribute='title') %}
+    {% for obj in objs|selectattr("multiple_games")|sort(attribute='title') %}
       <tr>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_artist_link(obj) }}</td>
