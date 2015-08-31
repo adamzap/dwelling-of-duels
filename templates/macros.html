@@ -44,14 +44,14 @@
   {% if song.rank == "ZZ" %}
     ALT
   {% else %}
-    {% if song.rank|int < 4 %}
-      <span class="{{ trophy_string(song) }}">&bull;</span>
-    {% endif %}
-
     {{ song.rank|int }}
 
     {% if show_max %}
       /{{ song.max_rank }}
+    {% endif %}
+
+    {% if song.rank|int < 4 %}
+      <span class="{{ trophy_string(song) }}">&bull;</span>
     {% endif %}
   {% endif %}
 {%- endmacro %}
