@@ -32,7 +32,7 @@
   <tbody>
   {% for obj in objs %}
     <tr>
-      <td {{ get_rank_sort_value(obj) }}>{{ get_simple_rank(obj) }}</td>
+      <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, false) }}</td>
       <td>{{ get_song_link(obj) }}</td>
       <td>{{ get_artist_link(obj) }}</td>
       <td>{{ get_game_link(obj) }}</td>

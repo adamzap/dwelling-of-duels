@@ -40,11 +40,7 @@
   <a href="/duels/{{ song.duel|slugify }}/">{{ prettify_duel(song) }}</a>
 {%- endmacro %}
 
-{% macro get_simple_rank(song) -%}
-  {{ "ALT" if song.rank == "ZZ" else song.rank|int }}
-{%- endmacro %}
-
-{% macro get_detailed_rank(song) -%}
+{% macro get_rank(song, show_max) -%}
   {% if song.rank == "ZZ" %}
     ALT
   {% else %}
@@ -52,7 +48,11 @@
       <span class="{{ trophy_string(song) }}">&bull;</span>
     {% endif %}
 
-    {{ song.rank|int }}/{{ song.max_rank }}
+    {{ song.rank|int }}
+
+    {% if show_max %}
+      /{{ song.max_rank }}
+    {% endif %}
   {% endif %}
 {%- endmacro %}
 
