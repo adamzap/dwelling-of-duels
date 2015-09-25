@@ -37,6 +37,10 @@ DUEL_REPLACEMENTS = [
     ('DoD13-0910', 'DoD13-09')
 ]
 
+ARTIST_WHITELIST = [
+    'Evil(I)(I)'
+]
+
 
 def build_data():
     for d in os.listdir(ARCHIVE_DIR):
@@ -57,6 +61,13 @@ def fix_duel_name(duel):
     return duel
 
 
+def fix_artist(artist):
+    if artist not in ARTIST_WHITELIST:
+        artist = artist.replace(' (', ', ').replace(')', '')
+
+    return artist
+
+
 def get_month_data(month_dir):
     songs = []
 
@@ -73,11 +84,13 @@ def get_month_data(month_dir):
 
         month_number = duel.split('-')[1].split(':')[0]
 
+        artist = fix_artist(song_data.artist)
+
         songs.append({
             'rank': f.split('-')[0].replace('tie', ''),
             'max_rank': max_rank,
-            'artists': song_data.artist.split(', '),
-            'multiple_artists': len(song_data.artist.split(', ')) > 1,
+            'artists': artist.split(', '),
+            'multiple_artists': len(artist.split(', ')) > 1,
             'games': song_data.genre.split(', '),
             'multiple_games': len(song_data.genre.split(', ')) > 1,
             'title': song_data.title,
