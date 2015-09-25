@@ -9,6 +9,7 @@ import datetime
 import markdown
 import livereload
 import collections
+import configparser
 
 from slugify import slugify
 from hsaudiotag import auto as parse_id3
@@ -21,6 +22,11 @@ TEMPLATE_DIR = 'templates' + os.sep
 TEMPLATES = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
 
 TEMPLATES.filters['slugify'] = slugify
+
+CONFIG = configparser.ConfigParser()
+CONFIG.read('site.cfg')
+
+VOTING = CONFIG['dod-site'].getboolean('voting')
 
 DATA = []
 
@@ -108,6 +114,8 @@ def get_month_data(month_dir):
 
 
 def set_template_globals():
+    TEMPLATES.globals['voting'] = VOTING
+
     latest_duel = DATA[-1]['duel']
 
     winners = [s for s in DATA if s['duel'] == latest_duel]
@@ -139,6 +147,9 @@ def build_site():
     build_index()
 
     write_page('rules', {})
+
+    if VOTING:
+        write_page('vote', {})
 
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
