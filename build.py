@@ -121,6 +121,7 @@ def set_template_globals():
     winners = [s for s in DATA if s['duel'] == latest_duel]
     winners.sort(key=lambda s: s['rank'])
 
+    TEMPLATES.globals['latest_duel'] = latest_duel
     TEMPLATES.globals['latest_winners'] = winners
 
     start_delta = datetime.date.today() - datetime.date(2003, 9, 1)
