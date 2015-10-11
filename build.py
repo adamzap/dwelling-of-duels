@@ -7,7 +7,6 @@ import shutil
 import calendar
 import datetime
 import markdown
-import livereload
 import collections
 import configparser
 
@@ -211,12 +210,3 @@ if __name__ == '__main__':
         sys.exit('Error: `{}` must be in {}'.format(ARCHIVE_DIR, os.getcwd()))
 
     build()
-
-    if 'watch' in sys.argv:
-        server = livereload.Server()
-
-        server.watch('build.py', build)
-        server.watch('dodarchive', build)
-        server.watch('templates', build_site)
-
-        server.serve(root='deploy', open_url_delay=1)
