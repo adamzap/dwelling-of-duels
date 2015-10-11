@@ -20,26 +20,47 @@
 
 <br />
 
-<table class="table" data-sortable>
-  <thead>
-    <tr>
-      <th data-sorted="true" data-sorted-direction="ascending">Rank</th>
-      <th>Song</th>
-      <th>Artist(s)</th>
-      <th>Game(s)</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for obj in objs %}
-    <tr>
-      <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, false) }}</td>
-      <td>{{ get_song_link(obj) }}</td>
-      <td>{{ get_artist_link(obj) }}</td>
-      <td>{{ get_game_link(obj) }}</td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+{% if voting and objs[0].duel == latest_duel %}
+  <table class="table" data-sortable>
+    <thead>
+      <tr>
+        <th>Song</th>
+        <th>Game(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for obj in objs %}
+      <tr>
+        <td>{{ get_song_link(obj) }}</td>
+        <td>{{ get_game_link(obj) }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <table class="table" data-sortable>
+    <thead>
+      <tr>
+        <th data-sorted="true" data-sorted-direction="ascending">Rank</th>
+        <th>Song</th>
+        <th>Artist(s)</th>
+        <th>Game(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for obj in objs %}
+      <tr>
+        <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, false) }}</td>
+        <td>{{ get_song_link(obj) }}</td>
+        <td>{{ get_artist_link(obj) }}</td>
+        <td>{{ get_game_link(obj) }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+<br />
 
 <h1 class="ctitle">Files</h1>
 
@@ -56,5 +77,13 @@
     <a href="https://www.youtube.com/">YouTube Playlist</a>
   </li>
 </ul>
+
+{% if voting and objs[0].duel == latest_duel %}
+  <br />
+
+  <h1 class="ctitle">Voting</h1>
+
+  <div class="hline-r"></div>
+{% endif %}
 
 {% endblock %}

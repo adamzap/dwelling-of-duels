@@ -149,9 +149,6 @@ def build_site():
 
     write_page('rules', {})
 
-    if VOTING:
-        write_page('vote', {})
-
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
 
