@@ -567,6 +567,11 @@ tbody tr:hover {
   margin-top: 30px;
 }
 
+#voting-result {
+  width: 100%;
+  color: #242424;
+}
+
 ::-webkit-input-placeholder {
   font-style: italic;
 }
