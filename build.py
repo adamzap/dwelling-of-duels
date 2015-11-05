@@ -117,7 +117,14 @@ def set_template_globals():
 
     latest_duel = DATA[-1]['duel']
 
-    winners = [s for s in DATA if s['duel'] == latest_duel]
+    if VOTING:
+        _d = lambda d: d['duel']
+
+        winners_duel = [_d(d) for d in DATA if _d(d) != latest_duel][-1]
+    else:
+        winners_duel = latest_duel
+
+    winners = [s for s in DATA if s['duel'] == winners_duel]
     winners.sort(key=lambda s: s['rank'])
 
     TEMPLATES.globals['latest_duel'] = latest_duel
