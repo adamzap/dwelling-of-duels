@@ -86,9 +86,16 @@
   <div class="hline-r"></div>
 
   {% for obj in objs %}
-    <h4>{{ obj.title }}</h4>
+    <h4>
+      {{ obj.title }}
+      <small class="pull-right">
+        <label>
+          <input type="checkbox" data-id="{{ loop.index }}"/> My Song
+        </label>
+      </small>
+    </h4>
 
-    <div class="voting-slider" data-song="{{ obj.games|join(', ') }} - {{ obj.title }}"></div>
+    <div class="voting-slider" data-id="{{ loop.index }}" data-song="{{ obj.games|join(', ') }} - {{ obj.title }}"></div>
 
     <br />
     <br />

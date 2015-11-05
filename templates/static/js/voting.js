@@ -8,11 +8,17 @@ var LABELS = [
   'Incredible'
 ];
 
-function format_vote (song, vote) {
+function format_vote (song, vote, is_my_song) {
+  var out = song + ' / ';
+
+  if (is_my_song) {
+    return out + 'My Song';
+  }
+
   var hundreds = Math.round(vote / 100);
   var offset = '+' + ((vote - (hundreds * 100)) / 100).toFixed(2);
 
-  return song + ' / ' + LABELS[hundreds] + ' ' + offset.replace('+-', '-');
+  return out + LABELS[hundreds] + ' ' + offset.replace('+-', '-');
 }
 
 function update_votes () {
@@ -24,7 +30,10 @@ function update_votes () {
     var song = $el.data('song');
     var vote = $el.data('ionRangeSlider').result.from;
 
-    votes += format_vote(song, vote) + '\n';
+    var $checkbox = $('input[data-id="' + $el.data('id') + '"]');
+    var is_my_song = $checkbox.prop('checked');
+
+    votes += format_vote(song, vote, is_my_song) + '\n';
   });
 
   $('#voting-result').val(votes);
@@ -70,5 +79,13 @@ $(function () {
     onFinish: function (data) {
       update_votes();
     }
+  });
+
+  $('input[type="checkbox"]').change(function (e) {
+    var $el = $(e.target);
+
+    $('input[type="checkbox"]').not($el).prop('checked', false);
+
+    update_votes();
   });
 });
