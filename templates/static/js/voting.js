@@ -8,6 +8,28 @@ var LABELS = [
   'Incredible'
 ];
 
+function format_vote (song, vote) {
+  var hundreds = Math.round(vote / 100);
+  var offset = '+' + ((vote - (hundreds * 100)) / 100).toFixed(2);
+
+  return song + ' / ' + LABELS[hundreds] + ' ' + offset.replace('+-', '-');
+}
+
+function update_votes () {
+  var votes = '';
+
+  $('.voting-slider').each(function () {
+    var $el = $(this);
+
+    var song = $el.data('song');
+    var vote = $el.data('ionRangeSlider').result.from;
+
+    votes += format_vote(song, vote) + '\n';
+  });
+
+  $('#voting-result').val(votes);
+}
+
 $('.voting-slider').ionRangeSlider({
   min: 0,
   max: 600,
@@ -36,25 +58,3 @@ $('.voting-slider').ionRangeSlider({
     update_votes();
   }
 });
-
-function format_vote (song, vote) {
-  var hundreds = Math.round(vote / 100);
-  var offset = '+' + ((vote - (hundreds * 100)) / 100).toFixed(2);
-
-  return song + ' / ' + LABELS[hundreds] + ' ' + offset.replace('+-', '-');
-}
-
-function update_votes () {
-  var votes = '';
-
-  $('.voting-slider').each(function () {
-    var $el = $(this);
-
-    var song = $el.data('song');
-    var vote = $el.data('ionRangeSlider').result.from;
-
-    votes += format_vote(song, vote) + '\n';
-  });
-
-  $('#voting-result').val(votes);
-}
