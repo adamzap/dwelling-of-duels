@@ -53,10 +53,7 @@
   width: 0;
   height: 10px;
   top: 33px;
-  border-top: 1px solid #428bca;
-  border-bottom: 1px solid #428bca;
-  background: #428bca;
-  background: linear-gradient(to top, rgba(66,139,202,1) 0%,rgba(127,195,232,1) 100%);
+  background: #e11a1a;
 }
 
 .irs-bar-edge {
@@ -66,11 +63,9 @@
   left: 0;
   height: 10px;
   top: 33px;
-  width: 14px;
-  border: 1px solid #428bca;
+  width: 5px;
   border-right: 0;
-  background: #428bca;
-  background: linear-gradient(to top, rgba(66,139,202,1) 0%,rgba(127,195,232,1) 100%);
+  background: #e11a1a;
   border-radius: 16px 0 0 16px;
 }
 
@@ -81,6 +76,7 @@
   z-index: 1;
   top: 25px;
   width: 27px;
+  width: 10px;
   height: 27px;
   border: 1px solid #AAA;
   background: #DDD;
@@ -131,11 +127,11 @@
   left: 0;
   white-space: nowrap;
   text-align: center;
-  font-size: 9px;
+  font-size: 16px;
   line-height: 9px;
   padding: 0 3px;
   bottom: 5px;
-  color: #99a4ac;
+  color: #e11a1a;
 }
 
 .irs-hidden-input {
