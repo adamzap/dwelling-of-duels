@@ -86,10 +86,11 @@
   <div class="hline-r"></div>
 
   {% for obj in objs %}
-    {{ get_song_link(obj) }}
+    <h4>{{ obj.title }}</h4>
 
     <div class="voting-slider" data-song="{{ obj.games|join(', ') }} - {{ obj.title }}"></div>
 
+    <br />
     <br />
   {% endfor %}
 
