@@ -30,7 +30,19 @@ function update_votes () {
   $('#voting-result').val(votes);
 }
 
+function update_empty_votes () {
+  var votes = '';
+
+  $('.voting-slider').each(function () {
+    votes += format_vote($(this).data('song'), 0) + '\n';
+  });
+
+  $('#voting-result').val(votes);
+}
+
 $(function () {
+  update_empty_votes();
+
   $('.voting-slider').ionRangeSlider({
     min: 0,
     max: 600,
