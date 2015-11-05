@@ -134,6 +134,14 @@
   color: #e11a1a;
 }
 
+.js-grid-text-0 {
+  margin-left: -7px !important;
+}
+
+.js-grid-text-600 {
+  margin-left: -58px !important;
+}
+
 .irs-hidden-input {
   position: absolute !important;
   display: block !important;
