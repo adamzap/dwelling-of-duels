@@ -30,31 +30,33 @@ function update_votes () {
   $('#voting-result').val(votes);
 }
 
-$('.voting-slider').ionRangeSlider({
-  min: 0,
-  max: 600,
-  grid: true,
-  grid_snap: true,
-  hide_min_max: true,
-  hide_from_to: true,
+$(function () {
+  $('.voting-slider').ionRangeSlider({
+    min: 0,
+    max: 600,
+    grid: true,
+    grid_snap: true,
+    hide_min_max: true,
+    hide_from_to: true,
 
-  prettify: function (num) {
-    return num / 100;
-  },
+    prettify: function (num) {
+      return num / 100;
+    },
 
-  prettify_labels: function (num) {
-    return num % 100 === 0 ? LABELS[num / 100] : num;
-  },
+    prettify_labels: function (num) {
+      return num % 100 === 0 ? LABELS[num / 100] : num;
+    },
 
-  grid_line_visible: function (num) {
-    return num % 100 === 0;
-  },
+    grid_line_visible: function (num) {
+      return num % 100 === 0;
+    },
 
-  additional_grid_line_class: function (num) {
-    return 'small';
-  },
+    additional_grid_line_class: function (num) {
+      return 'small';
+    },
 
-  onFinish: function (data) {
-    update_votes();
-  }
+    onFinish: function (data) {
+      update_votes();
+    }
+  });
 });
