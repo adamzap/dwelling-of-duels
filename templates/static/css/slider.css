@@ -146,7 +146,7 @@
 }
 
 .irs-disabled .irs-slider {
-  background: #606060;
+  display: none;
 }
 
 .irs-disabled .irs-line {
