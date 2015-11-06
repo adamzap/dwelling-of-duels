@@ -87,7 +87,7 @@
 
   {% for obj in objs %}
     <h4 class="voting">
-      {{ obj.title }}
+      {{ obj.games|join(', ') }} - {{ obj.title }}
       <small class="pull-right">
         <label>
           <input type="checkbox" data-id="{{ loop.index0 }}"/> My Song
