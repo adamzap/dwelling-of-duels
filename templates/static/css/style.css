@@ -572,6 +572,10 @@ tbody tr:hover {
   color: #242424;
 }
 
+h4.voting {
+  margin-bottom: 2px;
+}
+
 ::-webkit-input-placeholder {
   font-style: italic;
 }
