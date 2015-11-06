@@ -90,12 +90,12 @@
       {{ obj.title }}
       <small class="pull-right">
         <label>
-          <input type="checkbox" data-id="{{ loop.index }}"/> My Song
+          <input type="checkbox" data-id="{{ loop.index0 }}"/> My Song
         </label>
       </small>
     </h4>
 
-    <div class="voting-slider" data-id="{{ loop.index }}" data-song="{{ obj.games|join(', ') }} - {{ obj.title }}"></div>
+    <div class="voting-slider" data-id="{{ loop.index0 }}" data-song="{{ obj.games|join(', ') }} - {{ obj.title }}"></div>
 
     <br />
     <br />

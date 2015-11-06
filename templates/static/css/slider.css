@@ -18,7 +18,6 @@
   height: 10px; top: 33px;
   background: #EEE;
   background: linear-gradient(to bottom, #DDD -50%, #FFF 150%);
-  border: 1px solid #CCC;
   border-radius: 16px;
 }
 
@@ -140,6 +139,26 @@
 
 .js-grid-text-600 {
   margin-left: -58px !important;
+}
+
+.irs-disabled .irs-grid-text {
+  color: #606060;
+}
+
+.irs-disabled .irs-slider {
+  background: #606060;
+}
+
+.irs-disabled .irs-line {
+  background: #606060;
+}
+
+.irs-disabled .irs-bar {
+  background: #606060;
+}
+
+.irs-disabled .irs-bar-edge {
+  background: #606060;
 }
 
 .irs-hidden-input {

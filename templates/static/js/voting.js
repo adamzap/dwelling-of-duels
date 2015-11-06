@@ -87,5 +87,7 @@ $(function () {
     $('input[type="checkbox"]').not($el).prop('checked', false);
 
     update_votes();
+
+    $('.irs-with-grid').eq($el.data('id')).toggleClass('irs-disabled');
   });
 });
