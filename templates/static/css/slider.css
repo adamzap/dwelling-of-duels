@@ -11,6 +11,7 @@
 }
 
 .irs-line {
+  cursor: pointer;
   position: relative;
   display: block;
   overflow: hidden;
@@ -28,24 +29,28 @@
 }
 
 .irs-line-left {
+  cursor: pointer;
   left: 0;
   width: 11%;
   height: 8px;
 }
 
 .irs-line-mid {
+  cursor: pointer;
   left: 9%;
   width: 82%;
   height: 8px;
 }
 
 .irs-line-right {
+  cursor: pointer;
   right: 0;
   width: 11%;
   height: 8px;
 }
 
 .irs-bar {
+  cursor: pointer;
   position: absolute;
   display: block;
   left: 0;
@@ -56,6 +61,7 @@
 }
 
 .irs-bar-edge {
+  cursor: pointer;
   position: absolute;
   display: block;
   top: 0;
