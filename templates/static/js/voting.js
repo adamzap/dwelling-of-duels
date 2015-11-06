@@ -55,6 +55,7 @@ $(function () {
   $('.voting-slider').ionRangeSlider({
     min: 0,
     max: 600,
+    from: 300,
     grid: true,
     grid_snap: true,
     hide_min_max: true,
