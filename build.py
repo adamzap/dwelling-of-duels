@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import re
 import sys
 import jinja2
 import shutil
@@ -13,6 +14,8 @@ import configparser
 from slugify import slugify
 from hsaudiotag import auto as parse_id3
 
+
+HREF_RE = re.compile(r'(href="/.+/)"')
 
 ARCHIVE_DIR = 'dodarchive'
 OUT_DIR = 'deploy' + os.sep
@@ -28,7 +31,6 @@ CONFIG.read('site.cfg')
 VOTING = CONFIG['dod-site'].getboolean('voting')
 
 DATA = []
-
 
 DUEL_REPLACEMENTS = [
     ('DoD04-CW', 'DoD04-10'),
@@ -204,7 +206,17 @@ def write_page(template_name, context, path=None):
     template = TEMPLATES.get_template(template_name + '.html')
 
     with open(out_path, 'w') as out:
-        out.write(template.render(context))
+        html = template.render(context)
+
+        if 'test' in sys.argv:
+            test_path = os.path.join(os.getcwd(), 'deploy')
+
+            html = html.replace('href="/', 'href="%s/' % test_path)
+            html = html.replace('src="/', 'src="%s/' % test_path)
+
+            html = HREF_RE.sub(r'\1index.html"', html)
+
+        out.write(html)
 
 
 def build():
