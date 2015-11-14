@@ -24,6 +24,7 @@
   <table class="table" data-sortable>
     <thead>
       <tr>
+        <th>Rank</th>
         <th>Song</th>
         <th>Game(s)</th>
       </tr>
@@ -31,6 +32,7 @@
     <tbody>
     {% for obj in objs %}
       <tr>
+        <td>?</td>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_game_link(obj) }}</td>
       </tr>
