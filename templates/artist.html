@@ -5,7 +5,7 @@
 {% block content %}
 
 {% if objs|rejectattr("multiple_artists")|list|length > 0 %}
-  <h1 class="ctitle">Songs by {{ key }}</h1>
+  <h1 class="ctitle">Songs by {{ get_artist_link_link(key, artist_links) }}</h1>
 
   <div class="hline-r"></div>
 
@@ -34,7 +34,7 @@
 <br />
 
 {% if objs|selectattr("multiple_artists")|list|length > 0 %}
-  <h1 class="ctitle">Songs featuring {{ key }}</h1>
+  <h1 class="ctitle">Songs featuring {{ get_artist_link_link(key, artist_links) }}</h1>
 
   <div class="hline-r"></div>
 

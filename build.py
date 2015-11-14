@@ -114,8 +114,15 @@ def get_month_data(month_dir):
     return songs
 
 
+def parse_artist_links():
+    lines = open('artist-links.csv').read().strip().split('\n')
+
+    return {a: l for a, l in [x.split(', ') for x in lines]}
+
+
 def set_template_globals():
     TEMPLATES.globals['voting'] = VOTING
+    TEMPLATES.globals['artist_links'] = parse_artist_links()
 
     latest_duel = DATA[-1]['duel']
 

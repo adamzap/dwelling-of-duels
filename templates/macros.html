@@ -95,3 +95,11 @@
 {% macro filter_input() -%}
   <input id="filter" type="text" placeholder="Search"/>
 {%- endmacro %}
+
+{% macro get_artist_link_link(name, artist_links) -%}
+  {%- if name in artist_links -%}
+    <a href="{{ artist_links[name] }}">{{ name }}</a>
+  {%- else -%}
+    {{ name }}
+  {%- endif -%}
+{%- endmacro %}
