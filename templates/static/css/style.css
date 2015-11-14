@@ -7,7 +7,7 @@
 /*
  * COLORS
  * Old nav bg: #384452
- * New nav bg: #242424
+ * New nav bg: #202020
  * Old accent: #00b3fe
  * New accent: #e11a1a
  */
@@ -21,7 +21,7 @@
 }
 
 body {
-    background: #242424;
+    background: #202020;
     margin: 0;
     height: 100%;
     color: #eeeeee;
@@ -114,12 +114,12 @@ a:focus {
 }
 
 .navbar-default {
-    background-color: #242424;
+    background-color: #202020;
     border-color: transparent;
 }
 
 .dropdown-menu {
-    background: #242424;
+    background: #202020;
 }
 
 .dropdown-menu > li > a {
@@ -131,8 +131,8 @@ a:focus {
 
 .btn-theme {
   color: #fff;
-  background-color: #242424;
-  border-color: #242424;
+  background-color: #202020;
+  border-color: #202020;
   margin: 4px;
 }
 .btn-theme:hover,
@@ -142,7 +142,7 @@ a:focus {
 .open .dropdown-toggle.btn-theme {
   color: #fff;
   background-color: #e11a1a;
-  background-color: #242424;
+  background-color: #202020;
   border-color: #e11a1a;
 }
 
@@ -193,7 +193,7 @@ a:focus {
 }
 
 .hline {
-    border-bottom: 2px solid #242424;
+    border-bottom: 2px solid #202020;
 }
 
 .hline-w {
@@ -364,7 +364,7 @@ a:focus {
 #footerwrap {
     padding-top: 60px;
     padding-bottom: 60px;
-    background: #242424;
+    background: #202020;
 }
 
 #footerwrap p {
@@ -501,13 +501,13 @@ ol, ul {
 }
 
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-  background-color: #242424;
+  background-color: #202020;
 }
 
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  background-color: #242424;
+  background-color: #202020;
   color: #e11a1a;
 }
 
@@ -557,7 +557,7 @@ tbody tr:hover {
 
 #voting-result {
   width: 100%;
-  color: #242424;
+  color: #202020;
 }
 
 h4.voting {
