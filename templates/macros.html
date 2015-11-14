@@ -22,6 +22,9 @@
   {% else %}
     {% for artist in obj.artists %}
       <a href="/artists/{{ artist|slugify }}/">{{ artist }}</a>
+      {% if not loop.last %}
+        <br />
+      {% endif %}
     {% endfor %}
   {% endif %}
 {%- endmacro %}
@@ -32,6 +35,9 @@
   {% else %}
     {% for game in obj.games %}
       <a href="/games/{{ game|slugify }}/">{{ game }}</a>
+      {% if not loop.last %}
+        <br />
+      {% endif %}
     {% endfor %}
   {% endif %}
 {%- endmacro %}
@@ -68,6 +74,9 @@
   {% for other_artist in song.artists %}
     {% if artist != other_artist %}
       {{ get_artist_link(other_artist) }}
+      {% if not loop.last %}
+        <br />
+      {% endif %}
     {% endif %}
   {% endfor %}
 {%- endmacro %}
@@ -76,6 +85,9 @@
   {% for other_game in song.games %}
     {% if game != other_game %}
       {{ get_game_link(other_game) }}
+      {% if not loop.last %}
+        <br />
+      {% endif %}
     {% endif %}
   {% endfor %}
 {%- endmacro %}
