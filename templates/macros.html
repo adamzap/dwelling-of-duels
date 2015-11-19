@@ -101,9 +101,9 @@
 {%- endmacro %}
 
 {% macro get_artist_link_link(name, artist_links) -%}
-  {%- if name in artist_links -%}
-    <a href="{{ artist_links[name] }}">{{ name }}</a>
-  {%- else -%}
-    {{ name }}
-  {%- endif -%}
+  {% if name in artist_links %}
+    <a href="{{ artist_links[name] }}" target="_blank">
+      <img src="/static/img/link.png"/>
+    </a>
+  {% endif %}
 {%- endmacro %}
