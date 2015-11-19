@@ -23,7 +23,7 @@
       <tr>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_game_link(obj) }}</td>
-        <td>{{ get_duel_link(obj) }}</td>
+        <td {{ get_duel_sort_value(obj) }}>{{ get_duel_link(obj) }}</td>
         <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, true) }}</td>
       </tr>
     {% endfor %}
@@ -54,7 +54,7 @@
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_game_link(obj) }}</td>
         <td>{{ get_collaborator_links(key, obj) }}</td>
-        <td>{{ get_duel_link(obj) }}</td>
+        <td {{ get_duel_sort_value(obj) }}>{{ get_duel_link(obj) }}</td>
         <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, true) }}</td>
       </tr>
     {% endfor %}

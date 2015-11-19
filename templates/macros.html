@@ -62,6 +62,10 @@
   {% endif %}
 {%- endmacro %}
 
+{% macro get_duel_sort_value(song) -%}
+  data-value="{{ song.year }}{{ song.month }}"
+{%- endmacro %}
+
 {% macro get_rank_sort_value(song) -%}
   {% if song.rank == "ZZ" %}
     data-value="99999999"
