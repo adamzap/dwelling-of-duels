@@ -30,11 +30,11 @@
       {% for song in songs[:3] %}
         <div class="col-md-4">
           <img src="/static/img/{{ trophy_string(song) }}.png"/>
-          <h4>{{ get_artist_link(song) }}</h4>
+          <h4>{{ get_artist_link(song, ', ') }}</h4>
           <p>
             <em>{{ get_song_link(song) }}</em>
             <br/>
-            {{ get_game_link(song) }}
+            {{ get_game_link(song, ', ') }}
           </p>
         </div>
       {% endfor %}

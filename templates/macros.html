@@ -16,28 +16,28 @@
   <a href="http://dwellingofduels.net{{ song.link }}">{{ song.title }}</a>
 {%- endmacro %}
 
-{% macro get_artist_link(obj) -%}
+{% macro get_artist_link(obj, sep="<br />") -%}
   {% if obj is string %}
     <a href="/artists/{{ obj|slugify }}/">{{ obj }}</a>
   {% else %}
     {% for artist in obj.artists %}
-      <a href="/artists/{{ artist|slugify }}/">{{ artist }}</a>
-      {% if not loop.last %}
-        <br />
+      {% if loop.last %}
+        {% set sep = '' %}
       {% endif %}
+      <a href="/artists/{{ artist|slugify }}/">{{ artist }}</a>{{ sep }}
     {% endfor %}
   {% endif %}
 {%- endmacro %}
 
-{% macro get_game_link(obj) -%}
+{% macro get_game_link(obj, sep="<br />") -%}
   {% if obj is string %}
     <a href="/games/{{ obj|slugify }}/">{{ obj }}</a>
   {% else %}
     {% for game in obj.games %}
-      <a href="/games/{{ game|slugify }}/">{{ game }}</a>
-      {% if not loop.last %}
-        <br />
+      {% if loop.last %}
+        {% set sep = '' %}
       {% endif %}
+      <a href="/games/{{ game|slugify }}/">{{ game }}</a>{{ sep }}
     {% endfor %}
   {% endif %}
 {%- endmacro %}
