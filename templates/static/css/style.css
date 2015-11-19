@@ -21,7 +21,11 @@
 }
 
 body {
-    background: #202020;
+    background: url('/static/img/dod-guy.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-color: #202020;
     margin: 0;
     height: 100%;
     color: #eeeeee;
