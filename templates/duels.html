@@ -8,24 +8,40 @@
 
 <div class="hline-r"></div>
 
-<table class="table" data-sortable>
-  <thead>
-    <tr>
-      <th data-sorted="true" data-sorted-direction="descending">Year</th>
-      <th>Month</th>
-      <th>Theme</th>
-      <th>♫</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for duel, song_list in objs|dictsort|reverse %}
-    <tr>
-      <td>{{ song_list[0].year }}</td>
-      <td data-value="{{ song_list[0].month }}">{{ song_list[0].month_name }}</td>
-      <td><a href="/duels/{{ song_list[0].duel|slugify }}/">{{ song_list[0].theme }}</a></td>
-      <td>{{ song_list|count }}</td>
-    </tr>
-  {% endfor %}
+{% set current_year = 0 %}
+
+{% for duel, song_list in objs|dictsort|reverse %}
+  {% if song_list[0].year != current_year %}
+    {% if not loop.first %}
+        </tbody>
+      </table>
+
+      <br />
+    {% endif %}
+
+    <h2>{{ song_list[0].year }}</h2>
+
+    <div class="hline-r-duels"></div>
+
+    <table class="table" data-sortable>
+      <thead>
+        <tr>
+          <th width="48%" data-sorted="true" data-sorted-direction="descending">Month</th>
+          <th width="48%">Theme</th>
+          <th width="4%">♫</th>
+        </tr>
+      </thead>
+      <tbody>
+  {% endif %}
+        <tr>
+          <td data-value="{{ song_list[0].month }}">{{ song_list[0].month_name }}</td>
+          <td><a href="/duels/{{ song_list[0].duel|slugify }}/">{{ song_list[0].theme }}</a></td>
+          <td>{{ song_list|count }}</td>
+        </tr>
+
+  {% set current_year = song_list[0].year %}
+{% endfor %}
+
   </tbody>
 </table>
 

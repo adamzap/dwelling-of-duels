@@ -564,6 +564,11 @@ h4.voting {
   margin-bottom: 2px;
 }
 
+.hline-r-duels {
+  border-bottom: 2px solid #e11a1a;
+  margin-bottom: 0;
+}
+
 ::-webkit-input-placeholder {
   font-style: italic;
 }
