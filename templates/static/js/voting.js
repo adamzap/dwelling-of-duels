@@ -43,7 +43,7 @@ function update_empty_votes () {
   var votes = '';
 
   $('.voting-slider').each(function () {
-    votes += format_vote($(this).data('song'), 0) + '\n';
+    votes += format_vote($(this).data('song'), 300) + '\n';
   });
 
   $('#voting-result').val(votes);
