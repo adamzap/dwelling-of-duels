@@ -69,12 +69,16 @@
 <div class="hline-r"></div>
 
 <ul>
-  <li>
-    <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.zip">ZIP Archive of Songs</a>
-  </li>
-  <li>
-    <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.log">Listening Party Log</a>
-  </li>
+  {% if objs[0].has_archive %}
+    <li>
+      <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.zip">ZIP Archive of Songs</a>
+    </li>
+  {% endif %}
+  {% if objs[0].has_log %}
+    <li>
+      <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.log">Listening Party Log</a>
+    </li>
+  {% endif %}
   <li>
     <a href="https://www.youtube.com/">YouTube Playlist</a>
   </li>

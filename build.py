@@ -78,7 +78,9 @@ def fix_artist(artist):
 def get_month_data(month_dir):
     songs = []
 
-    song_filenames = [f for f in os.listdir(month_dir) if f.endswith('.mp3')]
+    month_files = os.listdir(month_dir)
+
+    song_filenames = [f for f in month_files if f.endswith('.mp3')]
 
     max_rank = len([f for f in song_filenames if not f.startswith('ZZ')])
 
@@ -92,6 +94,8 @@ def get_month_data(month_dir):
         month_number = duel.split('-')[1].split(':')[0]
 
         artist = fix_artist(song_data.artist)
+
+        month_dir_part = month_dir.replace(ARCHIVE_DIR, '').strip(os.sep)
 
         songs.append({
             'rank': f.split('-')[0].replace('tie', ''),
@@ -108,7 +112,9 @@ def get_month_data(month_dir):
             'year': '20' + duel.split('-')[0],
             'month': month_number,
             'month_name': calendar.month_name[int(month_number)],
-            'month_dir': month_dir.replace(ARCHIVE_DIR, '').strip(os.sep)
+            'month_dir': month_dir_part,
+            'has_log': month_dir_part + '.log' in month_files,
+            'has_archive': month_dir_part + '.zip' in month_files
         })
 
     return songs
