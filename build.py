@@ -17,7 +17,6 @@ from hsaudiotag import auto as parse_id3
 
 HREF_RE = re.compile(r'(href="/.+/)"')
 
-ARCHIVE_DIR = 'dodarchive'
 OUT_DIR = 'deploy' + os.sep
 TEMPLATE_DIR = 'templates' + os.sep
 
@@ -28,7 +27,8 @@ TEMPLATES.filters['slugify'] = slugify
 CONFIG = configparser.ConfigParser()
 CONFIG.read('site.cfg')
 
-VOTING = CONFIG['dod-site'].getboolean('voting')
+VOTING = CONFIG['dod_site'].getboolean('voting')
+ARCHIVE_DIR = CONFIG['dod_site'].get('archive_dir')
 
 DATA = []
 
