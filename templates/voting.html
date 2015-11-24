@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% set include_sidebar = true %}
+
+{% block content %}
+
+<h1>Voting</h1>
+
+<div class="hline-r"></div>
+
+<p>
+  Redirecting to voting page...
+</p>
+
+{% endblock %}
+
+{% block extra_js %}
+  window.location = '/duels/{{ latest_duel|slugify }}';
+{% endblock %}

@@ -144,6 +144,7 @@ def set_template_globals():
     winners = [s for s in DATA if s['month_dir'] == winners_month]
     winners.sort(key=lambda s: s['rank'])
 
+    TEMPLATES.globals['latest_duel'] = DATA[-1]['duel']
     TEMPLATES.globals['latest_month'] = latest_month
     TEMPLATES.globals['latest_winners'] = winners
 
@@ -171,6 +172,7 @@ def build_site():
     build_index()
 
     write_page('rules', {})
+    write_page('voting', {})
 
     shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
 
