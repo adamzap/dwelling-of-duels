@@ -14,9 +14,11 @@
 
 <div class="hline-r"></div>
 
-<div class="centered">
-  <img src="/static/img/15-06-Jazz.jpg"/>
-</div>
+{% if objs[0].has_banner %}
+  <div class="centered">
+    <img src="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.jpg"/>
+  </div>
+{% endif %}
 
 <br />
 

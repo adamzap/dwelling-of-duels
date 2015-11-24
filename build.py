@@ -114,6 +114,7 @@ def get_month_data(month_dir):
             'month_name': calendar.month_name[int(month_number)],
             'month_dir': month_dir_part,
             'has_log': month_dir_part + '.log' in month_files,
+            'has_banner': month_dir_part + '.jpg' in month_files,
             'has_archive': month_dir_part + '.zip' in month_files
         })
 
