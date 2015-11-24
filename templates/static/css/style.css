@@ -292,8 +292,6 @@ a:focus {
 
 /* Testimonials Wrap */
 #twrap {
-    /* background: url(../img/t-back.jpg) no-repeat center top; */
-    /* background: url(../img/15-06-Jazz.jpg) no-repeat center top; */
     margin-top: 0px;
     padding-top: 0px;
     text-align: center;
@@ -329,7 +327,6 @@ a:focus {
     height: 100%;
     z-index: 0;
     opacity: 0.05;
-    background-image: url(../img/15-07-MM2vsMM3.png);
     background-image: url(../img/15-06-Jazz.jpg);
     background-repeat: no-repeat;
     background-position: 50% 0;
