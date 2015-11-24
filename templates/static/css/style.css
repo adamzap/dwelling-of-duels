@@ -327,7 +327,6 @@ a:focus {
     height: 100%;
     z-index: 0;
     opacity: 0.05;
-    background-image: url(../img/15-06-Jazz.jpg);
     background-repeat: no-repeat;
     background-position: 50% 0;
     -ms-background-size: cover;
