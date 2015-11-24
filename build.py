@@ -122,6 +122,7 @@ def parse_artist_links():
 
 def set_template_globals():
     TEMPLATES.globals['voting'] = VOTING
+    TEMPLATES.globals['archive_dir'] = ARCHIVE_DIR
     TEMPLATES.globals['artist_links'] = parse_artist_links()
 
     latest_duel = DATA[-1]['duel']
