@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="row">
-    {% if voting and songs[0].duel == latest_duel %}
+    {% if voting and songs[0].month_dir == latest_month %}
       {% for trophy in ["gold", "silver", "bronze"] %}
         <div class="col-md-4">
           <img src="/static/img/{{ trophy }}.png"/>

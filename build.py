@@ -132,19 +132,19 @@ def set_template_globals():
     TEMPLATES.globals['archive_dir'] = ARCHIVE_DIR
     TEMPLATES.globals['artist_links'] = parse_artist_links()
 
-    latest_duel = DATA[-1]['duel']
+    latest_month = DATA[-1]['month_dir']
 
     if VOTING:
-        _d = lambda d: d['duel']
+        _d = lambda d: d['month_dir']
 
-        winners_duel = [_d(d) for d in DATA if _d(d) != latest_duel][-1]
+        winners_month = [_d(d) for d in DATA if _d(d) != latest_month][-1]
     else:
-        winners_duel = latest_duel
+        winners_month = latest_month
 
-    winners = [s for s in DATA if s['duel'] == winners_duel]
+    winners = [s for s in DATA if s['month_dir'] == winners_month]
     winners.sort(key=lambda s: s['rank'])
 
-    TEMPLATES.globals['latest_duel'] = latest_duel
+    TEMPLATES.globals['latest_month'] = latest_month
     TEMPLATES.globals['latest_winners'] = winners
 
     start_delta = datetime.date.today() - datetime.date(2003, 9, 1)
