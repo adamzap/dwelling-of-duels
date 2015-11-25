@@ -22,6 +22,8 @@ settings:
 - `archive_dir` is the name of the local directory that holds the DoD archive
 folder. It defaults to `dodarchive`. You probably don't need to change this.
 
+Add artist links to the `artist-links.csv` file.
+
 ## Usage
 
 Ensure that the `archive_dir` you specified in `site.cfg` directory is in the
