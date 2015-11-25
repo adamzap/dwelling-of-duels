@@ -1,8 +1,8 @@
 # Dwelling of Duels
 
-The static site generator for [Dwelling of Duels].
+This is the static site generator for [Dwelling of Duels].
 
-**This is a work in progress until I tag it `v1.0.0`.**
+**It's is a work in progress until I tag it `v1.0.0`.**
 
 ## Installation
 
