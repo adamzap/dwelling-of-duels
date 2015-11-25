@@ -578,6 +578,15 @@ h4.voting {
   padding-left: 13px;
 }
 
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px) {
+  .navbar-header a img {
+    width: 200px;
+    padding-top: 12px;
+  }
+}
+
 ::-webkit-input-placeholder {
   font-style: italic;
 }
