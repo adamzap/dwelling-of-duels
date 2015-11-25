@@ -66,5 +66,5 @@ a duel.
 
 [Dwelling of Duels]: http://dwellingofduels.net/
 [Python 3]: https://www.python.org/
-[the latest release]: https://github.com/adamzap/dwelling-of-duels/releases
+[the latest release]: https://github.com/adamzap/dwelling-of-duels/releases/latest
 [Markdown]: https://daringfireball.net/projects/markdown/syntax
