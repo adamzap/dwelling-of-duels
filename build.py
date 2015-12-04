@@ -17,7 +17,7 @@ from hsaudiotag import id3v2, auto as parse_id3
 
 id3v2.re_numeric_genre = re.compile('always-fail')
 
-HREF_RE = re.compile(r'(href="/.+/)"')
+HREF_RE = re.compile(r'(deploy/(?:.+/)?)"')
 
 OUT_DIR = 'deploy' + os.sep
 TEMPLATE_DIR = 'templates' + os.sep
