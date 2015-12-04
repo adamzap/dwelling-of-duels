@@ -12,8 +12,10 @@ import collections
 import configparser
 
 from slugify import slugify
-from hsaudiotag import auto as parse_id3
+from hsaudiotag import id3v2, auto as parse_id3
 
+
+id3v2.re_numeric_genre = re.compile('always-fail')
 
 HREF_RE = re.compile(r'(href="/.+/)"')
 
