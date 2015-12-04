@@ -8,12 +8,15 @@ import shutil
 import calendar
 import datetime
 import markdown
+import functools
 import collections
 import configparser
 
 from slugify import slugify
 from hsaudiotag import id3v2, auto as parse_id3
 
+
+open = functools.partial(open, encoding='utf-8')
 
 id3v2.re_numeric_genre = re.compile('always-fail')
 
