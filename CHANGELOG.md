@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.9.2
+
+- Open social links in a new tab
+- Match `š` with `s` and `é` with `e` in search
+- Remove duplicate header on duel page
+- Remove "Winners" text from winners header
+- Link song titles in voting section of duel page
+
 ## v0.9.1
 
 - Fix Windows compatibility issues
