@@ -12,10 +12,6 @@
 
 {% block content %}
 
-<h1 class="ctitle">{{ prettify_duel(objs[0]) }}</h1>
-
-<div class="hline-r"></div>
-
 {% if objs[0].has_banner %}
   <div class="centered">
     <img src="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.jpg"/>
