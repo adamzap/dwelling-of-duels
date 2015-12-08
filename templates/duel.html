@@ -93,7 +93,7 @@
 
   {% for obj in objs %}
     <h4 class="voting">
-      {{ obj.games|join(', ') }} - {{ obj.title }}
+      {{ obj.games|join(', ') }} - {{ get_song_link(obj) }}
       <small class="pull-right">
         <label>
           <input type="checkbox" data-id="{{ loop.index0 }}"/> My Song
