@@ -8,6 +8,14 @@
 
 <div class="hline-r"></div>
 
+<p>
+  Jump to year:&nbsp;
+
+  {% for year in range(latest_winners[0].year|int, 2002, -1) %}
+    <a href="#{{ year }}">{{ year }}</a>&nbsp;
+  {% endfor %}
+</p>
+
 {% set current_year = 0 %}
 
 {% for duel, song_list in objs|dictsort|reverse %}
@@ -23,7 +31,7 @@
       <br />
     {% endif %}
 
-    <h2>{{ song_list[0].year }}</h2>
+    <h2 id="{{ song_list[0].year }}">{{ song_list[0].year }}</h2>
 
     <div class="hline-r-duels"></div>
 
