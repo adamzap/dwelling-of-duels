@@ -28,6 +28,7 @@
   <table class="table" data-sortable>
     <thead>
       <tr>
+        <th>Play</th>
         <th>Rank</th>
         <th>Song</th>
         <th>Game(s)</th>
@@ -36,6 +37,7 @@
     <tbody>
     {% for obj in objs %}
       <tr>
+        <td class="play-button">Play</td>
         <td>?</td>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_game_link(obj) }}</td>
@@ -47,6 +49,7 @@
   <table class="table" data-sortable>
     <thead>
       <tr>
+        <th>Play</th>
         <th data-sorted="true" data-sorted-direction="ascending">Rank</th>
         <th>Song</th>
         <th>Artist(s)</th>
@@ -56,6 +59,7 @@
     <tbody>
     {% for obj in objs %}
       <tr {% if obj.rank|int < 4 %}class="{{ trophy_string(obj) }}-row"{% endif %}>
+        <td class="play-button">Play</td>
         <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, false) }}</td>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_artist_link(obj) }}</td>
@@ -121,6 +125,8 @@
 
 
 {% block extra_js_includes %}
+  <script type="text/javascript" src="/static/js/player.js"></script>
+
   {% if voting and objs[0].month_dir == latest_month %}
     <script type="text/javascript" src="/static/js/slider.js"></script>
     <script type="text/javascript" src="/static/js/voting.js"></script>

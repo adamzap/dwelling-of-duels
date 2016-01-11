@@ -12,6 +12,7 @@
   <table class="table" data-sortable>
     <thead>
       <tr>
+        <th>Play</th>
         <th data-sorted="true" data-sorted-direction="ascending">Name</th>
         <th>Game(s)</th>
         <th>Duel</th>
@@ -21,6 +22,7 @@
     <tbody>
     {% for obj in objs|rejectattr("multiple_artists")|sort(attribute='title') %}
       <tr>
+        <td class="play-button">Play</td>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_game_link(obj) }}</td>
         <td {{ get_duel_sort_value(obj) }}>{{ get_duel_link(obj) }}</td>
@@ -41,6 +43,7 @@
   <table class="table" data-sortable>
     <thead>
       <tr>
+        <th>Play</th>
         <th data-sorted="true" data-sorted-direction="ascending">Name</th>
         <th>Game(s)</th>
         <th>Other Artist(s)</th>
@@ -51,6 +54,7 @@
     <tbody>
     {% for obj in objs|selectattr("multiple_artists")|sort(attribute='title')|selectattr("multiple_artists") %}
       <tr>
+        <td class="play-button">Play</td>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_game_link(obj) }}</td>
         <td>{{ get_collaborator_links(key, obj) }}</td>
@@ -62,4 +66,8 @@
   </table>
 {% endif %}
 
+{% endblock %}
+
+{% block extra_js_includes %}
+  <script type="text/javascript" src="/static/js/player.js"></script>
 {% endblock %}
