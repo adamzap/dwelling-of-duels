@@ -1,5 +1,5 @@
 var play_src = $('.play-button').attr('src');
-var stop_src = play_src.replace('play.png', 'stop.png');
+var stop_src = play_src.replace('play.svg', 'stop.svg');
 
 var player = new Audio();
 

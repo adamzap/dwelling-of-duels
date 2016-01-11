@@ -37,9 +37,7 @@
     <tbody>
     {% for obj in objs %}
       <tr>
-        <td>
-          <img class="play-button" src="/static/img/play.png"/>
-        </td>
+        <td>{{ get_player_button() }}</td>
         <td>?</td>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_game_link(obj) }}</td>
@@ -61,9 +59,7 @@
     <tbody>
     {% for obj in objs %}
       <tr {% if obj.rank|int < 4 %}class="{{ trophy_string(obj) }}-row"{% endif %}>
-        <td>
-          <img class="play-button" src="/static/img/play.png"/>
-        </td>
+        <td>{{ get_player_button() }}</td>
         <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, false) }}</td>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_artist_link(obj) }}</td>
