@@ -22,7 +22,9 @@
     <tbody>
     {% for obj in objs|rejectattr("multiple_artists")|sort(attribute='title') %}
       <tr>
-        <td class="play-button">Play</td>
+        <td>
+          <img class="play-button" src="/static/img/play.png"/>
+        </td>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_game_link(obj) }}</td>
         <td {{ get_duel_sort_value(obj) }}>{{ get_duel_link(obj) }}</td>
@@ -54,7 +56,9 @@
     <tbody>
     {% for obj in objs|selectattr("multiple_artists")|sort(attribute='title')|selectattr("multiple_artists") %}
       <tr>
-        <td class="play-button">Play</td>
+        <td>
+          <img class="play-button" src="/static/img/play.png"/>
+        </td>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_game_link(obj) }}</td>
         <td>{{ get_collaborator_links(key, obj) }}</td>

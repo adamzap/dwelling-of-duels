@@ -1,27 +1,36 @@
+var play_src = $('.play-button').attr('src');
+var stop_src = play_src.replace('play.png', 'stop.png');
+
 var player = new Audio();
 
 player.preload = 'none';
 
 $('.play-button').click(function (e) {
-  $target = $(e.target);
+  $img = $(e.target);
+
+  var src = $img.parent().next().find('a').attr('href');
 
   if (player.paused) {
-    if (!player.src) {
-      player.src = $target.next().find('a').attr('href');
-    }
+    player.src = src;
 
-    $target.html('Pause');
+    $img.attr('src', stop_src);
 
     player.play();
   } else {
-    $target.html('Play');
-
     player.pause();
+
+    if ($img.attr('src') === play_src) {
+      player.src = src;
+
+      $('.play-button').attr('src', play_src);
+
+      $img.attr('src', stop_src);
+
+      player.play();
+    } else {
+      player.src = '';
+
+      $img.attr('src', play_src);
+    }
   }
-});
-
-$(player).on('ended', function () {
-  player.src = '';
-
-  target.html('Play');
 });
