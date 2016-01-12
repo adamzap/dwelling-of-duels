@@ -13,9 +13,7 @@
 {% from "macros.html" import get_artist_link_link %}
 {% from "macros.html" import get_player_button %}
 
-{% if not winners_banner_month %}
-  {% set winners_banner_month = latest_winners[0].month_dir %}
-{% endif %}
+{% set winners_banner_month = latest_winners[0].month_dir %}
 
 <!DOCTYPE html>
 <html lang="en">

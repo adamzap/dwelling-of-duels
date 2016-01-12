@@ -14,19 +14,6 @@
       </div>
     </div>
     <div class="row">
-    {% if voting and songs[0].month_dir == latest_month %}
-      {% for trophy in ["gold", "silver", "bronze"] %}
-        <div class="col-md-4">
-          <img src="/static/img/{{ trophy }}.png"/>
-          <h4>???</h4>
-          <p>
-            <em>???</em>
-            <br/>
-            ???
-          </p>
-        </div>
-      {% endfor %}
-    {% else %}
       {% for song in songs[:3] %}
         <div class="col-md-4">
           <img src="/static/img/{{ trophy_string(song) }}.png"/>
@@ -38,7 +25,6 @@
           </p>
         </div>
       {% endfor %}
-    {% endif %}
     </div>
   </div>
 </div>

@@ -1,14 +1,6 @@
 {% extends "base.html" %}
 
-{% set winners_banner_month = objs[0].month_dir %}
-
 {% block title %}{{ prettify_duel(objs[0]) }}{% endblock %}
-
-{% block winners %}
-  {% import "winners.html" as winners %}
-
-  {{ winners.render(objs) }}
-{% endblock %}
 
 {% block content %}
 
