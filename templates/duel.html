@@ -4,18 +4,23 @@
 
 {% block content %}
 
+<h1 class="ctitle">{{ prettify_duel(objs[0]) }}</h1>
+
+<div class="hline-r"></div>
+
 <br />
 
 {% if objs[0].has_banner %}
   {% set banner_url = "http://dwellingofduels.net/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".jpg" %}
 
-  <div class="duel-banner centered">
+  <div class="centered">
     <a href="{{ banner_url }}" target="_blank">
       <img src="{{ banner_url }}"/>
     </a>
   </div>
 {% endif %}
 
+<br />
 <br />
 
 {% if voting and objs[0].month_dir == latest_month %}
