@@ -4,10 +4,12 @@
 
 {% block content %}
 
+<br />
+
 {% if objs[0].has_banner %}
   {% set banner_url = "http://dwellingofduels.net/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".jpg" %}
 
-  <div class="centered">
+  <div class="duel-banner centered">
     <a href="{{ banner_url }}" target="_blank">
       <img src="{{ banner_url }}"/>
     </a>
