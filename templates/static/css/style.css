@@ -610,6 +610,10 @@ and (min-width: 768px) {
   padding-bottom: 8px;
 }
 
+.play-button {
+  cursor: pointer;
+}
+
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 568px) {
