@@ -9,8 +9,16 @@
   <div class="container centered">
     <div class="row">
       <div class="col-md-3 winners-banner-month">
-        <h2>{{ songs[0].month_name }} {{ songs[0].year }}</h2>
-        <h4>{{ songs[0].theme }} Month</h4>
+        <h2>
+          <a href="/duels/{{ songs[0].duel|slugify }}/">
+            {{ songs[0].month_name }} {{ songs[0].year }}
+          </a>
+        </h2>
+        <h4>
+          <a href="/duels/{{ songs[0].duel|slugify }}/">
+            {{ songs[0].theme }} Month
+          </a>
+        </h4>
       </div>
       {% for song in songs[:3] %}
         <div class="col-md-3">
