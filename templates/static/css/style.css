@@ -284,10 +284,9 @@ a:focus {
 /* Testimonials Wrap */
 #twrap {
     margin-top: 0px;
-    padding-top: 0px;
+    padding-top: 18px;
     text-align: center;
-    min-height: 450px;
-    min-height: 280px;
+    min-height: 180px;
     width: 100%;
     background-attachment: relative;
     background-position: center center;
@@ -587,6 +586,28 @@ h4.voting label {
 
 ol li, ol li ul li {
   margin-top: 10px;
+}
+
+@media only screen
+and (min-width: 768px) {
+  .winners-banner-month h2 {
+    text-align: right;
+    padding-top: 17px;
+    padding-right: 10px;
+  }
+
+  .winners-banner-month h4 {
+    text-align: right;
+    padding-right: 10px;
+  }
+}
+
+.winners-banner-winner {
+  padding-top: 10px;
+}
+
+.winners-banner-winner div {
+  padding-bottom: 8px;
 }
 
 @media only screen

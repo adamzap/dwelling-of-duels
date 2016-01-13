@@ -8,21 +8,24 @@
 <div id="twrap">
   <div class="container centered">
     <div class="row">
-      <div class="col-md-12">
-        <h1><a href="/duels/{{ songs[0].duel|slugify }}/">{{ prettify_duel(songs[0]) }}</a></h1>
-        <br />
+      <div class="col-md-3 winners-banner-month">
+        <h2>{{ songs[0].month_name }} {{ songs[0].year }}</h2>
+        <h4>{{ songs[0].theme }} Month</h4>
       </div>
-    </div>
-    <div class="row">
       {% for song in songs[:3] %}
-        <div class="col-md-4">
+        <div class="col-md-3">
           <img src="/static/img/{{ trophy_string(song) }}.png"/>
-          <h4>{{ get_artist_link(song, ', ') }}</h4>
-          <p>
-            <em>{{ get_song_link(song) }}</em>
-            <br/>
-            {{ get_game_link(song, ', ') }}
-          </p>
+          <div class="winners-banner-winner">
+            <div>
+              <strong>{{ get_artist_link(song, ', ') }}</strong>
+            </div>
+            <div>
+              "{{ get_song_link(song) }}"
+            </div>
+            <div>
+              {{ get_game_link(song, ', ') }}
+            </div>
+          </div>
         </div>
       {% endfor %}
     </div>
