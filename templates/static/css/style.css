@@ -588,6 +588,15 @@ ol li, ol li ul li {
   margin-top: 10px;
 }
 
+.duel-icons {
+  float: right;
+}
+
+.duel-icons img {
+  margin-left: 4px;
+  padding-bottom: 4px;
+}
+
 @media only screen
 and (min-width: 768px) {
   .winners-banner-month h2 {

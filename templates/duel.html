@@ -4,7 +4,23 @@
 
 {% block content %}
 
-<h1 class="ctitle">{{ prettify_duel(objs[0]) }}</h1>
+<h1 class="ctitle">
+  {{ prettify_duel(objs[0]) }}
+
+  <span class="duel-icons">
+    {% if objs[0].has_archive %}
+      <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.zip">
+        <img src="/static/img/zip.svg" width="32px" height="32px" alt="ZIP Archive of Songs"/>
+      </a>
+    {% endif %}
+
+    {% if objs[0].has_log %}
+      <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.log">
+        <img src="/static/img/log.svg" width="32px" height="32px" alt="Listening Party Log"/>
+      </a>
+    {% endif %}
+  </span>
+</h1>
 
 <div class="hline-r"></div>
 
@@ -68,25 +84,6 @@
     </tbody>
   </table>
 {% endif %}
-
-<br />
-
-<h1 class="ctitle">Links</h1>
-
-<div class="hline-r"></div>
-
-<ul>
-  {% if objs[0].has_archive %}
-    <li>
-      <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.zip">ZIP Archive of Songs</a>
-    </li>
-  {% endif %}
-  {% if objs[0].has_log %}
-    <li>
-      <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.log">Listening Party Log</a>
-    </li>
-  {% endif %}
-</ul>
 
 {% if voting and objs[0].month_dir == latest_month %}
   <br />
