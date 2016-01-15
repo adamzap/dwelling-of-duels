@@ -39,28 +39,7 @@
 <br />
 <br />
 
-{% if voting and objs[0].month_dir == latest_month %}
-  <table class="table" data-sortable>
-    <thead>
-      <tr>
-        <th>Play</th>
-        <th>Rank</th>
-        <th>Song</th>
-        <th>Game(s)</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for obj in objs %}
-      <tr>
-        <td>{{ get_player_button() }}</td>
-        <td>?</td>
-        <td>{{ get_song_link(obj) }}</td>
-        <td>{{ get_game_link(obj) }}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-{% else %}
+{% if not (voting and objs[0].month_dir == latest_month) %}
   <table class="table" data-sortable>
     <thead>
       <tr>
@@ -86,8 +65,6 @@
 {% endif %}
 
 {% if voting and objs[0].month_dir == latest_month %}
-  <br />
-
   <h1 class="ctitle">Voting</h1>
 
   <div class="hline-r"></div>
