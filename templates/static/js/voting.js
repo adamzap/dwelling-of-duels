@@ -46,7 +46,7 @@ function update_empty_votes () {
     votes += format_vote($(this).data('song'), 300) + '\n';
   });
 
-  $('#voting-result').val(votes);
+  $('#voting-result').val(votes.trim());
 }
 
 $(function () {
