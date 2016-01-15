@@ -40,11 +40,13 @@
     <link href="/static/css/slider.css" rel="stylesheet">
     <link href="/static/css/style.css" rel="stylesheet">
 
-    <style type="text/css">
-      #twrap:before {
-        background-image: url(http://dwellingofduels.net/{{ archive_dir }}/{{ winners_banner_month }}/{{ winners_banner_month }}.jpg);
-      }
-    </style>
+    {% if include_winners %}
+      <style type="text/css">
+        #twrap:before {
+          background-image: url(http://dwellingofduels.net/{{ archive_dir }}/{{ winners_banner_month }}/{{ winners_banner_month }}.jpg);
+        }
+      </style>
+    {% endif %}
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
