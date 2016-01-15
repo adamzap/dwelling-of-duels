@@ -354,7 +354,7 @@ a:focus {
 #footerwrap {
     padding-top: 30px;
     padding-bottom: 30px;
-    background: #202020;
+    background: transparent;
 }
 
 #footerwrap p {
