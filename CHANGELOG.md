@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.9.4
+
+- Shrink footer
+- Add play button to voting section
+- Remove song table from voting duel page
+- Remove winners banner CSS from non-winners-banner pages
+- Replace duel page links section with header icons
+- Show pointer cursor on play buttons
+- Narrow winners banner
+- Darken nav bar
+- Remove winners banner from duel pages
+- Add winners banner back to list pages
+
 ## v0.9.3
 
 - Remove placeholder text in footer
