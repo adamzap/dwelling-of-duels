@@ -22,7 +22,7 @@
     <tbody>
     {% for obj in objs|rejectattr("multiple_games")|sort(attribute='title') %}
       <tr>
-        <td>{{ get_player_button() }}</td>
+        <td>{{ get_player_button(obj) }}</td>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_artist_link(obj) }}</td>
         <td {{ get_duel_sort_value(obj) }}>{{ get_duel_link(obj) }}</td>
@@ -54,7 +54,7 @@
     <tbody>
     {% for obj in objs|selectattr("multiple_games")|sort(attribute='title') %}
       <tr>
-        <td>{{ get_player_button() }}</td>
+        <td>{{ get_player_button(obj) }}</td>
         <td>{{ get_song_link(obj) }}</td>
         <td>{{ get_artist_link(obj) }}</td>
         <td>{{ get_medley_game_links(key, obj) }}</td>

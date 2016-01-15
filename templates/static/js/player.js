@@ -8,10 +8,10 @@ player.preload = 'none';
 $('.play-button').click(function (e) {
   $img = $(e.target);
 
-  var src = $img.parent().next().find('a').attr('href');
+  var song_url = $img.data('song-url');
 
   if (player.paused) {
-    player.src = src;
+    player.src = song_url;
 
     $img.attr('src', stop_src);
 
@@ -20,7 +20,7 @@ $('.play-button').click(function (e) {
     player.pause();
 
     if ($img.attr('src') === play_src) {
-      player.src = src;
+      player.src = song_url;
 
       $('.play-button').attr('src', play_src);
 
