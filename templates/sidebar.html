@@ -22,6 +22,34 @@
 
 <br />
 
+{% if voting %}
+  <h4>Voting Deadline</h4>
+
+  <div class="hline-r"></div>
+
+  <p>
+    Votes for the current duel must be received by
+    <strong>{{ deadline.strftime('%B %-d') }} at 11:59 AM EST</strong>.
+  </p>
+
+  <p>
+    <a href="/duels/{{ latest_duel|slugify }}/">
+      Listen and vote now!
+    </a>
+  </p>
+{% else %}
+  <h4>Submission Deadline</h4>
+
+  <div class="hline-r"></div>
+
+  <p>
+    Songs for the current duel must be received by
+    <strong>{{ deadline.strftime('%B %-d') }} at 11:59 AM EST</strong>.
+  <p>
+{% endif %}
+
+<br />
+
 <h4>Stats</h4>
 
 <div class="hline-r"></div>
