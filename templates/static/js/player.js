@@ -13,6 +13,8 @@ $('.play-button').click(function (e) {
   if (player.paused) {
     player.src = song_url;
 
+    player.load();
+
     $img.attr('src', stop_src);
 
     player.play();
@@ -21,6 +23,8 @@ $('.play-button').click(function (e) {
 
     if ($img.attr('src') === play_src) {
       player.src = song_url;
+
+      player.load();
 
       $('.play-button').attr('src', play_src);
 
