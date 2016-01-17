@@ -310,6 +310,13 @@ and (max-device-width : 568px) {
     padding-top: 12px;
     padding-left: 4px;
   }
+
+  .js-grid-text-100,
+  .js-grid-text-200,
+  .js-grid-text-400,
+  .js-grid-text-500 {
+    display: none;
+  }
 }
 
 ::-webkit-input-placeholder {
