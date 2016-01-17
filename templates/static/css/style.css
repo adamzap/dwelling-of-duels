@@ -105,8 +105,9 @@ a:focus {
 #twrap {
   margin-top: 0px;
   padding-top: 18px;
+  padding-bottom: 10px;
   text-align: center;
-  min-height: 180px;
+  min-height: 185px;
   width: 100%;
   background-attachment: relative;
   background-position: center center;
@@ -276,7 +277,7 @@ ol li, ol li ul li {
 and (min-width: 768px) {
   .winners-banner-month h2 {
     text-align: right;
-    padding-top: 17px;
+    padding-top: 20px;
     padding-right: 10px;
   }
 
@@ -287,6 +288,7 @@ and (min-width: 768px) {
 }
 
 .winners-banner-winner {
+  font-size: 16px;
   padding-top: 10px;
 }
 
