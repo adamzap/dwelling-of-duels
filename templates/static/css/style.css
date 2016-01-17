@@ -302,6 +302,12 @@ and (min-width: 768px) {
   margin-bottom: 4px;
 }
 
+@media (max-width: 767px) {
+  .table-responsive {
+    border: 1px solid #e11a1a;
+  }
+}
+
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 568px) {
