@@ -36,7 +36,7 @@ function update_votes () {
     votes += format_vote(song, vote, is_my_song) + '\n';
   });
 
-  $('#voting-result').val(votes);
+  $('#voting-result').val(votes.trim());
 }
 
 function update_empty_votes () {
