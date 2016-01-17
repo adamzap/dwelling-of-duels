@@ -1,5 +1,5 @@
 (function() {
-  var SELECTOR, addEventListener, clickEvents, numberRegExp, sortable, touchDevice, trimRegExp;
+  var SELECTOR, addEventListener, clickEvents, numberRegExp, sortable, trimRegExp;
 
   SELECTOR = 'table[data-sortable]';
 
@@ -8,12 +8,6 @@
   trimRegExp = /^\s+|\s+$/g;
 
   clickEvents = ['click'];
-
-  touchDevice = 'ontouchstart' in document.documentElement;
-
-  if (touchDevice) {
-    clickEvents.push('touchstart');
-  }
 
   addEventListener = function(el, event, handler) {
     if (el.addEventListener != null) {
