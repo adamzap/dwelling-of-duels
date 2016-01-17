@@ -308,6 +308,7 @@ and (max-device-width : 568px) {
   .navbar-header a img {
     width: 200px;
     padding-top: 12px;
+    padding-left: 4px;
   }
 }
 
