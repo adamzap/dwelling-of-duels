@@ -9,28 +9,30 @@
 
   <div class="hline-r"></div>
 
-  <table class="table" data-sortable>
-    <thead>
-      <tr>
-        <th>Play</th>
-        <th data-sorted="true" data-sorted-direction="ascending">Name</th>
-        <th>Artist(s)</th>
-        <th>Duel</th>
-        <th>Rank</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for obj in objs|rejectattr("multiple_games")|sort(attribute='title') %}
-      <tr>
-        <td>{{ get_player_button(obj) }}</td>
-        <td>{{ get_song_link(obj) }}</td>
-        <td>{{ get_artist_link(obj) }}</td>
-        <td {{ get_duel_sort_value(obj) }}>{{ get_duel_link(obj) }}</td>
-        <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, true) }}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table" data-sortable>
+      <thead>
+        <tr>
+          <th>Play</th>
+          <th data-sorted="true" data-sorted-direction="ascending">Name</th>
+          <th>Artist(s)</th>
+          <th>Duel</th>
+          <th>Rank</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for obj in objs|rejectattr("multiple_games")|sort(attribute='title') %}
+        <tr>
+          <td>{{ get_player_button(obj) }}</td>
+          <td>{{ get_song_link(obj) }}</td>
+          <td>{{ get_artist_link(obj) }}</td>
+          <td {{ get_duel_sort_value(obj) }}>{{ get_duel_link(obj) }}</td>
+          <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, true) }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endif %}
 
 <br />
@@ -40,30 +42,32 @@
 
   <div class="hline-r"></div>
 
-  <table class="table" data-sortable>
-    <thead>
-      <tr>
-        <th>Play</th>
-        <th data-sorted="true" data-sorted-direction="ascending">Name</th>
-        <th>Artist(s)</th>
-        <th>Other Game(s)</th>
-        <th>Duel</th>
-        <th>Rank</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for obj in objs|selectattr("multiple_games")|sort(attribute='title') %}
-      <tr>
-        <td>{{ get_player_button(obj) }}</td>
-        <td>{{ get_song_link(obj) }}</td>
-        <td>{{ get_artist_link(obj) }}</td>
-        <td>{{ get_medley_game_links(key, obj) }}</td>
-        <td {{ get_duel_sort_value(obj) }}>{{ get_duel_link(obj) }}</td>
-        <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, true) }}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table" data-sortable>
+      <thead>
+        <tr>
+          <th>Play</th>
+          <th data-sorted="true" data-sorted-direction="ascending">Name</th>
+          <th>Artist(s)</th>
+          <th>Other Game(s)</th>
+          <th>Duel</th>
+          <th>Rank</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for obj in objs|selectattr("multiple_games")|sort(attribute='title') %}
+        <tr>
+          <td>{{ get_player_button(obj) }}</td>
+          <td>{{ get_song_link(obj) }}</td>
+          <td>{{ get_artist_link(obj) }}</td>
+          <td>{{ get_medley_game_links(key, obj) }}</td>
+          <td {{ get_duel_sort_value(obj) }}>{{ get_duel_link(obj) }}</td>
+          <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, true) }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endif %}
 
 {% endblock %}

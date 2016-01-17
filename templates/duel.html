@@ -40,28 +40,30 @@
 <br />
 
 {% if not (voting and objs[0].month_dir == latest_month) %}
-  <table class="table" data-sortable>
-    <thead>
-      <tr>
-        <th>Play</th>
-        <th data-sorted="true" data-sorted-direction="ascending">Rank</th>
-        <th>Song</th>
-        <th>Artist(s)</th>
-        <th>Game(s)</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for obj in objs %}
-      <tr {% if obj.rank|int < 4 %}class="{{ trophy_string(obj) }}-row"{% endif %}>
-        <td>{{ get_player_button(obj) }}</td>
-        <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, false) }}</td>
-        <td>{{ get_song_link(obj) }}</td>
-        <td>{{ get_artist_link(obj) }}</td>
-        <td>{{ get_game_link(obj) }}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table" data-sortable>
+      <thead>
+        <tr>
+          <th>Play</th>
+          <th data-sorted="true" data-sorted-direction="ascending">Rank</th>
+          <th>Song</th>
+          <th>Artist(s)</th>
+          <th>Game(s)</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for obj in objs %}
+        <tr {% if obj.rank|int < 4 %}class="{{ trophy_string(obj) }}-row"{% endif %}>
+          <td>{{ get_player_button(obj) }}</td>
+          <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, false) }}</td>
+          <td>{{ get_song_link(obj) }}</td>
+          <td>{{ get_artist_link(obj) }}</td>
+          <td>{{ get_game_link(obj) }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endif %}
 
 {% if voting and objs[0].month_dir == latest_month %}

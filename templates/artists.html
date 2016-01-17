@@ -10,30 +10,32 @@
 
 <div class="hline-r"></div>
 
-<table class="table" data-sortable>
-  <thead>
-    <tr>
-      <th data-sorted="true" data-sorted-direction="ascending">
-        Name {{ filter_input() }}
-      </th>
-      <th>♫</th>
-      <th class="gold">&bull;</th>
-      <th class="silver">&bull;</th>
-      <th class="bronze">&bull;</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for artist, song_list in objs|dictsort %}
-    <tr>
-      <td>{{ get_artist_link(artist) }}</td>
-      <td>{{ song_list|count }}</td>
-      <td>{{ song_list|selectattr("rank", "equalto", "01")|list|count }}</td>
-      <td>{{ song_list|selectattr("rank", "equalto", "02")|list|count }}</td>
-      <td>{{ song_list|selectattr("rank", "equalto", "03")|list|count }}</td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table" data-sortable>
+    <thead>
+      <tr>
+        <th data-sorted="true" data-sorted-direction="ascending">
+          Name {{ filter_input() }}
+        </th>
+        <th>♫</th>
+        <th class="gold">&bull;</th>
+        <th class="silver">&bull;</th>
+        <th class="bronze">&bull;</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for artist, song_list in objs|dictsort %}
+      <tr>
+        <td>{{ get_artist_link(artist) }}</td>
+        <td>{{ song_list|count }}</td>
+        <td>{{ song_list|selectattr("rank", "equalto", "01")|list|count }}</td>
+        <td>{{ song_list|selectattr("rank", "equalto", "02")|list|count }}</td>
+        <td>{{ song_list|selectattr("rank", "equalto", "03")|list|count }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 {% endblock %}
 

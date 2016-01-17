@@ -10,24 +10,26 @@
 
 <div class="hline-r"></div>
 
-<table class="table" data-sortable>
-  <thead>
-    <tr>
-      <th data-sorted="true" data-sorted-direction="ascending">
-        Name {{ filter_input() }}
-      </th>
-      <th>♫</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for game, song_list in objs|dictsort %}
-    <tr>
-      <td>{{ get_game_link(game) }}</td>
-      <td>{{ song_list|count }}</td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table" data-sortable>
+    <thead>
+      <tr>
+        <th data-sorted="true" data-sorted-direction="ascending">
+          Name {{ filter_input() }}
+        </th>
+        <th>♫</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for game, song_list in objs|dictsort %}
+      <tr>
+        <td>{{ get_game_link(game) }}</td>
+        <td>{{ song_list|count }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 {% endblock %}
 

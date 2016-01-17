@@ -25,6 +25,7 @@
     {% if not loop.first %}
         </tbody>
       </table>
+    </div>
 
       <p>
         <a href="#">Back to Top</a>
@@ -37,15 +38,16 @@
 
     <div class="hline-r-duels"></div>
 
-    <table class="table" data-sortable>
-      <thead>
-        <tr>
-          <th width="47%" data-sorted="true" data-sorted-direction="descending">Month</th>
-          <th width="48%">Theme</th>
-          <th width="5%">♫</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div class="table-responsive">
+      <table class="table" data-sortable>
+        <thead>
+          <tr>
+            <th width="47%" data-sorted="true" data-sorted-direction="descending">Month</th>
+            <th width="48%">Theme</th>
+            <th width="5%">♫</th>
+          </tr>
+        </thead>
+        <tbody>
   {% endif %}
         <tr>
           <td data-value="{{ song_list[0].month }}">{{ song_list[0].month_name }}</td>
@@ -56,8 +58,9 @@
   {% set current_year = song_list[0].year %}
 {% endfor %}
 
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 
 <p>
   <a href="#">Back to Top</a>
