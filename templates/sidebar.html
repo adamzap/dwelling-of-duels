@@ -22,6 +22,8 @@
 
 <br />
 
+{% set date_str = deadline.strftime('%B %d').replace('0', '') %}
+
 {% if voting %}
   <h4>Voting Deadline</h4>
 
@@ -29,7 +31,7 @@
 
   <p>
     Votes for the current duel must be received by
-    <strong>{{ deadline.strftime('%B %-d') }} at 11:59 AM EST</strong>.
+    <strong>{{ date_str }} at 11:59 AM EST</strong>.
   </p>
 
   <p>
@@ -44,7 +46,7 @@
 
   <p>
     Songs for the current duel must be received by
-    <strong>{{ deadline.strftime('%B %-d') }} at 11:59 AM EST</strong>.
+    <strong>{{ date_str }} at 11:59 AM EST</strong>.
   <p>
 {% endif %}
 
