@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.9.6
+
+- Fix deadline date string generation on Windows
+
 ## v0.9.5
 
 - Make tables horizontally scrollable for mobile
