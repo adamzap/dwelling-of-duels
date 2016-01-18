@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.9.5
+
+- Make tables horizontally scrollable for mobile
+- Hide inner voting marks on mobile
+- Improve styling on mobile
+- Fix table sorting on mobile
+- Clean up CSS
+- Fix audio player in Safari
+- Add dynamic deadline section to sidebar
+- Prevent footer from covering background image
+- Prevent extra newline at the end of voting textarea
+
 ## v0.9.4
 
 - Shrink footer
