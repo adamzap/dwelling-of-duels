@@ -22,12 +22,13 @@ body {
   margin: 0;
   height: 100%;
   color: #eeeeee;
-  font-family: 'Lato', sans-serif;
   font-weight: 400;
+  font-family: 'Lato', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
+  font-weight: 400;
+  font-family: 'Lora', serif;
 }
 
 p {
@@ -80,8 +81,9 @@ a:focus {
 
 .navbar-default .navbar-nav > li > a {
   color: #eeeeee;
-  font-weight: 700;
   font-size: 14px;
+  font-weight: 700;
+  font-family: 'Lora', sans-serif;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
@@ -152,7 +154,6 @@ a:focus {
 
 .ctitle {
   color: white;
-  font-weight: 700;
   margin-bottom: 15px;
 }
 
