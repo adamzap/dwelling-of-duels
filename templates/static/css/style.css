@@ -107,7 +107,7 @@ a:focus {
   padding-top: 18px;
   padding-bottom: 10px;
   text-align: center;
-  min-height: 185px;
+  min-height: 120px;
   width: 100%;
   background-attachment: relative;
   background-position: center center;
@@ -276,7 +276,7 @@ ol li, ol li ul li {
 and (min-width: 768px) {
   .winners-banner-month h2 {
     text-align: right;
-    padding-top: 20px;
+    padding-top: 0;
     padding-right: 10px;
   }
 

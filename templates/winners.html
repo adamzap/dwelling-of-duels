@@ -11,7 +11,7 @@
       <div class="col-md-3 winners-banner-month">
         <h2>
           <a href="/duels/{{ songs[0].duel|slugify }}/">
-            {{ songs[0].month_name }} {{ songs[0].year }}
+            {{ songs[0].month_name }} Winners
           </a>
         </h2>
         <h4>
@@ -22,16 +22,14 @@
       </div>
       {% for song in songs[:3] %}
         <div class="col-md-3">
-          <img src="/static/img/{{ trophy_string(song) }}.png"/>
+          <a href="/duels/{{ songs[0].duel|slugify }}/">
+            <img src="/static/img/{{ trophy_string(song) }}.png"/>
+          </a>
           <div class="winners-banner-winner">
             <div>
-              <strong>{{ get_artist_link(song, ', ') }}</strong>
-            </div>
-            <div>
-              "{{ get_song_link(song) }}"
-            </div>
-            <div>
-              {{ get_game_link(song, ', ') }}
+              <strong>
+                <a href="/duels/{{ songs[0].duel|slugify }}/">{{ song.artists|join(', ') }}</a>
+              </strong>
             </div>
           </div>
         </div>
