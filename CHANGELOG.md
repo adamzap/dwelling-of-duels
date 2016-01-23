@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.9.7
+
+- Simplify winners banner
+- Use a serif font for headelines and menu items
+- Optimize font-fetching
+
 ## v0.9.6
 
 - Fix deadline date string generation on Windows
