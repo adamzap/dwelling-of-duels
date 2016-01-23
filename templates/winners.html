@@ -21,7 +21,7 @@
         </h4>
       </div>
       {% for song in songs[:3] %}
-        <div class="col-md-3">
+        <div class="col-md-3 winners-banner-winner-col">
           <a href="/duels/{{ songs[0].duel|slugify }}/">
             <img src="/static/img/{{ trophy_string(song) }}.png"/>
           </a>
