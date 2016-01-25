@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.9.8
+
+- Display youtube links on duel pages
+- Fix text rendering on log icon
+
 ## v0.9.7
 
 - Simplify winners banner
