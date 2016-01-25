@@ -89,6 +89,8 @@ def get_month_data(month_dir):
 
     max_rank = len([f for f in song_filenames if not f.startswith('ZZ')])
 
+    youtube_link = get_youtube_link(month_dir)
+
     for f in song_filenames:
         song_path = os.path.join(month_dir, f)
 
@@ -120,10 +122,17 @@ def get_month_data(month_dir):
             'month_dir': month_dir_part,
             'has_log': month_dir_part + '.log' in month_files,
             'has_banner': month_dir_part + '.jpg' in month_files,
-            'has_archive': month_dir_part + '.zip' in month_files
+            'has_archive': month_dir_part + '.zip' in month_files,
+            'youtube_link': youtube_link
         })
 
     return songs
+
+
+def get_youtube_link(month_dir):
+    path = os.path.join(month_dir, 'youtube.txt')
+
+    return open(path).read().strip() if os.path.isfile(path) else ''
 
 
 def parse_artist_links():

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="28px" height="20px" viewBox="0 0 28 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.4 (17249) - http://www.bohemiancoding.com/sketch -->
+    <title>youtube</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="youtube" sketch:type="MSLayerGroup" transform="translate(-2.000000, -6.000000)">
+            <rect id="Outer" sketch:type="MSShapeGroup" x="0" y="0" width="32" height="32"></rect>
+            <path d="M2,12.9950294 C2,9.13178136 5.13045315,6 8.99335474,6 L23.0066453,6 C26.8689684,6 30,9.125 30,12.9950294 L30,19.0049706 C30,22.8682186 26.8695469,26 23.0066453,26 L8.99335474,26 C5.13103157,26 2,22.875 2,19.0049706 L2,12.9950294 Z M20.3999996,16 L12.3999996,20.5 L12.3999996,11.5 L20.3999996,16 Z" id="Inner" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

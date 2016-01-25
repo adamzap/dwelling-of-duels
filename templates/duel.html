@@ -19,6 +19,12 @@
         <img src="/static/img/log.svg" width="32px" height="32px" alt="Listening Party Log"/>
       </a>
     {% endif %}
+
+    {% if objs[0].youtube_link %}
+      <a href="{{ objs[0].youtube_link }}">
+        <img src="/static/img/youtube.svg" width="32px" height="32px" alt="YouTube Playlist"/>
+      </a>
+    {% endif %}
   </span>
 </h1>
 
