@@ -276,11 +276,11 @@ ol li, ol li ul li {
 and (min-width: 768px) {
   .winners-banner-month {
     width: 29%;
-    padding-top: 6px;
   }
 
   .winners-banner-month h2 {
     text-align: right;
+    margin-top: 4%;
     padding-top: 0;
     padding-right: 10px;
   }
