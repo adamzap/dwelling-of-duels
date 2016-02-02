@@ -269,8 +269,15 @@
 
   <li>
     Voting is automated through
-    <a href="/voting/index.html">http://dwellingofduels.net/voting</a>. You
-    simply score each song from "Incredible" to "Terrible" using the sliders.
+
+    {% if voting %}
+      <a href="/voting/">our voting app</a>.
+    {% else %}
+      our voting app.
+    {% endif %}
+
+    You simply score each song from "Incredible" to "Terrible" using the
+    sliders.
 
     <ul>
       <li>
