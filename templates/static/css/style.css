@@ -275,8 +275,10 @@ ol li, ol li ul li {
   margin-top: 10px;
 }
 
-.duel-icons {
-  float: right;
+@media (min-width: 767px) {
+  .duel-icons {
+    float: right;
+  }
 }
 
 .duel-icons img {
