@@ -245,6 +245,18 @@ h4.voting label {
   color: #eeeeee;
 }
 
+h4.voting small {
+  float: right;
+}
+
+@media (max-width: 767px) {
+  h4.voting small {
+    float: none;
+    display: block;
+    padding-top: 20px
+  }
+}
+
 .hline-r-duels {
   border-bottom: 2px solid #e11a1a;
   margin-bottom: 0;

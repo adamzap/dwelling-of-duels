@@ -80,7 +80,7 @@
   {% for obj in objs %}
     <h4 class="voting">
       {{ get_player_button(obj) }} &nbsp; {{ obj.games|join(', ') }} - {{ get_song_link(obj) }}
-      <small class="pull-right">
+      <small>
         <label>
           <input type="checkbox" data-id="{{ loop.index0 }}"/> My Song
         </label>
