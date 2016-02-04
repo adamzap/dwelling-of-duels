@@ -84,11 +84,15 @@ $(function () {
 
   $('input[type="checkbox"]').change(function (e) {
     var $el = $(e.target);
+    var $sliders = $('.irs-with-grid');
+    var $slider = $sliders.eq($el.data('id'));
 
     $('input[type="checkbox"]').not($el).prop('checked', false);
 
     update_votes();
 
-    $('.irs-with-grid').eq($el.data('id')).toggleClass('irs-disabled');
+    $sliders.not($slider).removeClass('irs-disabled');
+
+    $slider[$el.prop('checked') ? 'addClass' : 'removeClass']('irs-disabled');
   });
 });
