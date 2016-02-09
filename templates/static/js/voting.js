@@ -87,11 +87,11 @@ $(function () {
     var $sliders = $('.irs-with-grid');
     var $slider = $sliders.eq($el.data('id'));
 
-    $('input[type="checkbox"]').not($el).prop('checked', false);
+    // $('input[type="checkbox"]').not($el).prop('checked', false);
+
+    // $sliders.not($slider).removeClass('irs-disabled');
 
     update_votes();
-
-    $sliders.not($slider).removeClass('irs-disabled');
 
     $slider[$el.prop('checked') ? 'addClass' : 'removeClass']('irs-disabled');
   });
