@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.0.0
+
+- Allow claiming of multiple songs when voting (for now)
+- Fix duel page icons on mobile
+- Improve voting experience on mobile
+- Fix vertical alignment on winners banner
+- Update rules page copy
+- Update sidebar copy
+- Open log and YouTube links in a new tab
+
 ## v0.9.8
 
 - Display youtube links on duel pages
