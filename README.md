@@ -20,11 +20,13 @@ settings:
 - `voting` controls whether or not the site is in voting mode. Valid values are
 `on` and `off`.
 - `deadline_date` is the date displayed in the deadline section of the sidebar.
-It's the voting deadline when `voting` is `on` and the submission deadline when
-`voting` is `off`. `deadline` must be a date of the form `YYYY-MM-DD`. For
-example: `2016-01-31`.
+It must be a date of the form `YYYY-MM-DD`. For example: `2016-01-31`.
+- `deadline_time` is the time displayed in the deadline section of the sidebar.
 - `archive_dir` is the name of the local directory that holds the DoD archive
 folder. It defaults to `dodarchive`. You probably don't need to change this.
+
+The `deadline_*` settings refer to the voting deadline when `voting` is set to
+`on` and the submission deadline when `voting` is set to off.
 
 Add artist links to the `artist-links.csv` file.
 

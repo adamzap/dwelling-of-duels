@@ -34,6 +34,7 @@ CONFIG.read('site.cfg')
 
 VOTING = CONFIG['dod_site'].getboolean('voting')
 ARCHIVE_DIR = CONFIG['dod_site'].get('archive_dir')
+DEADLINE_TIME = CONFIG['dod_site'].get('deadline_time')
 
 DATA = []
 
@@ -157,6 +158,7 @@ def get_deadline_date():
 def set_template_globals():
     TEMPLATES.globals['voting'] = VOTING
     TEMPLATES.globals['deadline_date'] = get_deadline_date()
+    TEMPLATES.globals['deadline_time'] = DEADLINE_TIME
     TEMPLATES.globals['archive_dir'] = ARCHIVE_DIR
     TEMPLATES.globals['artist_links'] = parse_artist_links()
 
