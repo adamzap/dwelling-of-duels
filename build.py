@@ -141,20 +141,22 @@ def parse_artist_links():
     return {a: l for a, l in [x.split(', ') for x in lines]}
 
 
-def get_deadline():
-    val = CONFIG['dod_site'].get('deadline')
+def get_deadline_date():
+    val = CONFIG['dod_site'].get('deadline_date')
 
     try:
         date = datetime.date(*[int(x) for x in val.split('-')])
     except (AttributeError, TypeError, ValueError):
-        sys.exit('Error: deadline must be of the form YYYY-MM-DD in site.cfg')
+        s = 'Error: deadline_date must be of the form YYYY-MM-DD in site.cfg'
+
+        sys.exit(s)
 
     return date
 
 
 def set_template_globals():
     TEMPLATES.globals['voting'] = VOTING
-    TEMPLATES.globals['deadline'] = get_deadline()
+    TEMPLATES.globals['deadline_date'] = get_deadline_date()
     TEMPLATES.globals['archive_dir'] = ARCHIVE_DIR
     TEMPLATES.globals['artist_links'] = parse_artist_links()
 

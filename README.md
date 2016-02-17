@@ -19,8 +19,8 @@ settings:
 
 - `voting` controls whether or not the site is in voting mode. Valid values are
 `on` and `off`.
-- `deadline` is the date displayed in the deadline section of the sidebar. It's
-the voting deadline when `voting` is `on` and the submission deadline when
+- `deadline_date` is the date displayed in the deadline section of the sidebar.
+It's the voting deadline when `voting` is `on` and the submission deadline when
 `voting` is `off`. `deadline` must be a date of the form `YYYY-MM-DD`. For
 example: `2016-01-31`.
 - `archive_dir` is the name of the local directory that holds the DoD archive
