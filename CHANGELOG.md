@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.1
+
+- Separate alt entries from the voting form
+- Fix missing deadline zero in sidebar template
+- Add deadline_time setting
+- Rename deadline setting to deadline_date
+
 ## v1.0.0
 
 - Allow claiming of multiple songs when voting (for now)
