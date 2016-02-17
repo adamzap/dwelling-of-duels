@@ -94,7 +94,10 @@
 
     <br />
     <br />
-    <br />
+
+    {% if not loop.last %}
+      <br />
+    {% endif %}
   {% else %}
     <p>
       There were no main entries this month
