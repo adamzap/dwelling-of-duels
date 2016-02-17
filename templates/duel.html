@@ -73,11 +73,14 @@
 {% endif %}
 
 {% if voting and objs[0].month_dir == latest_month %}
+  {% set main_entries = objs|rejectattr("rank", "equalto", "ZZ")|list %}
+  {% set alt_entries = objs|selectattr("rank", "equalto", "ZZ")|list %}
+
   <h1 class="ctitle">Voting</h1>
 
   <div class="hline-r"></div>
 
-  {% for obj in objs %}
+  {% for obj in main_entries %}
     <h4 class="voting">
       {{ get_player_button(obj) }} &nbsp; {{ obj.games|join(', ') }} - {{ get_song_link(obj) }}
       <small>
@@ -92,15 +95,36 @@
     <br />
     <br />
     <br />
+  {% else %}
+    <p>
+      There were no main entries this month
+    </p>
   {% endfor %}
 
   <h1 class="ctitle">Your Votes</h1>
 
   <div class="hline-r"></div>
 
-  <textarea id="voting-result" rows="{{ objs|length }}"></textarea>
+  <textarea id="voting-result" rows="{{ main_entries|length }}"></textarea>
 
   <p>Copy the text above and email it to <a href="mailto:dodsongs@gmail.com">dodsongs@gmail.com</a>
+
+  <br />
+  <br />
+
+  <h1 class="ctitle">Alternate Entries</h1>
+
+  <div class="hline-r"></div>
+
+  {% for obj in alt_entries %}
+    <h4 class="voting">
+      {{ get_player_button(obj) }} &nbsp; {{ obj.games|join(', ') }} - {{ get_song_link(obj) }}
+    </h4>
+  {% else %}
+    <p>
+      There were no alternate entries this month
+    </p>
+  {% endfor %}
 {% endif %}
 
 {% endblock %}
