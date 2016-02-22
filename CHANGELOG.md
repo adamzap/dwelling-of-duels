@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.2
+
+- Add analytics
+- Fix song link generation on Windows
+
 ## v1.0.1
 
 - Separate alt entries from the voting form
