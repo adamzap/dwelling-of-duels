@@ -115,7 +115,7 @@ def get_month_data(month_dir):
             'title': song_data.title,
             'duration': song_data.duration,
             'duel': duel,
-            'link': os.sep + song_path,
+            'link': os.sep + song_path.replace('\\', '/'),
             'theme': duel.split(': ', 1)[1],
             'year': '20' + duel.split('-')[0],
             'month': month_number,
