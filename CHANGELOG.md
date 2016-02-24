@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.3
+
+- Finish fixing song link generation on Windows
+
 ## v1.0.2
 
 - Add analytics
