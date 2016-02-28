@@ -1,4 +1,4 @@
-var LABELS = [
+var VOTING_LABELS = [
   'Terrible',
   'Bad',
   'Below Average',
@@ -17,7 +17,7 @@ function format_vote (song, vote, is_my_song) {
 
   var hundreds = Math.round(vote / 100);
   var offset = '+' + ((vote - (hundreds * 100)) / 100).toFixed(2);
-  var label = LABELS[hundreds].toLowerCase();
+  var label = VOTING_LABELS[hundreds].toLowerCase();
 
   return out + label + ' ' + offset.replace('+-', '-');
 }
@@ -67,7 +67,7 @@ $(function () {
     },
 
     prettify_labels: function (num) {
-      return num % 100 === 0 ? LABELS[num / 100] : num;
+      return num % 100 === 0 ? VOTING_LABELS[num / 100] : num;
     },
 
     grid_line_visible: function (num) {
