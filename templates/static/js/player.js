@@ -1,40 +1,42 @@
-var play_src = $('.play-button').attr('src');
-var stop_src = play_src.replace('play.svg', 'stop.svg');
+function make_player () {
+  var play_src = $('.play-button').attr('src');
+  var stop_src = play_src.replace('play.svg', 'stop.svg');
 
-var player = new Audio();
+  var player = new Audio();
 
-player.preload = 'none';
+  player.preload = 'none';
 
-$('.play-button').click(function (e) {
-  $img = $(e.target);
+  $('.play-button').click(function (e) {
+    $img = $(e.target);
 
-  var song_url = $img.data('song-url');
+    var song_url = $img.data('song-url');
 
-  if (player.paused) {
-    player.src = song_url;
-
-    player.load();
-
-    $img.attr('src', stop_src);
-
-    player.play();
-  } else {
-    player.pause();
-
-    if ($img.attr('src') === play_src) {
+    if (player.paused) {
       player.src = song_url;
 
       player.load();
-
-      $('.play-button').attr('src', play_src);
 
       $img.attr('src', stop_src);
 
       player.play();
     } else {
-      player.src = '';
+      player.pause();
 
-      $img.attr('src', play_src);
+      if ($img.attr('src') === play_src) {
+        player.src = song_url;
+
+        player.load();
+
+        $('.play-button').attr('src', play_src);
+
+        $img.attr('src', stop_src);
+
+        player.play();
+      } else {
+        player.src = '';
+
+        $img.attr('src', play_src);
+      }
     }
-  }
-});
+  });
+}
