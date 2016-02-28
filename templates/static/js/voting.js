@@ -50,7 +50,7 @@ function update_empty_votes () {
   $('#voting-result').val(votes.trim());
 }
 
-$(function () {
+function make_voting () {
   update_empty_votes();
 
   $('.voting-slider').ionRangeSlider({
@@ -96,4 +96,4 @@ $(function () {
 
     $slider[$el.prop('checked') ? 'addClass' : 'removeClass']('irs-disabled');
   });
-});
+}
