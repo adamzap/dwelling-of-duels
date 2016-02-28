@@ -2,7 +2,7 @@ function normalize (s) {
   return s.toLowerCase().replace('š', 's').replace('é', 'e');
 }
 
-function make_filter() {
+function make_filter () {
   var input = document.getElementById('filter');
 
   input.addEventListener('click', function (e) {
