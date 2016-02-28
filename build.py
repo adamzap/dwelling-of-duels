@@ -54,6 +54,24 @@ ARTIST_WHITELIST = [
     'Evil(I)(I)'
 ]
 
+CSS_FILES = [
+    'bootstrap.css',
+    'sortable.css',
+    'slider.css',
+    'style.css'
+]
+
+JS_FILES = [s.replace('/', os.sep) for s in [
+    'lib/jquery.js',
+    'lib/bootstrap-transition.js',
+    'lib/bootstrap-collapse.js',
+    'lib/sortable.js',
+    'lib/slider.js',
+    'make-filter.js',
+    'player.js',
+    'voting.js'
+]]
+
 
 def build_data():
     for d in os.listdir(ARCHIVE_DIR):
@@ -204,7 +222,7 @@ def build_site():
     write_page('rules', {})
     write_page('voting', {})
 
-    shutil.copytree(TEMPLATE_DIR + 'static', OUT_DIR + 'static')
+    handle_static()
 
 
 def build_pages(kind):
@@ -264,6 +282,27 @@ def write_page(template_name, context, path=None):
             html = HREF_RE.sub(r'\1index.html"', html)
 
         out.write(html)
+
+
+def handle_static():
+    os.mkdir(OUT_DIR + 'static')
+
+    images_dir = 'static' + os.sep + 'img'
+
+    shutil.copytree(TEMPLATE_DIR + images_dir, OUT_DIR + images_dir)
+
+    with open(OUT_DIR + 'static' + os.sep + 'dod.css', 'w') as css_file:
+        css_file.write(combine_files(CSS_FILES, 'css'))
+
+    with open(OUT_DIR + 'static' + os.sep + 'dod.js', 'w') as css_file:
+        css_file.write(combine_files(JS_FILES, 'js'))
+
+
+def combine_files(files, static_prefix):
+    def get_dir(f):
+        return os.path.join(TEMPLATE_DIR, 'static', static_prefix, f)
+
+    return '\n'.join([open(get_dir(f)).read() for f in files])
 
 
 def build():
