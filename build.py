@@ -5,6 +5,7 @@ import re
 import sys
 import jinja2
 import shutil
+import hashlib
 import calendar
 import datetime
 import markdown
@@ -213,6 +214,8 @@ def build_site():
 
     os.mkdir(OUT_DIR)
 
+    build_static()
+
     build_pages('duels')
     build_pages('games')
     build_pages('artists')
@@ -221,8 +224,6 @@ def build_site():
 
     write_page('rules', {})
     write_page('voting', {})
-
-    handle_static()
 
 
 def build_pages(kind):
@@ -284,18 +285,30 @@ def write_page(template_name, context, path=None):
         out.write(html)
 
 
-def handle_static():
+def build_static():
     os.mkdir(OUT_DIR + 'static')
 
     images_dir = 'static' + os.sep + 'img'
 
     shutil.copytree(TEMPLATE_DIR + images_dir, OUT_DIR + images_dir)
 
-    with open(OUT_DIR + 'static' + os.sep + 'dod.css', 'w') as css_file:
-        css_file.write(combine_files(CSS_FILES, 'css'))
+    write_asset(CSS_FILES, 'css')
+    write_asset(JS_FILES, 'js')
 
-    with open(OUT_DIR + 'static' + os.sep + 'dod.js', 'w') as js_file:
-        js_file.write(combine_files(JS_FILES, 'js'))
+
+def write_asset(files, extension):
+    static_path = OUT_DIR + 'static' + os.sep
+
+    combined = combine_files(files, extension)
+
+    the_hash = hashlib.md5(combined.encode()).hexdigest()
+
+    path = static_path + 'dod.{}.{}'.format(the_hash, extension)
+
+    TEMPLATES.globals[extension + '_hash'] = the_hash
+
+    with open(path, 'w') as f:
+        f.write(combined)
 
 
 def combine_files(files, static_prefix):
