@@ -294,8 +294,8 @@ def handle_static():
     with open(OUT_DIR + 'static' + os.sep + 'dod.css', 'w') as css_file:
         css_file.write(combine_files(CSS_FILES, 'css'))
 
-    with open(OUT_DIR + 'static' + os.sep + 'dod.js', 'w') as css_file:
-        css_file.write(combine_files(JS_FILES, 'js'))
+    with open(OUT_DIR + 'static' + os.sep + 'dod.js', 'w') as js_file:
+        js_file.write(combine_files(JS_FILES, 'js'))
 
 
 def combine_files(files, static_prefix):
