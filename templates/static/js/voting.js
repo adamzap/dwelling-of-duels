@@ -12,13 +12,14 @@ function format_vote (song, vote, is_my_song) {
   var out = song + ' / ';
 
   if (is_my_song) {
-    return out + 'My Song';
+    return out + 'my song';
   }
 
   var hundreds = Math.round(vote / 100);
   var offset = '+' + ((vote - (hundreds * 100)) / 100).toFixed(2);
+  var label = LABELS[hundreds].toLowerCase();
 
-  return out + LABELS[hundreds] + ' ' + offset.replace('+-', '-');
+  return out + label + ' ' + offset.replace('+-', '-');
 }
 
 function update_votes () {
