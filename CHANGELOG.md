@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.4
+
+- Automatically combine and version CSS and JavaScript
+- Replace social logo PNGs with SVGs
+- Update artist-links.csv
+- Render lowercase voting results
+
 ## v1.0.3
 
 - Finish fixing song link generation on Windows
