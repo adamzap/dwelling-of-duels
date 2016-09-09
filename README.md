@@ -2,8 +2,6 @@
 
 This is the static site generator for [Dwelling of Duels].
 
-**It's is a work in progress until I tag it `v1.0.0`.**
-
 ## Installation
 
 1. Install [Python 3]
