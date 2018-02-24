@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="/static/css/bootstrap.css">
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/nanoscroller.css">
+  <title>Document</title>
+  <style>
+    body{
+      background-color: #202020;
+      margin-top:10px;
+    }
+    .head{
+      display:inline-block;
+      color:#DDD;
+      width: 100%;
+      margin: auto;
+      height: 40px;
+    }
+    .controlsBar {
+      position:sticky;
+      height:20px;
+      background-color:black;
+      display:inline;
+      cursor:pointer;
+      color:white;
+      width:100%;
+      margin-bottom: 5px;
+    }
+    .playerButton{
+      color:white;
+      min-width: 20px;
+      height:20px;
+      border: 1px solid #FFF;
+    }
+    .song {
+      margin:auto;
+      background-color:#e11a1a;
+      height:20px;
+      cursor: pointer;
+      border: 2px solid #202020;
+      border: 1px solid #333;
+      font-weight: bold;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .song:hover {
+      background-color:#FF5252;
+    }
+
+    .selected{
+      background-color:#111212;
+      border: 1px solid #FF1212;
+      color:#999;
+    }
+    .selected:hover{
+      background-color:#6D1414;
+    }
+    .nano {
+      background: #bba;
+      height: calc(90vh - 80px);
+      width:100%;
+      box-shadow: 0 0 100px black;
+
+    }
+    #playerVolumeSlider{
+      float:left;
+      width:40px;
+    }
+    #playerVolumeButton{
+      float:left;
+    }
+    #playerProgressBar{
+      display: inline-block;
+      width: calc(100% - 120px);
+      overflow:hidden;
+      height:20px;
+      float:left;
+    }
+    #bar{
+      background-color:#e11a1a;
+      margin:3px;
+      height:14px;
+      display: inline-block;
+    }
+    #playerToggle{
+      float:left;
+    }
+    #playerShuffle{
+      float:left;
+    }
+    #playerForward{
+      float:left;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+
+
+      <div class="head text-center" style="text-align:center">
+            <a href="http://www.dwellingofduels.net"><img src="/static/img/logo.png"></a>
+
+            <h1 style="; margin-top:0px">Archive Explorer</h1>
+
+      </div>
+
+
+      <div class="controlsBar">
+        <span class="fas fa-xs fa-play playerButton center-block"  id="playerToggle"></span>
+        <span class="fas fa-xs fa-random playerButton hidden"  id="playerShuffle"></span>
+        <span class="fas fa-xs fa-step-forward playerButton" id="playerForward"></span>
+
+        <span class="playerButton" id="playerProgressBar"><span id="bar"></span></span>
+
+        <span class="fas fa-xs fa-volume-off playerButton" id="playerVolumeButton"></span>
+        <span class="playerButton" id="playerVolumeSlider">words</span>
+
+      </div>
+    <div class="nano">
+      <div class="nano-content">
+
+        {% for obj in objs %}
+        <div class="song" data-song='{"src":["{{ urllib.parse.quote(obj.link) }}"], "artist":"{{ obj.arists[0] }}", "title":"{{ obj.title }}", "game":["{{ obj.games[0] }}"]}'>{{obj.title}}</div>
+        {% endfor %}
+
+
+      </div>
+
+    </div>
+
+    <p style="color:grey">Created by <a href="http://dwellingofduels.net/artists/katamari/">Katamari</a></p>
+  </div>
+  <script src="/static/js/lib/howler.min.js"></script>
+  <script src="/static/js/jQuery.js"></script>
+  <script src="/static/js/randomPlayer.js"></script>
+  <script src="/static/js/lib/jQuery.nanoscroller.min.js"></script>
+  <script>
+    $(".nano").nanoScroller();
+    playerInit();
+  </script>
+</body>
+</html>
