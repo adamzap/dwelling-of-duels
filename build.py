@@ -59,18 +59,22 @@ CSS_FILES = [
     'bootstrap.css',
     'sortable.css',
     'slider.css',
-    'style.css'
+    'style.css',
+	'nanoscroller.css'
 ]
 
 JS_FILES = [s.replace('/', os.sep) for s in [
     'lib/jquery.js',
+	'lib/jquery.nanoscroller.min.js',
     'lib/bootstrap-transition.js',
     'lib/bootstrap-collapse.js',
     'lib/sortable.js',
     'lib/slider.js',
+	'lib/howler.min.js',
     'make-filter.js',
     'player.js',
-    'voting.js'
+    'voting.js',
+	'randomPlayer.js'
 ]]
 
 
@@ -219,6 +223,7 @@ def build_site():
     build_pages('duels')
     build_pages('games')
     build_pages('artists')
+    build_random()
 
     build_index()
 
@@ -249,7 +254,11 @@ def build_pages(kind):
 
     write_page(kind, {'objs': song_lists})
 
-
+def build_random():
+    os.mkdir(os.path.join(OUT_DIR, 'random'))
+    song_lists = collections.defaultdict(list)
+    write_page('random', {'objs': DATA})
+	
 def build_index():
     raw_content = open('front-page.md').read()
 
