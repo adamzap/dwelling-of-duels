@@ -113,7 +113,7 @@ def get_month_data(month_dir):
 
     song_filenames = [f for f in month_files if f.endswith('.mp3')]
 
-    max_rank = max([f for f in song_filenames if not f.startswith('ZZ')], default=0)
+    max_rank = max([f.split("-")[0] for f in song_filenames if not f.startswith('ZZ')], default=0)
 
     youtube_link = get_youtube_link(month_dir)
 
