@@ -78,7 +78,7 @@ function playerInit(){
   nextSong();
   setInterval(updateProgress, 200);
 
-  //TODO TODO 
+  //TODO TODO
   //Add functionality to read the query parameters using getURLParams() and filter by first param then scroll to that track
 }
 
@@ -127,7 +127,8 @@ function seekTrack(e){ //called when you click on progress bar
 
 function songPressed(s){
   //get song data for this block
-  //playNewSong(src)
+	//TODO change title back to loading...
+	setPageTitles("Loading...")
   var data = $(s).data("song");
   scrollToBlock($(visibleSongs).index(s))
   currentSongBlock = s;
@@ -219,11 +220,15 @@ function playNewSong(obj){
     onend: nextSong,
     preload: true,
     html5: true,
-    autoplay: false
+    autoplay: false,
+		onload: function(){setPageTitles(decodeURIComponent(obj.title) + " - "+decodeURIComponent(obj.artist))},
   })
-  $("title").text(decodeURIComponent(obj.title) + " - "+decodeURIComponent(obj.artist)+" - Dwelling of Duels Archive Explorer");
-  $("#title").text(decodeURIComponent(obj.title) + " - "+decodeURIComponent(obj.artist));
   playSong();
+}
+
+function setPageTitles(newTitle){
+	$("title").text(newTitle + " - Dwelling of Duels Archive Explorer");
+  $("#title").text(newTitle);
 }
 
 function pauseSong(){
