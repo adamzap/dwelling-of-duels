@@ -69,7 +69,7 @@
   }
   .controlsBar {
     position:sticky;
-    height:20px;
+    height:30px;
     background-color:black;
     display:inline;
     cursor:pointer;
@@ -79,9 +79,13 @@
   }
   .playerButton{
     color:white;
-    min-width: 20px;
-    height:20px;
+    min-width: 30px;
+    height:30px;
     border: 1px solid #FFF;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
   }
   .song {
     margin:auto;
@@ -103,7 +107,9 @@
     background-color:#111212;
     border: 1px solid #FF1212;
     color:#999;
-
+  }
+  .selected td{
+    border: 1px solid #333;
   }
   .selected:hover{
     background-color:#6D1414;
@@ -139,9 +145,9 @@
   }
   #playerProgressBar{
     display: inline-block;
-    width: calc(100% - 160px);
+    width: calc(100% - 200px);
     overflow:hidden;
-    height:20px;
+    height:30px;
     float:left;
 
   }
@@ -179,15 +185,15 @@
       </div>
 
       <div class="controlsBar">
-        <span class="fas fa-xs fa-play playerButton center-block"  id="playerToggle"></span>
-        <span class="fas fa-xs fa-random playerButton"  id="playerShuffle"></span>
-        <span class="fas fa-xs fa-step-forward playerButton" id="playerForward"></span>
+        <span class="fas fa-lg fa-play playerButton center-block"  id="playerToggle"></span>
+        <span class="fas fa-lg fa-random playerButton"  id="playerShuffle"></span>
+        <span class="fas fa-lg fa-step-forward playerButton" id="playerForward"></span>
 
         <span class="playerButton" id="playerProgressBar"><span id="bar"></span></span>
 
         <span class="playerButton" id="playerTimer">00:00</span>
 
-        <span class="fas fa-xs fa-volume-off playerButton" id="playerVolumeButton"></span>
+        <span class="fas fa-lg fa-volume-off playerButton" id="playerVolumeButton"></span>
         <span class="playerButton" id="playerVolumeSlider">words</span>
 
       </div>
