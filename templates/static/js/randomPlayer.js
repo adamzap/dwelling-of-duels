@@ -4,16 +4,11 @@ var songButtons = $("table span.playerButton");
 var playing = false;
 var songName = "";
 var currentVolume = 1.0;
-<<<<<<< HEAD
-=======
-var muted = false;
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
 var sound;
 var selectedNum = -1;
 var currentSongBlock;
 var shuffle = true;
 var songList = $(".song");
-<<<<<<< HEAD
 var visibleSongs = songList.toArray();
 var previousSearch = "";
 var sorting = false;
@@ -34,14 +29,6 @@ String.prototype.hashCode = function(){
 function playerInit(){
    sound = new Howl({  //make sound object so we have it
     src: [''],
-=======
-
-
-
-function playerInit(){
-   sound = new Howl({  //make sound object so we have it
-    src: ['static/js/Kalimba.mp3'],
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
     loop: false,
     volume: currentVolume,
     onend: nextSong,
@@ -56,7 +43,6 @@ function playerInit(){
   $("#playerShuffle").click(toggleShuffle);
   $("#playerForward").click(nextSong);
   $("#playerProgressBar").click(seekTrack);
-<<<<<<< HEAD
 
   //add volume slider listener TODO
 
@@ -71,17 +57,12 @@ function playerInit(){
   $("#searchField").on("input",function(e){
       search($("#searchField").val());
     });
-=======
-  $("#playerVolumeButton").click(toggleMute);
-  //add volume listener
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
 
   //get all things labeled "song" and add listeners to them
   songList.each(function(i,s){
     $(s).click(function(){songPressed(this)});
   });
 
-<<<<<<< HEAD
   //load all favorites and set corresponding track icon to be faved
   loadFavorites()
 
@@ -134,16 +115,6 @@ function toggleFavorite(song){
   }
   console.log(localStorage.getItem("favorites"))
 }
-=======
-  //currentSongBlock = songList.get(0);
-  nextSong();
-  setInterval(updateProgress, 200);
-}
-
-
-
-
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
 
 function seekTrack(e){ //called when you click on progress bar
   var localX = e.pageX - $("#playerProgressBar").offset().left
@@ -154,7 +125,6 @@ function seekTrack(e){ //called when you click on progress bar
   return seekPos;
 }
 
-<<<<<<< HEAD
 function songPressed(s){
   //get song data for this block
   //playNewSong(src)
@@ -163,27 +133,6 @@ function songPressed(s){
   currentSongBlock = s;
   playNewSong(data);
 
-=======
-
-
-//JSON parse
-//JSON.parse($($(".song").get(0)).attr('data-song'))
-//<div class="song" data-song='{"src":"http://dwellingofduels.net/dodarchive/12-04-Free/01-PrinceOfDarkness-Solstice-Kastle-DoD.mp3", "artist":"Prince uf Darkness", "title":"Kastle Rock", "game":["Solstice"]}'>this is test</div>
-//<div class="song" data-song='{"src":[]"TEMPLATE"], "artist":["TEMPLATE","TEMPLATE"], "title":"TEMPLATE", "game":["TEMPLATE","TEMPLATE"], "duel":"TEMPLATE"}'
-
-function songPressed(s){
-  //get song data for this block
-  //playNewSong(src)
-  var data = getData(s);
-  scrollToBlock(songList.index(s))
-  currentSongBlock = s;
-  playNewSong(data.src);
-
-}
-
-function getData(element){
-  return JSON.parse($(element).attr('data-song'));
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
 }
 
 function toggleShuffle(){
@@ -200,7 +149,6 @@ function toggleShuffle(){
 
 function updateProgress(){ //called via setinterval
   var percent = sound.seek()/sound.duration();
-<<<<<<< HEAD
   $("#bar").width((percent*100)+"%");
   var sec = Math.floor(sound.seek()%60);
   var min = Math.floor(sound.seek()/60)
@@ -211,48 +159,24 @@ function updateProgress(){ //called via setinterval
   if(isNaN(min) || isNaN(sec))
     min = sec = "00";
   $("#playerTimer").text(min+":"+sec);
-=======
-  $("#bar").width((percent*100)+"%")
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
 }
 
 function nextSong(){
   var index;
 
   if(shuffle){
-<<<<<<< HEAD
     index = Math.round( (Math.random() * visibleSongs.length)-1)
   } else {
     index = $(visibleSongs).index(currentSongBlock)+1;
     if (index > visibleSongs.length-1)
       index = 0;
-=======
-    index = Math.round( (Math.random() * songList.length))
-    console.log("shuffle is tru, index is "+index);
-  } else {
-    index = songList.index(currentSongBlock)+1;
-    if (index > songList.length-1)
-      index = 0;
-    console.log("shuffle NOT tru, index is "+index);
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
   }
   scrollToBlock(index);
 
 
-<<<<<<< HEAD
   currentSongBlock = $(visibleSongs).get(index)
 
   playNewSong($(currentSongBlock).data("song"));
-=======
-  currentSongBlock = songList.get(index)
-  try{
-    playNewSong(getData(currentSongBlock).src);
-  }catch(e){
-    console.error(e);
-    console.error("Skipping to next song.");
-    nextSong();
-  }
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
 
   playSong();
 
@@ -261,7 +185,6 @@ function nextSong(){
 function scrollToBlock(index){
   //remove styling from currentSongBlock
   $(currentSongBlock).removeClass("selected");
-<<<<<<< HEAD
   //apply style
   $($(visibleSongs).get(index)).addClass("selected");
   //scroll to block at index via nanoScroller
@@ -270,12 +193,6 @@ function scrollToBlock(index){
   try{
     $('.nano').nanoScroller({scrollTo: $($(visibleSongs).get(index-2))});
   }catch{}
-=======
-  //scroll to block at index via nanoScroller
-  $('.nano').nanoScroller({scrollTo: $(songList.get(index))});
-  //apply style
-  $(songList.get(index)).addClass("selected");
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
 }
 
 
@@ -293,17 +210,10 @@ function playSong(){
   $("#playerToggle").addClass("fa-pause")
 }
 
-<<<<<<< HEAD
 function playNewSong(obj){
   sound.stop();
   sound = new Howl({
     src: obj.src,
-=======
-function playNewSong(src){
-  sound.stop();
-  sound = new Howl({
-    src: src,
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
     volume: currentVolume,
     loop: false,
     onend: nextSong,
@@ -311,26 +221,11 @@ function playNewSong(src){
     html5: true,
     autoplay: false
   })
-<<<<<<< HEAD
   $("title").text(decodeURIComponent(obj.title) + " - "+decodeURIComponent(obj.artist)+" - Dwelling of Duels Archive Explorer");
   $("#title").text(decodeURIComponent(obj.title) + " - "+decodeURIComponent(obj.artist));
   playSong();
 }
 
-=======
-  playSong();
-}
-
-function toggleMute(){
-  if (!muted)
-    sound.volume(0);
-  else
-    sound.fade(0,currentVolume,100);
-
-  muted = !muted;
-}
-
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
 function pauseSong(){
   playing = false;
   sound.pause();
@@ -338,10 +233,6 @@ function pauseSong(){
   $("#playerToggle").addClass("fa-play")
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
 function adjustVolume(amount){
   currentVolume += amount;
   if (currentVolume > 1)
@@ -350,7 +241,6 @@ function adjustVolume(amount){
     currentVolume = 0;
   sound.volume(currentVolume);
 }
-<<<<<<< HEAD
 
 
 function sortTable(type){
@@ -548,5 +438,3 @@ function getUrlParams( prop ) {
     } );
     return ( prop && prop in params ) ? params[ prop ] : params;
 }
-=======
->>>>>>> ba7275403703224f42af39275d48b5323403fe14
