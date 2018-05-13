@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.5
+
+- Remove Gauges tracking JavaScript
+- Add Google Tag Manager tracking JavaScript
+
 ## v1.0.4
 
 - Automatically combine and version CSS and JavaScript
