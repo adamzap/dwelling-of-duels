@@ -95,7 +95,6 @@ function loadFavorites(){
 
 function toggleFavorite(song){
   song = $(song)
-  console.log(song.attr("id"))
 
   if (song.hasClass("favorite")){
     song.removeClass("favorite")
@@ -113,7 +112,6 @@ function toggleFavorite(song){
     fav.push(song.attr("id"))
     localStorage.setItem("favorites", JSON.stringify(fav))
   }
-  console.log(localStorage.getItem("favorites"))
 }
 
 function seekTrack(e){ //called when you click on progress bar
@@ -299,8 +297,6 @@ function toggleFaves(){ //TODO
     currentSort="title"
   }
   sortTable(currentSort)
-
-  console.log("faves clik")
 }
 
 
