@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.6
+
+- Fix max_rank calculating incorrectly
+- Add music player page 'random.html'
+
 ## v1.0.5
 
 - Remove Gauges tracking JavaScript
