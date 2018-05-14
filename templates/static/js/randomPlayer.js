@@ -103,11 +103,13 @@ function playerInit(){
 function loadFavorites(){
   //for each value in the favorites array
   let fav = JSON.parse(localStorage.getItem("favorites"))
-  fav.forEach(function(id){
-    //find song with that id
-    $("#"+id).toggleClass("favorite")
-    //toggle favorite class
-  })
+	if(fav){
+	  fav.forEach(function(id){
+	    //find song with that id
+	    $("#"+id).toggleClass("favorite")
+	    //toggle favorite class
+	  })
+	}
 }
 
 
