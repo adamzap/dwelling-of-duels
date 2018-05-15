@@ -52,7 +52,7 @@ window.onerror = function(msg, url, line, col, error) {
 		  currentSort: currentSort,
 		  favesOnly: favesOnly,
 	 }
-	 $.post('/', JSON.stringify(blob))
+	 $.post('/', JSON.stringify(blob), null, "json")
 
    var suppressErrorAlert = true;
    // If you return true, then error alerts (like in older versions of
