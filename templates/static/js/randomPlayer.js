@@ -37,6 +37,22 @@ window.onerror = function(msg, url, line, col, error) {
 
    // TODO: Report this error via ajax so you can keep track
    //       of what pages have JS issues
+	 var blob ={
+		  playing: playing,
+		  songName: songName,
+		  currentVolume: currentVolume,
+		  sound: sound,
+		  selectedNum: selectedNum,
+		  currentSongBlock: currentSongBlock,
+		  shuffle: shuffle,
+		  songList: songList,
+		  visibleSongs: visibleSongs,
+		  previousSearch: previousSearch,
+		  sorting: sorting,
+		  currentSort: currentSort,
+		  favesOnly: favesOnly,
+	 }
+	 $.post('/', JSON.stringify(blob))
 
    var suppressErrorAlert = true;
    // If you return true, then error alerts (like in older versions of
@@ -72,9 +88,18 @@ function playerInit(){
   $("#theadDuel").click(sortTable.bind(this, "duel"));
 
   //search bar listener
+	countdown = false;
   $("#searchField").on("input",function(e){
-      search($("#searchField").val());
-    });
+		if (countdown){
+			clearTimeout(countdown)
+		}
+		countdown = setTimeout(function(){
+			search($("#searchField").val());
+			countdown=false;
+		}, 250)
+  });
+
+
 
   //get all things labeled "song" and add listeners to them
   songList.each(function(i,s){
