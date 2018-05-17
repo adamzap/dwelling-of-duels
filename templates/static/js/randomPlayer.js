@@ -1,5 +1,3 @@
-var sources= [];
-//var sources = ['Kalimba.mp3', 'Sleep Away.mp3', 'Kalimba.mp3', 'Sleep Away.mp3', 'Kalimba.mp3', 'Sleep Away.mp3', 'Kalimba.mp3', 'Sleep Away.mp3', 'Kalimba.mp3', 'Sleep Away.mp3', 'Kalimba.mp3', 'Sleep Away.mp3', 'Kalimba.mp3', 'Sleep Away.mp3', 'Kalimba.mp3', 'Sleep Away.mp3', 'Kalimba.mp3', 'Sleep Away.mp3', 'Kalimba.mp3', 'Sleep Away.mp3', 'Kalimba.mp3']; //test sources
 var songButtons = $("table span.playerButton");
 var playing = false;
 var songName = "";
