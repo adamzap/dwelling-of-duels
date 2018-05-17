@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.0.6
+## v1.1.0
 
 - Fix max_rank calculating incorrectly
 - Add music player page 'random.html'
