@@ -25,12 +25,8 @@ String.prototype.hashCode = function(){
 }
 
 window.onerror = function(msg, url, line, col, error) {
-   // Note that col & error are new to the HTML 5 spec and may not be
-   // supported in every browser.  It worked for me in Chrome.
    var extra = !col ? '' : '\ncolumn: ' + col;
    extra += !error ? '' : '\nerror: ' + error;
-
-   // You can view the information in an alert to see things working like this:
    alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);
 
    // TODO: Report this error via ajax so you can keep track
@@ -53,8 +49,6 @@ window.onerror = function(msg, url, line, col, error) {
 	 $.post('/', JSON.stringify(blob), null, "json")
 
    var suppressErrorAlert = true;
-   // If you return true, then error alerts (like in older versions of
-   // Internet Explorer) will be suppressed.
    return suppressErrorAlert;
 };
 
@@ -79,7 +73,7 @@ function playerInit(){
   $("#playerForward").click(nextSong);
   $("#playerProgressBar").click(seekTrack);
 
-  //add volume slider listener TODO
+  //add volume slider listener
 	$("#playerVolumeSlider").on('input', function(){
 		currentVolume = this.value*.01
 		localStorage.setItem("volume", currentVolume)
@@ -301,7 +295,6 @@ function sortTable(type){
   //get all song blocks
   //input into array
 
-
   //var blocks = $(".song").toArray();
   var blocks = songList.toArray()
 
@@ -314,13 +307,10 @@ function sortTable(type){
     var blocks = songList.filter(".song").toArray();
   }
 
-
   //sort array
   blocks = sortData(blocks, type);
   //songList = $(blocks);
   visibleSongs = blocks;
-
-
 
   //insert all in new order
   $(".nano-content table").append(blocks);
@@ -337,11 +327,6 @@ function sortData(data, type){
 
 function toggleFaves(){ //TODO
   favesOnly = !favesOnly
-  // if (favesOnly){
-  //   songList = $(".song.favorite")
-  // } else {
-  //   songList = $(".song")
-  // }
   if (!currentSort){
     currentSort="title"
   }
@@ -425,16 +410,12 @@ function search(value){ //only show .songs elements that contain the value
     previousSearch = value;
     visibleSongs = subsetSearch(value);
   }else{ //otherwise conduct new search
-    //songList.detach();
-    //songList.hide();
-    //songList.css({'display':'none'})   //fast
     songList.addClass("hidden");
     visibleSongs = songList.toArray();
     visibleSongs = subsetSearch(value); //technically a subset search but the subset is everything
   }
 
   $(visibleSongs).removeClass("hidden");
-
 }
 
 function subsetSearch(value){
