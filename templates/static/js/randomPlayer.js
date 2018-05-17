@@ -1,7 +1,7 @@
 var songButtons = $("table span.playerButton");
 var playing = false;
 var songName = "";
-var currentVolume = 1.0;
+var currentVolume;
 var sound;
 var selectedNum = -1;
 var currentSongBlock;
@@ -59,7 +59,10 @@ window.onerror = function(msg, url, line, col, error) {
 };
 
 function playerInit(){
-   sound = new Howl({  //make sound object so we have it
+	currentVolume = localStorage.getItem('volume') === undefined ? 1.0 : localStorage.getItem('volume')
+	$("#playerVolumeSlider").val(currentVolume*10)
+
+  sound = new Howl({  //make sound object so we have it
     src: [''],
     loop: false,
     volume: currentVolume,
@@ -77,6 +80,11 @@ function playerInit(){
   $("#playerProgressBar").click(seekTrack);
 
   //add volume slider listener TODO
+	$("#playerVolumeSlider").on('input', function(){
+		currentVolume = this.value*.01
+		localStorage.setItem("volume", currentVolume)
+		sound.volume(currentVolume)
+	})
 
   //Add sorter listeners
   $("#theadFavorite").click(toggleFaves);
@@ -96,8 +104,6 @@ function playerInit(){
 			countdown=false;
 		}, 250)
   });
-
-
 
   //get all things labeled "song" and add listeners to them
   songList.each(function(i,s){
