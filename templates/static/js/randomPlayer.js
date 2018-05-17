@@ -2,6 +2,7 @@ var songButtons = $("table span.playerButton");
 var playing = false;
 var songName = "";
 var currentVolume;
+var muted;
 var sound;
 var selectedNum = -1;
 var currentSongBlock;
@@ -78,6 +79,23 @@ function playerInit(){
 		currentVolume = this.value*.01
 		localStorage.setItem("volume", currentVolume)
 		sound.volume(currentVolume)
+	})
+
+	//add volume button listener
+	$("#playerVolumeButton").click(function(){
+		if(!muted){
+			$("#playerVolumeButton").removeClass("fa-volume-up")
+			$("#playerVolumeButton").addClass("fa-volume-off")
+			$("#playerVolumeSlider").attr("disabled", true)
+			muted = true
+			sound.volume(0)
+		} else {
+			$("#playerVolumeButton").removeClass("fa-volume-off")
+			$("#playerVolumeButton").addClass("fa-volume-up")
+			$("#playerVolumeSlider").removeAttr("disabled")
+			muted = false
+			sound.volume(currentVolume)
+		}
 	})
 
   //Add sorter listeners
