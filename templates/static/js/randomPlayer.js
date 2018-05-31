@@ -58,7 +58,7 @@ window.onerror = function(msg, url, line, col, error) {
 
 function playerInit(){
 	currentVolume = localStorage.getItem('volume') === undefined ? 1.0 : localStorage.getItem('volume')
-	$("#playerVolumeSlider").val(currentVolume*10)
+	$("#playerVolumeSlider").val(currentVolume*100)
 
   sound = new Howl({  //make sound object so we have it
     src: [''],
