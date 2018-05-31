@@ -13,6 +13,9 @@ var previousSearch = "";
 var sorting = false;
 var currentSort;
 var favesOnly = false;
+var $modal = $(".modl");
+
+
 
 String.prototype.hashCode = function(){
 	var hash = 0;
@@ -139,6 +142,8 @@ function playerInit(){
 
   //TODO TODO
   //Add functionality to read the query parameters using getURLParams() and filter by first param then scroll to that track
+
+	setModalVisible(false);
 }
 
 function loadFavorites(){
@@ -282,6 +287,7 @@ function playNewSong(obj){
     autoplay: false,
 		onload: function(){setPageTitles(decodeURIComponent(obj.title) + " - "+decodeURIComponent(obj.artist))},
   })
+	setPageTitles(decodeURIComponent(obj.title) + " - "+decodeURIComponent(obj.artist))
   playSong();
 }
 
@@ -309,6 +315,7 @@ function adjustVolume(amount){
 
 function sortTable(type){
   sorting = true;
+	setModalVisible(true);
   currentSort = type;
   //get all song blocks
   //input into array
@@ -334,6 +341,7 @@ function sortTable(type){
   $(".nano-content table").append(blocks);
   $(".nano").nanoScroller();
   sorting = false;
+	setModalVisible(false);
 }
 
 function sortData(data, type){
@@ -349,6 +357,19 @@ function toggleFaves(){ //TODO
     currentSort="title"
   }
   sortTable(currentSort)
+}
+
+function setModalVisible(value){
+	console.log("modal called")
+	if (value === undefined){
+		throw new Error("Value required")
+	}
+	if(value){
+		$modal.css("display", "block");
+		return;
+	}
+	$modal.css("display", "none");
+	return;
 }
 
 
