@@ -102,11 +102,41 @@ function playerInit(){
 	})
 
   //Add sorter listeners
-  $("#theadFavorite").click(toggleFaves);
-  $("#theadTitle").click(sortTable.bind(this, "title"));
-  $("#theadArtist").click(sortTable.bind(this, "artist"));
-  $("#theadGame").click(sortTable.bind(this, "game"));
-  $("#theadDuel").click(sortTable.bind(this, "duel"));
+  $("#theadFavorite").click(()=>{
+		setModalVisible(true);
+		window.setTimeout(()=>{
+			toggleFaves()
+			setModalVisible(false);
+		}, 50);
+	});
+  $("#theadTitle").click(()=>{
+		setModalVisible(true);
+		window.setTimeout(()=>{
+			sortTable("title");
+			setModalVisible(false);
+		}, 50);
+	});
+  $("#theadArtist").click(()=>{
+		setModalVisible(true);
+		window.setTimeout(()=>{
+			sortTable("artist");
+			setModalVisible(false);
+		}, 50);
+	});
+  $("#theadGame").click(()=>{
+		setModalVisible(true);
+		window.setTimeout(()=>{
+			sortTable("game");
+			setModalVisible(false);
+		}, 50);
+	});
+  $("#theadDuel").click(()=>{
+		setModalVisible(true);
+		window.setTimeout(()=>{
+			sortTable("duel");
+			setModalVisible(false);
+		}, 50);
+	});
 
   //search bar listener
 	countdown = false;
@@ -315,7 +345,7 @@ function adjustVolume(amount){
 
 function sortTable(type){
   sorting = true;
-	setModalVisible(true);
+
   currentSort = type;
   //get all song blocks
   //input into array
@@ -341,7 +371,6 @@ function sortTable(type){
   $(".nano-content table").append(blocks);
   $(".nano").nanoScroller();
   sorting = false;
-	setModalVisible(false);
 }
 
 function sortData(data, type){
