@@ -233,12 +233,10 @@ function songPressed(s){
 function toggleShuffle(){
 	$playerShuffle = $("#playerShuffle")
   if (shuffle){
-    $playerShuffle.removeClass("fa-random")
-    $playerShuffle.addClass("fa-arrow-right")
+		$playerShuffle.css("color", "#FFF")
     shuffle = false;
   } else{
-    $playerShuffle.removeClass("fa-arrow-right")
-    $playerShuffle.addClass("fa-random")
+		$playerShuffle.css("color", "#e11a1a")
     shuffle = true;
   }
 }
@@ -307,7 +305,7 @@ function playSong(){
 }
 
 function playNewSong(obj){
-  sound.stop();
+  sound.unload();
   sound = new Howl({
     src: obj.src,
     volume: currentVolume,
