@@ -231,13 +231,14 @@ function songPressed(s){
 }
 
 function toggleShuffle(){
+	$playerShuffle = $("#playerShuffle")
   if (shuffle){
-    $("#playerShuffle").removeClass("fa-random")
-    $("#playerShuffle").addClass("fa-arrow-right")
+    $playerShuffle.removeClass("fa-random")
+    $playerShuffle.addClass("fa-arrow-right")
     shuffle = false;
   } else{
-    $("#playerShuffle").removeClass("fa-arrow-right")
-    $("#playerShuffle").addClass("fa-random")
+    $playerShuffle.removeClass("fa-arrow-right")
+    $playerShuffle.addClass("fa-random")
     shuffle = true;
   }
 }
