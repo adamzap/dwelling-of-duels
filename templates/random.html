@@ -57,6 +57,7 @@
   table{
     width:100%;
   }
+
   .hidden{
     display:none;
   }
@@ -209,6 +210,52 @@
     float:left;
   }
 
+  @media (min-width: 0px) and (max-width: 991px) {
+    h1{
+      font-size: 1.2em;
+    }
+    p{
+      font-size: 0.6em;
+    }
+    th{
+      font-size: 1em;
+    }
+    td{
+      font-size: 0.8em;
+    }
+    .controlsBar{
+      text-align: center !important;
+    }
+    .playerButton{
+      margin: 0px;
+    }
+    #playerProgressBar {
+     clear: both;
+     width: 100%;
+    }
+    #playerVolumeButton{
+      display:none;
+    }
+    #playerVolumeSlider{
+      display:none;
+    }
+    #playerToggle{
+      display: block;
+      margin: auto;
+    }
+    #playerShuffle {
+      display: block;
+      margin: auto;
+    }
+    #playerForward{
+      margin: auto;
+      display: block;
+    }
+    #playerTimer{
+      margin: auto;
+    }
+  }
+
   </style>
 </head>
 <body>
@@ -219,7 +266,7 @@
       <div class="head text-center" style="text-align:center">
             <a href="http://www.dwellingofduels.net"><img src="/static/img/logo.png"></a>
 
-            <h2 style="margin-top:0px">Archive Explorer</h1>
+            <h1 style="margin-top:0px">Archive Explorer</h1>
             <h1 id="title" style="margin-top:0px">Loading...</h1>
             <input type="text" id="searchField" placeholder="Filter..." autocomplete="off" value="">
       </div>
