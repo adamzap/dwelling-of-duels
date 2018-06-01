@@ -2,3 +2,4 @@ venv
 deploy
 dodarchive
 dodarchive_new
+templates/.eslintrc

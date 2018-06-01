@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link rel="stylesheet" href="/static/css/bootstrap.css">
+  <link rel="stylesheet" href="/static/css/nanoscroller.css"> -->
+
+  <link href="/static/dod.{{ css_hash }}.css" rel="stylesheet">
+
+  <title>Dwelling of Duels Archive Explorer</title>
+  <style>
+  body{
+    background-color: #202020;
+    margin-top:10px;
+    color:#333;
+  }
+  input{
+    color:#e11a1a;
+    border: 2px #e11a1a solid;
+    border-radius: 3px;
+    font-weight: bold;
+    background-color: black;
+    text-align: center;
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #e11a1a;
+    opacity: 1; /* Firefox */
+  }
+
+  thead{
+    background-color: #BBA;
+    height: 30px;
+    border-bottom: 1px black solid;
+  }
+  tbody{
+    margin-top: 20px;
+  }
+  th:hover{
+    background-color: #CCB;
+  }
+  tr{
+    transition: background-color .25s, color: .5s;
+  }
+  th{
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  td, th{
+    border-right: 1px black solid;
+    padding-left: 2px;
+  }
+  table{
+    width:100%;
+  }
+
+  .hidden{
+    display:none;
+  }
+  .head{
+    display:inline-block;
+    color:#DDD;
+    width: 100%;
+    margin: auto;
+    height: 40px;
+  }
+  .controlsBar {
+    position:sticky;
+    height:30px;
+    background-color:black;
+    display:inline;
+    cursor:pointer;
+    color:white;
+    width:100%;
+    margin-bottom: 5px;
+  }
+  .playerButton{
+    color:white;
+    min-width: 30px;
+    height:30px;
+    border: 1px solid #FFF;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+  }
+  .normalCursor{
+    cursor:default;
+  }
+
+  .playerButton:hover{
+    color:#e11a1a;
+  }
+  .song {
+    margin:auto;
+    background-color:#e11a1a;
+    height:20px;
+    cursor: pointer;
+    border: 2px solid #202020;
+    border: 1px solid #333;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: background-color .5s;
+  }
+  .song:hover {
+    background-color:#FF5252;
+  }
+
+  .selected{
+    background-color:#111212;
+    border: 1px solid #FF1212;
+    color:#999;
+  }
+  .selected td{
+    border: 1px solid #333;
+  }
+  .selected:hover{
+    background-color:#6D1414;
+  }
+  .nano {
+    background: #bba;
+    height: calc(90vh - 100px);
+    width:100%;
+    box-shadow: 0 0 100px black;
+    border-radius: 5px;
+  }
+  .nano-pane{
+    z-index: 2;
+  }
+  .favorite .favBtn{
+    color: #e5ef58;
+  }
+  .favBtn, .downloadBtn{
+    color: inherit;
+    margin: 5px 0;
+    transition: color .3s;
+  }
+  .favBtn:hover,.downloadBtn:hover{
+    color: #FFF;
+  }
+
+
+  .modl{
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: block;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    text-align:center;
+    vertical-align: middle;
+  }
+  .modl-content{
+    position: absolute;
+    color: #FFF;
+    top:50%;
+    left:48%;
+    /* text-align:center; */
+    font-weight:bold;
+    z-index:101;
+
+    margin: auto;
+    /* line-height: 200px; */
+  }
+
+  #playerVolumeSlider{
+    float:left;
+    width:40px;
+  }
+  #playerVolumeButton{
+    float:left;
+  }
+  #playerProgressBar{
+    display: inline-block;
+    width: calc(100% - 200px);
+    overflow:hidden;
+    height:30px;
+    float:left;
+    text-align: left;
+
+  }
+  #playerTimer{
+    width:40px;
+  }
+  #bar{
+    background-color:#e11a1a;
+    margin:5px;
+    height:25px;
+    display: inline-block;
+    transition: width .2s;
+  }
+  #playerToggle{
+    float:left;
+  }
+  #playerShuffle {
+    float:left;
+    color: #e11a1a;
+  }
+  #playerShuffle:hover{
+    color: #e11a1a !important;
+  }
+  #playerForward{
+    float:left;
+  }
+
+  @media (min-width: 0px) and (max-width: 991px) {
+    h1{
+      font-size: 1.2em;
+    }
+    p{
+      font-size: 0.6em;
+    }
+    th{
+      font-size: 1em;
+    }
+    td{
+      font-size: 0.8em;
+    }
+    .controlsBar{
+      text-align: center !important;
+    }
+    .playerButton{
+      margin: 0px;
+    }
+    #playerProgressBar {
+     clear: both;
+     width: 100%;
+    }
+    #playerVolumeButton{
+      display:none;
+    }
+    #playerVolumeSlider{
+      display:none;
+    }
+    #playerToggle{
+      display: block;
+      margin: auto;
+    }
+    #playerShuffle {
+      display: block;
+      margin: auto;
+    }
+    #playerForward{
+      margin: auto;
+      display: block;
+    }
+    #playerTimer{
+      margin: auto;
+    }
+  }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+
+      <div class="modl"><div class="modl-content fas fa-3x fa-spinner fa-pulse"></div></div>
+
+      <div class="head text-center" style="text-align:center">
+            <a href="http://www.dwellingofduels.net"><img src="/static/img/logo.png"></a>
+
+            <h1 style="margin-top:0px">Archive Explorer</h1>
+            <h1 id="title" style="margin-top:0px">Loading...</h1>
+            <input type="text" id="searchField" placeholder="Filter..." autocomplete="off" value="">
+      </div>
+
+      <div class="controlsBar">
+        <span class="fas fa-lg fa-play playerButton center-block"  id="playerToggle"></span>
+        <span class="fas fa-lg fa-random playerButton"  id="playerShuffle"></span>
+        <span class="fas fa-lg fa-step-forward playerButton" id="playerForward"></span>
+
+        <span class="playerButton" id="playerProgressBar"><span id="bar"></span></span>
+
+        <span class="playerButton normalCursor" id="playerTimer">00:00</span>
+
+        <span class="fas fa-layers fa-lg fa-volume-up playerButton" id="playerVolumeButton"></span>
+
+        <input type="range" min="1" max="100" value="100" class="playerButton" id="playerVolumeSlider">
+
+      </div>
+    <div class="nano">
+      <div class="nano-content">
+        <table>
+          <thead>
+            <th id="theadFavorite">Faves</th>
+            <th id="theadTitle">Title</th>
+            <th id="theadArtist">Artists</th>
+            <th id="theadGame">Games</th>
+            <th id="theadDuel">Duel</th>
+          </thead>
+          <tbody>
+            {%- for obj in objs -%}
+            <tr id = "{{obj.id}}" class="song" data-song='{"src":["http://dwellingofduels.net{{ obj.link|urlencode }}"], "artist":[
+            {%- for artist in obj.artists -%}
+              {%- set sep = ', ' -%}
+              {%- if loop.last -%}
+                {%- set sep = '' -%}
+              {%- endif -%}
+              "{{artist|urlencode}}"{{sep}}
+            {%- endfor -%}
+            ], "title":"{{ obj.title|urlencode }}", "game":["{{ obj.games[0]|urlencode }}"], "duel":"{{obj.duel|urlencode}}"}'>
+            <td><span class="favBtn"><span class="fas fa-s fa-star"></span></span><a target="_blank" class="downloadBtn" href="{{obj.link|urlencode}}"><span class="fas fa-s fa-download "></span></a></td>
+            <td>{{ obj.rank }}/{{obj.max_rank}} {{obj.title}}</td>
+              <td>
+              {%- for artist in obj.artists -%}
+                {%- set sep = ', ' -%}
+                {%- if loop.last -%}
+                  {%- set sep = '' -%}
+                {%- endif -%}
+                {{artist + sep}}
+              {%- endfor -%}
+            </td>
+            <td>
+              {%- for game in obj.games -%}
+                {%- set sep = ', ' -%}
+                {%- if loop.last -%}
+                  {%- set sep = '' -%}
+                {%- endif -%}
+                {{game + sep}}
+              {%- endfor -%}
+            </td>
+            <td>{{obj.duel}}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <p style="color:grey">Created by <a href="http://dwellingofduels.net/artists/katamari/">Katamari</a></p>
+  </div>
+  <!-- <script src="/static/js/lib/howler.min.js"></script>
+  <script src="/static/js/jQuery.js"></script>
+  <script src="/static/js/randomPlayer.js"></script>
+  <script src="/static/js/lib/jQuery.nanoscroller.min.js"></script>
+  <script src="/static/js/lib/jQuery.floatThead.min.js"></script> -->
+  <script type="text/javascript" src="/static/dod.{{ js_hash }}.js"></script>
+  <script>
+  $(".nano").nanoScroller();
+  $("table").floatThead({
+     top:100,
+     zIndex: 1,
+     scrollContainer: function($table){
+         return $table.closest('.nano');
+     }
+  });
+  playerInit();
+  </script>
+</body>
+</html>
