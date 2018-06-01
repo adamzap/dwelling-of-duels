@@ -87,6 +87,13 @@
     vertical-align: middle;
     line-height: 30px;
   }
+  .normalCursor{
+    cursor:default;
+  }
+
+  .playerButton:hover{
+    color:#e11a1a;
+  }
   .song {
     margin:auto;
     background-color:#e11a1a;
@@ -191,8 +198,12 @@
   #playerToggle{
     float:left;
   }
-  #playerShuffle{
+  #playerShuffle {
     float:left;
+    color: #e11a1a;
+  }
+  #playerShuffle:hover{
+    color: #e11a1a !important;
   }
   #playerForward{
     float:left;
@@ -220,7 +231,7 @@
 
         <span class="playerButton" id="playerProgressBar"><span id="bar"></span></span>
 
-        <span class="playerButton" id="playerTimer">00:00</span>
+        <span class="playerButton normalCursor" id="playerTimer">00:00</span>
 
         <span class="fas fa-layers fa-lg fa-volume-up playerButton" id="playerVolumeButton"></span>
 
