@@ -422,36 +422,39 @@ function partition(arr, pivot, left, right,type){
 
   switch(type){
     case "artist":
-      var pivotValue = $(arr[pivot]).data("song").artist[0].toLowerCase();
+      var pivotValue = $(arr[pivot]).data("song").artist[0]
       break;
     case "title":
-      var pivotValue = $(arr[pivot]).data("song").title.toLowerCase();
+      var pivotValue = $(arr[pivot]).data("song").title
       break;
     case "game":
-      var pivotValue = $(arr[pivot]).data("song").game[0].toLowerCase();
+      var pivotValue = $(arr[pivot]).data("song").game[0]
       break;
     case "duel":
-      var pivotValue = $(arr[pivot]).data("song").duel.toLowerCase();
+      var pivotValue = $(arr[pivot]).data("song").duel
       break;
   }
+	pivotValue = decodeURI(pivotValue).toLowerCase().replace(/[\W]/gu, '');
 
   var partitionIndex = left;
 
   for(var i = left; i < right; i++){
     switch(type){
       case "artist":
-        var val = $(arr[i]).data("song").artist[0].toLowerCase();
+        var val = $(arr[i]).data("song").artist[0]
         break;
       case "title":
-        var val = $(arr[i]).data("song").title.toLowerCase();
+        var val = $(arr[i]).data("song").title
         break;
       case "game":
-        var val = $(arr[i]).data("song").game[0].toLowerCase();
+        var val = $(arr[i]).data("song").game[0]
         break;
       case "duel":
-        var val = $(arr[i]).data("song").duel.toLowerCase();
+        var val = $(arr[i]).data("song").duel
         break;
     }
+		val = decodeURI(val).toLowerCase().replace(/[\W]/gu, '');
+
     if(val < pivotValue){
       swap(arr, i, partitionIndex);
       partitionIndex++;
