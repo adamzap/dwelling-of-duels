@@ -167,8 +167,9 @@ function playerInit(){
   })
 
   //currentSongBlock = songList.get(0);
-  nextSong();
-  setInterval(updateProgress, 200);
+  //nextSong();
+
+	$("#title").text("Pick a song...");
 
   //TODO TODO
   //Add functionality to read the query parameters using getURLParams() and filter by first param then scroll to that track
@@ -300,6 +301,9 @@ function togglePlay(){
 function playSong(){
   playing = true;
   sound.play();
+	clearInterval($("#playerProgressBar").attr("data-id"))
+	var x = setInterval(updateProgress, 200);
+	$("#playerProgressBar").attr("data-id", x)
   $("#playerToggle").removeClass("fa-play")
   $("#playerToggle").addClass("fa-pause")
 }
