@@ -33,7 +33,8 @@
   }
 
   thead{
-    background-color: #BBA;
+    background-color: #202020;
+    color:#DDD;
     height: 30px;
     border-bottom: 1px black solid;
   }
@@ -51,7 +52,6 @@
     cursor: pointer;
   }
   td, th{
-    border-right: 1px black solid;
     padding-left: 2px;
   }
   table{
@@ -97,24 +97,28 @@
   }
   .song {
     margin:auto;
-    background-color:#e11a1a;
+    background-color:#202020;
     height:20px;
     cursor: pointer;
     border: 2px solid #202020;
-    border: 1px solid #333;
+    border: 1px solid #666;
+    color:#e11a1a;
     font-weight: bold;
     text-overflow: ellipsis;
     overflow: hidden;
     transition: background-color .5s;
   }
+  span.favBtn, a.downloadBtn{
+    color: #AAA;
+  }
   .song:hover {
-    background-color:#FF5252;
+    background-color:##333333;
   }
 
   .selected{
-    background-color:#111212;
-    border: 1px solid #FF1212;
-    color:#999;
+    background-color:#FF1212;
+    border: 1px solid #111212;
+    color:#111212;
   }
   .selected td{
     border: 1px solid #333;
