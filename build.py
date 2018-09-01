@@ -259,9 +259,9 @@ def build_pages(kind):
     write_page(kind, {'objs': song_lists})
 
 def build_random():
-    os.mkdir(os.path.join(OUT_DIR, 'random'))
+    os.mkdir(os.path.join(OUT_DIR, 'player'))
     song_lists = collections.defaultdict(list)
-    write_page('random', {'objs': DATA})
+    write_page('random', {'objs': DATA}, 'player')
 
 def build_index():
     raw_content = open('front-page.md').read()
