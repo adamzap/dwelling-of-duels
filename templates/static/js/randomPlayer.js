@@ -57,7 +57,7 @@ window.onerror = function(msg, url, line, col, error) {
 };
 
 function playerInit(){
-	currentVolume = localStorage.getItem('volume') === undefined ? 1.0 : localStorage.getItem('volume')
+	currentVolume = localStorage.getItem('volume') == null ? 1.0 : localStorage.getItem('volume')
 	$("#playerVolumeSlider").val(currentVolume*100)
 
   sound = new Howl({  //make sound object so we have it
@@ -389,7 +389,7 @@ function toggleFaves(){ //TODO
 
 function setModalVisible(value){
 	console.log("modal called")
-	if (value === undefined){
+	if (value == null){
 		throw new Error("Value required")
 	}
 	if(value){
