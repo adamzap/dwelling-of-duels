@@ -375,7 +375,7 @@
               "{{artist|urlencode}}"{{sep}}
             {%- endfor -%}
             ], "title":"{{ obj.title|urlencode }}", "game":["{{ obj.games[0]|urlencode }}"], "duel":"{{obj.duel|urlencode}}"}'>
-            <td><span class="favBtn"><span class="fas fa-s fa-star"></span></span><a target="_blank" class="downloadBtn" href="{{obj.link|urlencode}}"><span class="fas fa-s fa-download "></span></a></td>
+            <td><span class="favBtn"><span class="fas fa-s fa-star"></span></span><a target="_blank" class="downloadBtn" href="http://dwellingofduels.net{{obj.link|urlencode}}"><span class="fas fa-s fa-download "></span></a></td>
             <td>{{ obj.rank }}/{{obj.max_rank}} {{obj.title}}</td>
               <td>
               {%- for artist in obj.artists -%}
