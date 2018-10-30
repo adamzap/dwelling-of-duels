@@ -3,7 +3,7 @@
 ## v1.1.0
 
 - Fix max_rank calculating incorrectly
-- Add music player page 'random.html'
+- Add music player page 'player.html'
 
 ## v1.0.5
 
