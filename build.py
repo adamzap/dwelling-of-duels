@@ -168,6 +168,11 @@ def parse_artist_links():
 
     return {a: l for a, l in [x.split(', ') for x in lines]}
 
+def parse_banner_artist_links():
+    lines = open('banner-artist-links.csv').read().strip().split('\n')
+
+    return {a: l for a, l in [x.split(', ') for x in lines]}
+
 
 def get_deadline_date():
     val = CONFIG['dod_site'].get('deadline_date')
@@ -188,6 +193,7 @@ def set_template_globals():
     TEMPLATES.globals['deadline_time'] = DEADLINE_TIME
     TEMPLATES.globals['archive_dir'] = ARCHIVE_DIR
     TEMPLATES.globals['artist_links'] = parse_artist_links()
+    TEMPLATES.globals['banner_artist_links'] = parse_artist_links()
 
     latest_month = DATA[-1]['month_dir']
 
