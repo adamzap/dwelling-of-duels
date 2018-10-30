@@ -1,4 +1,5 @@
 /* globals Howl*/
+//sorry about so many globals
 var songButtons = $("table span.playerButton");
 var playing = false;
 var songName = "";
@@ -15,6 +16,7 @@ var currentSort;
 var favesOnly = false;
 var $modal = $(".modl");
 var initialLoad = true;
+var countdown = false;
 
 
 
