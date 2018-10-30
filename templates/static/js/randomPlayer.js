@@ -88,13 +88,18 @@ function playerInit(){
 			toggleShuffle();
 		}
 	});
-  $("#playerForward").click(nextSong);
-  $("#playerProgressBar").click(function(){
+  $("#playerForward").click(function(){
+		if (initialLoad){
+			initialLoad = false;
+		}
+		nextSong();
+	});
+  $("#playerProgressBar").click(function(e){
 		if (initialLoad){
 			initialLoad = false;
 			nextSong();
 		} else {
-			seekTrack();
+			seekTrack(e);
 		}
 	});
 
