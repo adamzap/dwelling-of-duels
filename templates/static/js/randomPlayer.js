@@ -315,7 +315,9 @@ function scrollToBlock(index){
     index = 2;
   try{
     $('.nano').nanoScroller({scrollTo: $($(visibleSongs).get(index-2))});
-  }catch(e){}
+  }catch(e){
+		e.preventDefault();
+	}
 }
 
 
