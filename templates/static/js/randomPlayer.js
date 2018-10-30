@@ -13,6 +13,7 @@ var sorting = false;
 var currentSort;
 var favesOnly = false;
 var $modal = $(".modl");
+var initialLoad = true;
 
 
 
@@ -70,10 +71,31 @@ function playerInit(){
 
   sound.load();
   //add listeners to top buttons on ui
-  $("#playerToggle").click(togglePlay);
-  $("#playerShuffle").click(toggleShuffle);
+  $("#playerToggle").click(function(){
+		if (initialLoad){
+			initialLoad = false;
+			nextSong();
+		} else {
+			togglePlay();
+		}
+	});
+  $("#playerShuffle").click(function(){
+		if (initialLoad){
+			initialLoad = false;
+			nextSong();
+		} else {
+			toggleShuffle();
+		}
+	});
   $("#playerForward").click(nextSong);
-  $("#playerProgressBar").click(seekTrack);
+  $("#playerProgressBar").click(function(){
+		if (initialLoad){
+			initialLoad = false;
+			nextSong();
+		} else {
+			seekTrack();
+		}
+	});
 
   //add volume slider listener
 	$("#playerVolumeSlider").on('input', function(){
