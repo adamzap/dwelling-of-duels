@@ -4,7 +4,6 @@ var songName = "";
 var currentVolume;
 var muted;
 var sound;
-var selectedNum = -1;
 var currentSongBlock;
 var shuffle = true;
 var songList = $(".song");
@@ -40,7 +39,6 @@ window.onerror = function(msg, url, line, col, error) {
 		  songName: songName,
 		  currentVolume: currentVolume,
 		  sound: sound,
-		  selectedNum: selectedNum,
 		  currentSongBlock: currentSongBlock,
 		  shuffle: shuffle,
 		  songList: songList,
