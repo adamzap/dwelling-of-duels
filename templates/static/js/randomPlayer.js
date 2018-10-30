@@ -442,19 +442,19 @@ function quickSort(arr, left, right, type){
 }
 
 function partition(arr, pivot, left, right, type){
-
+	var pivotValue;
   switch(type){
     case "artist":
-      var pivotValue = $(arr[pivot]).data("song").artist[0];
+      pivotValue = $(arr[pivot]).data("song").artist[0];
       break;
     case "title":
-      var pivotValue = $(arr[pivot]).data("song").title;
+      pivotValue = $(arr[pivot]).data("song").title;
       break;
     case "game":
-      var pivotValue = $(arr[pivot]).data("song").game[0];
+      pivotValue = $(arr[pivot]).data("song").game[0];
       break;
     case "duel":
-      var pivotValue = $(arr[pivot]).data("song").duel;
+      pivotValue = $(arr[pivot]).data("song").duel;
       break;
   }
 	pivotValue = decodeURI(pivotValue).toLowerCase().replace(/[\W]/gu, '');
@@ -462,18 +462,19 @@ function partition(arr, pivot, left, right, type){
   var partitionIndex = left;
 
   for(var i = left; i < right; i++){
+		var val;
     switch(type){
       case "artist":
-        var val = $(arr[i]).data("song").artist[0];
+        val = $(arr[i]).data("song").artist[0];
         break;
       case "title":
-        var val = $(arr[i]).data("song").title;
+        val = $(arr[i]).data("song").title;
         break;
       case "game":
-        var val = $(arr[i]).data("song").game[0];
+        val = $(arr[i]).data("song").game[0];
         break;
       case "duel":
-        var val = $(arr[i]).data("song").duel;
+        val = $(arr[i]).data("song").duel;
         break;
     }
 		val = decodeURI(val).toLowerCase().replace(/[\W]/gu, '');
