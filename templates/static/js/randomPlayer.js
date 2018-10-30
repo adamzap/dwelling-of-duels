@@ -161,7 +161,7 @@ function playerInit(){
 
   //search bar listener
 	countdown = false;
-  $("#searchField").on("input", function(e){
+  $("#searchField").on("input", function(){
 		if (countdown){
 			clearTimeout(countdown);
 		}
@@ -253,7 +253,7 @@ function songPressed(s){
 }
 
 function toggleShuffle(){
-	$playerShuffle = $("#playerShuffle");
+	let $playerShuffle = $("#playerShuffle");
   if (shuffle){
 		$playerShuffle.css("color", "#FFF");
     shuffle = false;
@@ -381,9 +381,9 @@ function sortTable(type){
   $(blocks).detach();
 
   if(favesOnly){
-    var blocks = songList.filter(".song.favorite").toArray();
+    blocks = songList.filter(".song.favorite").toArray();
   }else{
-    var blocks = songList.filter(".song").toArray();
+    blocks = songList.filter(".song").toArray();
   }
 
   //sort array
@@ -413,7 +413,6 @@ function toggleFaves(){ //TODO
 }
 
 function setModalVisible(value){
-	console.log("modal called");
 	if (value == null){
 		throw new Error("Value required");
 	}
@@ -428,8 +427,7 @@ function setModalVisible(value){
 
 ////quicksort stuff///
 function quickSort(arr, left, right, type){
-   var len = arr.length,
-   pivot,
+   var pivot,
    partitionIndex;
 
   if(left < right){
@@ -499,7 +497,6 @@ function swap(arr, i, j){
 
 
 function search(value){ //only show .songs elements that contain the value
-  let then = Date.now();
   //only search previous strings if the new value is lnonger than the last one and contains the old value
   if (value.length > previousSearch.length && value.includes(previousSearch) && previousSearch !==""){
     previousSearch = value;
@@ -531,7 +528,7 @@ function containsString(song, text){
 function getArtist(song){
   var data = $(song).data("song").artist;
   var artists;
-  for (i=0; i<=data.length; i++){
+  for (let i=0; i<=data.length; i++){
       artists += (data[i] +", ");
   }
   return decodeURIComponent(artists.substring(0, artists.length-2));
@@ -544,7 +541,7 @@ function getTitle(song){
 function getGame(song){
   var data = $(song).data("song").game;
   var game;
-  for (i=0; i<=data.length; i++){
+  for (let i=0; i<=data.length; i++){
     game += (data[i] +", ");
   }
   return decodeURIComponent(game.substring(0, game.length-2));
@@ -558,7 +555,7 @@ function getUrlParams( prop ) {
     var params = {};
     var search = decodeURIComponent( window.location.href.slice( window.location.href.indexOf( '?' ) + 1 ) );
     var definitions = search.split( '&' );
-    definitions.forEach( function( val, key ) {
+    definitions.forEach( function( val ) {
         var parts = val.split( '=', 2 );
         params[ parts[ 0 ] ] = parts[ 1 ];
     } );
