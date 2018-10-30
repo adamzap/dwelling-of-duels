@@ -19,45 +19,45 @@ var initialLoad = true;
 
 String.prototype.hashCode = function(){
 	var hash = 0;
-	if (this.length == 0) return hash;
+	if (this.length === 0) return hash;
 	for (i = 0; i < this.length; i++) {
 		char = this.charCodeAt(i);
 		hash = ((hash<<5)-hash)+char;
 		hash = hash & hash; // Convert to 32bit integer
 	}
 	return hash;
-}
+};
 
 window.onerror = function(msg, url, line, col, error) {
-   var extra = !col ? '' : '\ncolumn: ' + col;
-   extra += !error ? '' : '\nerror: ' + error;
-   alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);
+	var extra = !col ? '' : '\ncolumn: ' + col;
+	extra += !error ? '' : '\nerror: ' + error;
+	alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);
 
-   // TODO: Report this error via ajax so you can keep track
-   //       of what pages have JS issues
-	 var blob ={
-		  playing: playing,
-		  songName: songName,
-		  currentVolume: currentVolume,
-		  sound: sound,
-		  currentSongBlock: currentSongBlock,
-		  shuffle: shuffle,
-		  songList: songList,
-		  visibleSongs: visibleSongs,
-		  previousSearch: previousSearch,
-		  sorting: sorting,
-		  currentSort: currentSort,
-		  favesOnly: favesOnly,
-	 }
-	 $.post('/', JSON.stringify(blob), null, "json")
+	// TODO: Report this error via ajax so you can keep track
+	//       of what pages have JS issues
+	var blob ={
+		playing: playing,
+		songName: songName,
+		currentVolume: currentVolume,
+		sound: sound,
+		currentSongBlock: currentSongBlock,
+		shuffle: shuffle,
+		songList: songList,
+		visibleSongs: visibleSongs,
+		previousSearch: previousSearch,
+		sorting: sorting,
+		currentSort: currentSort,
+		favesOnly: favesOnly,
+	};
+	$.post('/', JSON.stringify(blob), null, "json");
 
-   var suppressErrorAlert = true;
-   return suppressErrorAlert;
+	var suppressErrorAlert = true;
+	return suppressErrorAlert;
 };
 
 function playerInit(){
-	currentVolume = localStorage.getItem('volume') == null ? 1.0 : localStorage.getItem('volume')
-	$("#playerVolumeSlider").val(currentVolume*100)
+	currentVolume = localStorage.getItem('volume') == null ? 1.0 : localStorage.getItem('volume');
+	$("#playerVolumeSlider").val(currentVolume*100);
 
   sound = new Howl({  //make sound object so we have it
     src: [''],
@@ -99,33 +99,33 @@ function playerInit(){
 
   //add volume slider listener
 	$("#playerVolumeSlider").on('input', function(){
-		currentVolume = this.value*.01
-		localStorage.setItem("volume", currentVolume)
-		sound.volume(currentVolume)
-	})
+		currentVolume = this.value*.01;
+		localStorage.setItem("volume", currentVolume);
+		sound.volume(currentVolume);
+	});
 
 	//add volume button listener
 	$("#playerVolumeButton").click(function(){
 		if(!muted){
-			$("#playerVolumeButton").removeClass("fa-volume-up")
-			$("#playerVolumeButton").addClass("fa-volume-off")
-			$("#playerVolumeSlider").attr("disabled", true)
-			muted = true
-			sound.volume(0)
+			$("#playerVolumeButton").removeClass("fa-volume-up");
+			$("#playerVolumeButton").addClass("fa-volume-off");
+			$("#playerVolumeSlider").attr("disabled", true);
+			muted = true;
+			sound.volume(0);
 		} else {
-			$("#playerVolumeButton").removeClass("fa-volume-off")
-			$("#playerVolumeButton").addClass("fa-volume-up")
-			$("#playerVolumeSlider").removeAttr("disabled")
-			muted = false
-			sound.volume(currentVolume)
+			$("#playerVolumeButton").removeClass("fa-volume-off");
+			$("#playerVolumeButton").addClass("fa-volume-up");
+			$("#playerVolumeSlider").removeAttr("disabled");
+			muted = false;
+			sound.volume(currentVolume);
 		}
-	})
+	});
 
   //Add sorter listeners
   $("#theadFavorite").click(()=>{
 		setModalVisible(true);
 		window.setTimeout(()=>{
-			toggleFaves()
+			toggleFaves();
 			setModalVisible(false);
 		}, 50);
 	});
@@ -160,31 +160,31 @@ function playerInit(){
 
   //search bar listener
 	countdown = false;
-  $("#searchField").on("input",function(e){
+  $("#searchField").on("input", function(e){
 		if (countdown){
-			clearTimeout(countdown)
+			clearTimeout(countdown);
 		}
 		countdown = setTimeout(function(){
 			search($("#searchField").val());
 			countdown=false;
-		}, 250)
+		}, 250);
   });
 
   //get all things labeled "song" and add listeners to them
-  songList.each(function(i,s){
-    $(s).click(function(){songPressed(this)});
+  songList.each(function(i, s){
+    $(s).click(function(){songPressed(this);});
   });
 
   //load all favorites and set corresponding track icon to be faved
-  loadFavorites()
+  loadFavorites();
 
   //add listener to all favorite buttons
-  $(".favBtn").each(function(i,e){
+  $(".favBtn").each(function(i, e){
     $(e).click(function(event){
-      toggleFavorite($(this).parent().parent()[0])
-      event.stopPropagation()
-    })
-  })
+      toggleFavorite($(this).parent().parent()[0]);
+      event.stopPropagation();
+    });
+  });
 
   //currentSongBlock = songList.get(0);
   //nextSong();
@@ -199,40 +199,40 @@ function playerInit(){
 
 function loadFavorites(){
   //for each value in the favorites array
-  let fav = JSON.parse(localStorage.getItem("favorites"))
+  let fav = JSON.parse(localStorage.getItem("favorites"));
 	if(fav){
-	  fav.forEach(function(id){
-	    //find song with that id
-	    $("#"+id).toggleClass("favorite")
-	    //toggle favorite class
-	  })
+		fav.forEach(function(id){
+			//find song with that id
+			$("#"+id).toggleClass("favorite");
+			//toggle favorite class
+		});
 	}
 }
 
 
 function toggleFavorite(song){
-  song = $(song)
+  song = $(song);
 
   if (song.hasClass("favorite")){
-    song.removeClass("favorite")
+    song.removeClass("favorite");
     //remove from storage
-    let fav = JSON.parse(localStorage.getItem("favorites"))
-    let i = fav.indexOf(song.attr("id"))
-    fav.splice(i,1)
-    localStorage.setItem("favorites", JSON.stringify(fav))
+    let fav = JSON.parse(localStorage.getItem("favorites"));
+    let i = fav.indexOf(song.attr("id"));
+    fav.splice(i, 1);
+    localStorage.setItem("favorites", JSON.stringify(fav));
   } else {
     song.addClass("favorite");
     if(!localStorage.getItem("favorites")){
-      localStorage.setItem("favorites", "[]")
+      localStorage.setItem("favorites", "[]");
     }
-    let fav = JSON.parse(localStorage.getItem("favorites"))
-    fav.push(song.attr("id"))
-    localStorage.setItem("favorites", JSON.stringify(fav))
+    let fav = JSON.parse(localStorage.getItem("favorites"));
+    fav.push(song.attr("id"));
+    localStorage.setItem("favorites", JSON.stringify(fav));
   }
 }
 
 function seekTrack(e){ //called when you click on progress bar
-  var localX = e.pageX - $("#playerProgressBar").offset().left
+  var localX = e.pageX - $("#playerProgressBar").offset().left;
   var percent = localX/$("#playerProgressBar").width();
   var seekPos = Math.floor(sound.duration() * percent);
   sound.seek(seekPos);
@@ -243,21 +243,21 @@ function seekTrack(e){ //called when you click on progress bar
 function songPressed(s){
   //get song data for this block
 	//TODO change title back to loading...
-	setPageTitles("Loading...")
+	setPageTitles("Loading...");
   var data = $(s).data("song");
-  scrollToBlock($(visibleSongs).index(s))
+  scrollToBlock($(visibleSongs).index(s));
   currentSongBlock = s;
   playNewSong(data);
 
 }
 
 function toggleShuffle(){
-	$playerShuffle = $("#playerShuffle")
+	$playerShuffle = $("#playerShuffle");
   if (shuffle){
-		$playerShuffle.css("color", "#FFF")
+		$playerShuffle.css("color", "#FFF");
     shuffle = false;
   } else{
-		$playerShuffle.css("color", "#e11a1a")
+		$playerShuffle.css("color", "#e11a1a");
     shuffle = true;
   }
 }
@@ -266,11 +266,11 @@ function updateProgress(){ //called via setinterval
   var percent = sound.seek()/sound.duration();
   $("#bar").width((percent*100)+"%");
   var sec = Math.floor(sound.seek()%60);
-  var min = Math.floor(sound.seek()/60)
+  var min = Math.floor(sound.seek()/60);
   if (sec<10)
-    sec = "0"+sec
+    sec = "0"+sec;
   if (min<10)
-    min = "0"+min
+    min = "0"+min;
   if(isNaN(min) || isNaN(sec))
     min = sec = "00";
   $("#playerTimer").text(min+":"+sec);
@@ -280,7 +280,7 @@ function nextSong(){
   var index;
 
   if(shuffle){
-    index = Math.round( (Math.random() * visibleSongs.length)-1)
+    index = Math.round( (Math.random() * visibleSongs.length)-1);
   } else {
     index = $(visibleSongs).index(currentSongBlock)+1;
     if (index > visibleSongs.length-1)
@@ -289,7 +289,7 @@ function nextSong(){
   scrollToBlock(index);
 
 
-  currentSongBlock = $(visibleSongs).get(index)
+  currentSongBlock = $(visibleSongs).get(index);
 
   playNewSong($(currentSongBlock).data("song"));
 
@@ -304,10 +304,10 @@ function scrollToBlock(index){
   $($(visibleSongs).get(index)).addClass("selected");
   //scroll to block at index via nanoScroller
   if (index <2)
-    index = 2
+    index = 2;
   try{
     $('.nano').nanoScroller({scrollTo: $($(visibleSongs).get(index-2))});
-  }catch{}
+  }catch(e){}
 }
 
 
@@ -321,11 +321,11 @@ function togglePlay(){
 function playSong(){
   playing = true;
   sound.play();
-	clearInterval($("#playerProgressBar").attr("data-id"))
+	clearInterval($("#playerProgressBar").attr("data-id"));
 	var x = setInterval(updateProgress, 200);
-	$("#playerProgressBar").attr("data-id", x)
-  $("#playerToggle").removeClass("fa-play")
-  $("#playerToggle").addClass("fa-pause")
+	$("#playerProgressBar").attr("data-id", x);
+  $("#playerToggle").removeClass("fa-play");
+  $("#playerToggle").addClass("fa-pause");
 }
 
 function playNewSong(obj){
@@ -338,9 +338,9 @@ function playNewSong(obj){
     preload: true,
     html5: true,
     autoplay: false,
-		onload: function(){setPageTitles(decodeURIComponent(obj.title) + " - "+decodeURIComponent(obj.artist))},
-  })
-	setPageTitles(decodeURIComponent(obj.title) + " - "+decodeURIComponent(obj.artist))
+		onload: function(){setPageTitles(decodeURIComponent(obj.title) + " - "+decodeURIComponent(obj.artist));},
+  });
+	setPageTitles(decodeURIComponent(obj.title) + " - "+decodeURIComponent(obj.artist));
   playSong();
 }
 
@@ -352,8 +352,8 @@ function setPageTitles(newTitle){
 function pauseSong(){
   playing = false;
   sound.pause();
-  $("#playerToggle").removeClass("fa-pause")
-  $("#playerToggle").addClass("fa-play")
+  $("#playerToggle").removeClass("fa-pause");
+  $("#playerToggle").addClass("fa-play");
 }
 
 function adjustVolume(amount){
@@ -374,7 +374,7 @@ function sortTable(type){
   //input into array
 
   //var blocks = $(".song").toArray();
-  var blocks = songList.toArray()
+  var blocks = songList.toArray();
 
   //detach all
   $(blocks).detach();
@@ -398,64 +398,64 @@ function sortTable(type){
 
 function sortData(data, type){
   //modify the songList obj to reorder based on type.
-  data = quickSort(data,0, data.length-1, type);
+  data = quickSort(data, 0, data.length-1, type);
 
   return data;
 }
 
 function toggleFaves(){ //TODO
-  favesOnly = !favesOnly
+  favesOnly = !favesOnly;
   if (!currentSort){
-    currentSort="title"
+    currentSort="title";
   }
-  sortTable(currentSort)
+  sortTable(currentSort);
 }
 
 function setModalVisible(value){
-	console.log("modal called")
+	console.log("modal called");
 	if (value == null){
-		throw new Error("Value required")
+		throw new Error("Value required");
 	}
 	if(value){
 		$modal.css("display", "block");
 		return;
 	}
 	$modal.css("display", "none");
-	return;
+
 }
 
 
 ////quicksort stuff///
-function quickSort(arr, left, right,type){
+function quickSort(arr, left, right, type){
    var len = arr.length,
    pivot,
    partitionIndex;
 
   if(left < right){
     pivot = right;
-    partitionIndex = partition(arr, pivot, left, right,type);
+    partitionIndex = partition(arr, pivot, left, right, type);
 
    //sort left and right
-   quickSort(arr, left, partitionIndex - 1,type);
-   quickSort(arr, partitionIndex + 1, right,type);
+   quickSort(arr, left, partitionIndex - 1, type);
+   quickSort(arr, partitionIndex + 1, right, type);
   }
   return arr;
 }
 
-function partition(arr, pivot, left, right,type){
+function partition(arr, pivot, left, right, type){
 
   switch(type){
     case "artist":
-      var pivotValue = $(arr[pivot]).data("song").artist[0]
+      var pivotValue = $(arr[pivot]).data("song").artist[0];
       break;
     case "title":
-      var pivotValue = $(arr[pivot]).data("song").title
+      var pivotValue = $(arr[pivot]).data("song").title;
       break;
     case "game":
-      var pivotValue = $(arr[pivot]).data("song").game[0]
+      var pivotValue = $(arr[pivot]).data("song").game[0];
       break;
     case "duel":
-      var pivotValue = $(arr[pivot]).data("song").duel
+      var pivotValue = $(arr[pivot]).data("song").duel;
       break;
   }
 	pivotValue = decodeURI(pivotValue).toLowerCase().replace(/[\W]/gu, '');
@@ -465,16 +465,16 @@ function partition(arr, pivot, left, right,type){
   for(var i = left; i < right; i++){
     switch(type){
       case "artist":
-        var val = $(arr[i]).data("song").artist[0]
+        var val = $(arr[i]).data("song").artist[0];
         break;
       case "title":
-        var val = $(arr[i]).data("song").title
+        var val = $(arr[i]).data("song").title;
         break;
       case "game":
-        var val = $(arr[i]).data("song").game[0]
+        var val = $(arr[i]).data("song").game[0];
         break;
       case "duel":
-        var val = $(arr[i]).data("song").duel
+        var val = $(arr[i]).data("song").duel;
         break;
     }
 		val = decodeURI(val).toLowerCase().replace(/[\W]/gu, '');
@@ -514,7 +514,7 @@ function search(value){ //only show .songs elements that contain the value
 
 function subsetSearch(value){
   var newVisible = [];
-  $(visibleSongs).each(function(i,e){
+  $(visibleSongs).each(function(i, e){
     if (containsString(e, value)){
       newVisible.push(this);
     }
