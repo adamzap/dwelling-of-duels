@@ -102,6 +102,10 @@ a:focus {
   border-color: transparent;
 }
 
+.navbar-collapse {
+  max-height: 420px;
+}
+
 #twrap {
   margin-top: 0px;
   padding-top: 18px;
