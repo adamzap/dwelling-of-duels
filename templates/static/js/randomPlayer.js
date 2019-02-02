@@ -251,6 +251,7 @@ function seekTrack(e){ //called when you click on progress bar
 function songPressed(s){
   //get song data for this block
 	//TODO change title back to loading...
+	initialLoad = false;
 	setPageTitles("Loading...");
   var data = $(s).data("song");
   scrollToBlock($(visibleSongs).index(s));
