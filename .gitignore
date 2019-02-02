@@ -3,3 +3,6 @@ deploy
 dodarchive
 dodarchive_new
 templates/.eslintrc
+*.bat
+front-page.md
+site.cfg
