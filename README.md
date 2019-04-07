@@ -12,8 +12,9 @@ This is the static site generator for [Dwelling of Duels].
 
 ## Configuration
 
-Edit `site.cfg` to configure your build of the site. It has the following
-settings:
+Edit `site.cfg` to configure your build of the site. An example has been
+provided for you as `site_example.cfg` and must be renamed before use. It has
+the following settings:
 
 - `voting` controls whether or not the site is in voting mode. Valid values are
 `on` and `off`.
@@ -47,7 +48,9 @@ the newly-built site.
 ## Front Page Content
 
 Edit `front-page.md` to add content to the front page of the site under the
-banner image. This file will be parsed as [Markdown] when you run `build.py`.
+banner image. An example has been provided for you as `site_example.cfg` and
+must be renamed before use.This file will be parsed as [Markdown] when you run
+`build.py`.
 
 ## DoD Lifecycle Example
 
