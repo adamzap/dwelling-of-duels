@@ -33,7 +33,12 @@
 <br />
 
 {% if objs[0].has_banner %}
-  {% set banner_url = "http://dwellingofduels.net/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".jpg" %}
+  {% if objs[0].banner_gif %}
+    {% set banner_url = "http://dwellingofduels.net/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".gif" %}
+  {% elif objs[0].banner_jpg %}
+    {% set banner_url = "http://dwellingofduels.net/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".jpg" %}
+  {% endif %}
+
 
   <div class="centered">
     <a href="{{ banner_url }}" target="_blank">

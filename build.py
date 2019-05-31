@@ -130,6 +130,9 @@ def get_month_data(month_dir):
 
         month_dir_part = month_dir.replace(ARCHIVE_DIR, '').strip(os.sep)
 
+        banner_jpg = (month_dir_part + '.jpg' in month_files)
+        banner_gif = (month_dir_part + '.gif' in month_files)
+
         songs.append({
             'rank': f.split('-')[0].replace('tie', ''),
             'max_rank': max_rank,
@@ -147,7 +150,9 @@ def get_month_data(month_dir):
             'month_name': calendar.month_name[int(month_number)],
             'month_dir': month_dir_part,
             'has_log': month_dir_part + '.log' in month_files,
-            'has_banner': month_dir_part + '.jpg' in month_files,
+            'has_banner': banner_jpg or banner_gif,
+            'banner_jpg': banner_jpg,
+            'banner_gif': banner_gif,
             'has_archive': month_dir_part + '.zip' in month_files,
             'youtube_link': youtube_link,
             'id': hashlib.md5((song_data.title+song_data.genre.split(', ')[0]+duel).encode()).hexdigest()[:10]
