@@ -14,7 +14,6 @@
   cursor: pointer;
   position: relative;
   display: block;
-  overflow: hidden;
   outline: none !important;
   height: 10px; top: 33px;
   background: #EEE;
