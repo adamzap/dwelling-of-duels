@@ -53,7 +53,8 @@ DUEL_REPLACEMENTS = [
 ]
 
 ARTIST_WHITELIST = [
-    'Evil(I)(I)'
+    'Evil(I)(I)',
+    'Pokérus Project (Live!)'
 ]
 
 CSS_FILES = [
