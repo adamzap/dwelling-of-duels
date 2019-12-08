@@ -49,7 +49,12 @@ DUEL_REPLACEMENTS = [
     ('DoD09-JO', 'DoD09-01'),
     ('DoD10-JO', 'DoD10-01'),
     ('DoD11-11S', 'DoD11-11'),
-    ('DoD13-0910', 'DoD13-09')
+    ('DoD13-0910', 'DoD13-09'),
+    ('DoD19-TS', 'DoD19-09')
+]
+
+MONTH_REPLACEMENTS = [
+    ('19-TS-TornadoOfSolos', '19-09-TornadoOfSolos')
 ]
 
 ARTIST_WHITELIST = [
@@ -100,6 +105,13 @@ def fix_duel_name(duel):
     return duel
 
 
+def fix_month_dir(month_dir):
+    for x, y in MONTH_REPLACEMENTS:
+        month_dir = month_dir.replace(x, y)
+
+    return month_dir
+
+
 def fix_artist(artist):
     if artist not in ARTIST_WHITELIST:
         artist = artist.replace(' (', ', ').replace(')', '')
@@ -118,6 +130,13 @@ def get_month_data(month_dir):
 
     youtube_link = get_youtube_link(month_dir)
 
+    month_dir_part = month_dir.replace(ARCHIVE_DIR, '').strip(os.sep)
+
+    month_dir_replaced = fix_month_dir(month_dir_part)
+
+    banner_jpg = (month_dir_part + '.jpg' in month_files)
+    banner_gif = (month_dir_part + '.gif' in month_files)
+
     for f in song_filenames:
         song_path = os.path.join(month_dir, f)
 
@@ -128,11 +147,6 @@ def get_month_data(month_dir):
         month_number = duel.split('-')[1].split(':')[0]
 
         artist = fix_artist(song_data.artist)
-
-        month_dir_part = month_dir.replace(ARCHIVE_DIR, '').strip(os.sep)
-
-        banner_jpg = (month_dir_part + '.jpg' in month_files)
-        banner_gif = (month_dir_part + '.gif' in month_files)
 
         songs.append({
             'rank': f.split('-')[0].replace('tie', ''),
@@ -149,7 +163,7 @@ def get_month_data(month_dir):
             'year': '20' + duel.split('-')[0],
             'month': month_number,
             'month_name': calendar.month_name[int(month_number)],
-            'month_dir': month_dir_part,
+            'month_dir': month_dir_replaced,
             'has_log': month_dir_part + '.log' in month_files,
             'has_banner': banner_jpg or banner_gif,
             'banner_jpg': banner_jpg,
@@ -200,6 +214,9 @@ def set_template_globals():
     TEMPLATES.globals['archive_dir'] = ARCHIVE_DIR
     TEMPLATES.globals['artist_links'] = parse_artist_links()
     TEMPLATES.globals['banner_artist_links'] = parse_banner_artist_links()
+
+    #sort DATA by month name so we always get the actual latest month
+    DATA.sort(key=lambda x: x['month_dir'])
 
     latest_month = DATA[-1]['month_dir']
 
