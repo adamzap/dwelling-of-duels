@@ -33,6 +33,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <!-- Social meta tags-->
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dwelling of Duels is a monthly video game remix competition." />
+    <meta name="twitter:description" content="Dwelling of Duels is a monthly video game remix competition.">
+    <meta itemprop="description" content="Dwelling of Duels is a monthly video game remix competition.">
+    {% if not metaImage %}
+      <meta property="og:image" content="http://dwellingofduels.net/static/img/dod-guy.png" />
+      <meta name="twitter:image:src" content="http://dwellingofduels.net/static/img/dod-guy.png">
+      <meta itemprop="image" content="http://dwellingofduels.net/static/img/dod-guy.png">
+    {% endif %}
+
     <link rel="shortcut icon" href="/static/img/favicon.ico">
 
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>

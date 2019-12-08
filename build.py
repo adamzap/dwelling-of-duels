@@ -314,6 +314,10 @@ def write_page(template_name, context, path=None):
 
     template = TEMPLATES.get_template(template_name + '.html')
 
+    #get image for metadata if this is a duel
+    if template_name == 'duel':
+        context['metaImage'] = True
+
     with open(out_path, 'w') as out:
         html = template.render(context)
 

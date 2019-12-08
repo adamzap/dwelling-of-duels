@@ -39,6 +39,13 @@
     {% set banner_url = "http://dwellingofduels.net/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".jpg" %}
   {% endif %}
 
+  <!-- Social Meta Images -->
+  <meta property="og:image"
+    content="{{ banner_url}}" />
+  <meta name="twitter:image:src" 
+    content="{{ banner_url}}">
+  <meta itemprop="image" 
+    content="{{ banner_url}}">
 
   <div class="centered">
     <a href="{{ banner_url }}" target="_blank">
