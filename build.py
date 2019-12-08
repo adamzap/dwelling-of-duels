@@ -57,6 +57,7 @@ MONTH_REPLACEMENTS = [
     ('19-TS-TornadoOfSolos', '19-09-TornadoOfSolos')
 ]
 
+# the generator uses parentheses as delimiters, use this to whitelist an artist name from the delimiting
 ARTIST_WHITELIST = [
     'Evil(I)(I)',
     'Pokérus Project (Live!)'

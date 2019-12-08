@@ -2,7 +2,7 @@ venv
 deploy
 deploy_2
 dodarchive
-dodarchive_new
+dodarchive_*
 templates/.eslintrc
 *.bat
 front-page.md
