@@ -279,7 +279,17 @@ def build_pages(kind):
             for key in song[kind]:
                 song_lists[key].append(song)
 
+    dupeCheckDict = collections.defaultdict()
+
     for key, song_list in song_lists.items():
+        
+        #loop over all keys we've gone through and compare slugs
+        for key2, val in dupeCheckDict.items():
+            if slugify(key) == slugify(key2):
+                print("dupe detected: {} vs {} \n  {}\n  {}".format(key, key2, song_list, val))
+            
+        dupeCheckDict[key] = song_list
+
         path = os.path.join(kind, slugify(key))
 
         write_page(kind.rstrip('s'), {'key': key, 'objs': song_list}, path)
