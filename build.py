@@ -167,6 +167,7 @@ def get_month_data(month_dir):
             'month_dir': month_dir_replaced,
             'has_log': month_dir_part + '.log' in month_files,
             'has_banner': banner_jpg or banner_gif,
+            'has_lyrics': 'lyrics.txt' in month_files,
             'banner_jpg': banner_jpg,
             'banner_gif': banner_gif,
             'has_archive': month_dir_part + '.zip' in month_files,

@@ -25,6 +25,12 @@
         <img src="/static/img/youtube-playlist.svg" width="32px" height="32px" alt="YouTube Playlist"/>
       </a>
     {% endif %}
+	
+	{% if objs[0].has_lyrics %}
+      <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/lyrics.txt" target="_blank">
+        <img src="/static/img/quote-right-solid.svg" width="32px" height="32px" alt="Lyrics"/>
+      </a>
+    {% endif %}
   </span>
 </h1>
 
