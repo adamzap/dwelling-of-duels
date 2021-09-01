@@ -263,6 +263,7 @@ def build_site():
     build_index()
 
     write_page('rules', {})
+    write_page('faq', {})
     write_page('voting', {})
 
 
