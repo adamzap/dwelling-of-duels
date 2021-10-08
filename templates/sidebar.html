@@ -1,6 +1,6 @@
-{% set deadline_date_str = deadline_date.strftime('%B %d').replace(' 0', ' ') %}
+{%- set deadline_date_str = deadline_date.strftime('%B %d').replace(' 0', ' ') -%}
 
-{% if voting %}
+{%- if voting -%}
   <h4>Voting Deadline</h4>
 
   <div class="hline-r"></div>
@@ -15,7 +15,7 @@
       Listen and vote now!
     </a>
   </p>
-{% else %}
+{%- else -%}
   <h4>Submission Deadline</h4>
 
   <div class="hline-r"></div>
@@ -24,7 +24,7 @@
     Songs for the current duel must be received by
     <strong>{{ deadline_date_str }} at {{ deadline_time }}</strong>.
   <p>
-{% endif %}
+{%- endif -%}
 
 </br>
 

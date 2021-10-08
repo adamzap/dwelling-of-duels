@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{%- extends "base.html" -%}
 
-{% set include_winners = true %}
+{%- set include_winners = true -%}
 
-{% block title %}Duels{% endblock %}
+{%- block title -%}Duels{%- endblock -%}
 
-{% block content %}
+{%- block content -%}
 
 <h1 class="ctitle">Duels</h1>
 
@@ -13,16 +13,16 @@
 <p>
   Jump to year:&nbsp;
 
-  {% for year in range(latest_winners[0].year|int, 2002, -1) %}
+  {%- for year in range(latest_winners[0].year|int, 2002, -1) -%}
     <a href="#{{ year }}">{{ year }}</a>&nbsp;
-  {% endfor %}
+  {%- endfor -%}
 </p>
 
-{% set current_year = 0 %}
+{%- set current_year = 0 -%}
 
-{% for duel, song_list in objs|dictsort|reverse %}
-  {% if song_list[0].year != current_year %}
-    {% if not loop.first %}
+{%- for duel, song_list in objs|dictsort|reverse -%}
+  {%- if song_list[0].year != current_year -%}
+    {%- if not loop.first -%}
         </tbody>
       </table>
     </div>
@@ -32,7 +32,7 @@
       </p>
 
       <br />
-    {% endif %}
+    {%- endif -%}
 
     <h2 id="{{ song_list[0].year }}">{{ song_list[0].year }}</h2>
 
@@ -48,15 +48,15 @@
           </tr>
         </thead>
         <tbody>
-  {% endif %}
+  {%- endif -%}
         <tr>
           <td data-value="{{ song_list[0].month }}">{{ song_list[0].month_name }}</td>
           <td><a href="/duels/{{ song_list[0].duel|slugify }}/">{{ song_list[0].theme }}</a></td>
           <td>{{ song_list|count }}</td>
         </tr>
 
-  {% set current_year = song_list[0].year %}
-{% endfor %}
+  {%- set current_year = song_list[0].year -%}
+{%- endfor -%}
 
     </tbody>
   </table>
@@ -66,4 +66,4 @@
   <a href="#">Back to Top</a>
 </p>
 
-{% endblock %}
+{%- endblock -%}

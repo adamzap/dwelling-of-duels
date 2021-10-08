@@ -1,19 +1,19 @@
-{% from "macros.html" import prettify_duel %}
-{% from "macros.html" import trophy_string %}
-{% from "macros.html" import get_song_link %}
-{% from "macros.html" import get_artist_link %}
-{% from "macros.html" import get_game_link %}
-{% from "macros.html" import get_duel_link %}
-{% from "macros.html" import get_rank %}
-{% from "macros.html" import get_duel_sort_value %}
-{% from "macros.html" import get_rank_sort_value %}
-{% from "macros.html" import get_collaborator_links %}
-{% from "macros.html" import get_medley_game_links %}
-{% from "macros.html" import filter_input %}
-{% from "macros.html" import get_artist_link_link %}
-{% from "macros.html" import get_player_button %}
+{%- from "macros.html" import prettify_duel -%}
+{%- from "macros.html" import trophy_string -%}
+{%- from "macros.html" import get_song_link -%}
+{%- from "macros.html" import get_artist_link -%}
+{%- from "macros.html" import get_game_link -%}
+{%- from "macros.html" import get_duel_link -%}
+{%- from "macros.html" import get_rank -%}
+{%- from "macros.html" import get_duel_sort_value -%}
+{%- from "macros.html" import get_rank_sort_value -%}
+{%- from "macros.html" import get_collaborator_links -%}
+{%- from "macros.html" import get_medley_game_links -%}
+{%- from "macros.html" import filter_input -%}
+{%- from "macros.html" import get_artist_link_link -%}
+{%- from "macros.html" import get_player_button -%}
 
-{% set winners_banner_month = latest_winners[0].month_dir %}
+{%- set winners_banner_month = latest_winners[0].month_dir -%}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,11 +39,11 @@
     <meta property="og:description" content="Dwelling of Duels is a monthly video game remix competition." />
     <meta name="twitter:description" content="Dwelling of Duels is a monthly video game remix competition.">
     <meta itemprop="description" content="Dwelling of Duels is a monthly video game remix competition.">
-    {% if not metaImage %}
+    {%- if not metaImage -%}
       <meta property="og:image" content="http://dwellingofduels.net/static/img/dod-guy.png" />
       <meta name="twitter:image:src" content="http://dwellingofduels.net/static/img/dod-guy.png">
       <meta itemprop="image" content="http://dwellingofduels.net/static/img/dod-guy.png">
-    {% endif %}
+    {%- endif -%}
 
     <link rel="shortcut icon" href="/static/img/favicon.ico">
 
@@ -51,24 +51,24 @@
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
 
     <title>
-      {% block title %}{% endblock %}
+      {%- block title -%}{%- endblock -%}
 
-      {% if self.title() %}
+      {%- if self.title() -%}
         &middot;
-      {% endif %}
+      {%- endif -%}
 
       Dwelling of Duels
     </title>
 
     <link href="/static/dod.{{ css_hash }}.css" rel="stylesheet">
 
-    {% if include_winners %}
+    {%- if include_winners -%}
       <style type="text/css">
         #twrap:before {
           background-image: url(http://dwellingofduels.net/{{ archive_dir }}/{{ winners_banner_month }}/{{ winners_banner_month }}.jpg);
         }
       </style>
-    {% endif %}
+    {%- endif -%}
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -147,25 +147,25 @@
       </div>
     </div>
 
-    {% block winners %}
-      {% if include_winners %}
-        {% import "winners.html" as winners %}
+    {%- block winners -%}
+      {%- if include_winners -%}
+        {%- import "winners.html" as winners -%}
 
         {{ winners.render(latest_winners) }}
-      {% endif %}
-    {% endblock %}
+      {%- endif -%}
+    {%- endblock -%}
 
     <div class="container">
       <div class="row">
         <div class="col-lg-{{ '8' if include_sidebar else '12' }}">
-          {% block content %}{% endblock %}
+          {%- block content -%}{%- endblock -%}
         </div>
 
-        {% if include_sidebar %}
+        {%- if include_sidebar -%}
           <div id="sidebar" class="col-lg-4">
-            {% include "sidebar.html" %}
+            {%- include "sidebar.html" -%}
           </div>
-        {% endif %}
+        {%- endif -%}
         </div>
       </div>
     </div>
@@ -179,7 +179,7 @@
     <script type="text/javascript" src="/static/dod.{{ js_hash }}.js"></script>
 
     <script type="text/javascript">
-      {% block extra_js %}{% endblock %}
+      {%- block extra_js -%}{%- endblock -%}
     </script>
   </body>
 </html>

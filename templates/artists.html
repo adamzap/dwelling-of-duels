@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{%- extends "base.html" -%}
 
-{% set include_winners = true %}
+{%- set include_winners = true -%}
 
-{% block title %}Artists{% endblock %}
+{%- block title -%}Artists{%- endblock -%}
 
-{% block content %}
+{%- block content -%}
 
 <h1 class="ctitle">Artists</h1>
 
@@ -24,7 +24,7 @@
       </tr>
     </thead>
     <tbody>
-    {% for artist, song_list in objs|dictsort %}
+    {%- for artist, song_list in objs|dictsort -%}
       <tr>
         <td>{{ get_artist_link(artist) }}</td>
         <td>{{ song_list|count }}</td>
@@ -32,13 +32,13 @@
         <td>{{ song_list|selectattr("rank", "equalto", "02")|list|count }}</td>
         <td>{{ song_list|selectattr("rank", "equalto", "03")|list|count }}</td>
       </tr>
-    {% endfor %}
+    {%- endfor -%}
     </tbody>
   </table>
 </div>
 
-{% endblock %}
+{%- endblock -%}
 
-{% block extra_js %}
+{%- block extra_js -%}
   make_filter();
-{% endblock %}
+{%- endblock -%}

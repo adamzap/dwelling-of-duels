@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{%- extends "base.html" -%}
 
-{% set include_winners = true %}
-{% set include_sidebar = true %}
+{%- set include_winners = true -%}
+{%- set include_sidebar = true -%}
 
-{% block title %}Rules{% endblock %}
+{%- block title -%}Rules{%- endblock -%}
 
-{% block content %}
+{%- block content -%}
 
 <h1>Rules for Participation</h1>
 
@@ -217,11 +217,11 @@
   <li>
     Voting is automated through
 
-    {% if voting %}
+    {%- if voting -%}
       <a href="/voting/">our voting app</a>.
-    {% else %}
+    {%- else -%}
       our voting app, which is accessible when the current duel's entries are presented.
-    {% endif %}
+    {%- endif -%}
 
     Simply score each song from "Incredible" to "Terrible" using the sliders.
 
@@ -323,4 +323,4 @@ votes, or other measures. This includes, but is not limited to, the following:
 	</ul>
 </p>
 
-{% endblock %}
+{%- endblock -%}

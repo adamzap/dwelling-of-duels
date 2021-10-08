@@ -1,8 +1,8 @@
-{% macro prettify_duel(song) -%}
+{%- macro prettify_duel(song) -%}
   {{ song.month_name }} {{ song.year }}: {{ song.theme }} Month
-{%- endmacro %}
+{%- endmacro -%}
 
-{% macro trophy_string(song) -%}
+{%- macro trophy_string(song) -%}
   {%- if song.rank == "01" -%}
     gold
   {%- elif song.rank == "02" -%}
@@ -10,112 +10,112 @@
   {%- elif song.rank == "03" -%}
     bronze
   {%- endif -%}
-{%- endmacro %}
+{%- endmacro -%}
 
-{% macro get_song_link(song) -%}
+{%- macro get_song_link(song) -%}
   <a href="http://dwellingofduels.net{{ song.link | urlencode }}">{{ song.title }}</a>
-{%- endmacro %}
+{%- endmacro -%}
 
-{% macro get_artist_link(obj, sep="<br />") -%}
-  {% if obj is string %}
+{%- macro get_artist_link(obj, sep="<br />") -%}
+  {%- if obj is string -%}
     <a href="/artists/{{ obj|slugify }}/">{{ obj }}</a>
-  {% else %}
-    {% for artist in obj.artists %}
-      {% if loop.last %}
-        {% set sep = '' %}
-      {% endif %}
+  {%- else -%}
+    {%- for artist in obj.artists -%}
+      {%- if loop.last -%}
+        {%- set sep = '' -%}
+      {%- endif -%}
       <a href="/artists/{{ artist|slugify }}/">{{ artist }}</a>{{ sep }}
-    {% endfor %}
-  {% endif %}
-{%- endmacro %}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endmacro -%}
 
-{% macro get_game_link(obj, sep="<br />") -%}
-  {% if obj is string %}
+{%- macro get_game_link(obj, sep="<br />") -%}
+  {%- if obj is string -%}
     <a href="/games/{{ obj|slugify }}/">{{ obj }}</a>
-  {% else %}
-    {% for game in obj.games %}
-      {% if loop.last %}
-        {% set sep = '' %}
-      {% endif %}
+  {%- else -%}
+    {%- for game in obj.games -%}
+      {%- if loop.last -%}
+        {%- set sep = '' -%}
+      {%- endif -%}
       <a href="/games/{{ game|slugify }}/">{{ game }}</a>{{ sep }}
-    {% endfor %}
-  {% endif %}
-{%- endmacro %}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endmacro -%}
 
-{% macro get_duel_link(song) -%}
+{%- macro get_duel_link(song) -%}
   <a href="/duels/{{ song.duel|slugify }}/">{{ prettify_duel(song) }}</a>
-{%- endmacro %}
+{%- endmacro -%}
 
-{% macro get_rank(song, show_max) -%}
-  {% if song.rank == "ZZ" %}
+{%- macro get_rank(song, show_max) -%}
+  {%- if song.rank == "ZZ" -%}
     ALT
-  {% else %}
+  {%- else -%}
     {{ song.rank|int }}
 
-    {% if show_max %}
+    {%- if show_max -%}
       /{{ song.max_rank }}
-    {% endif %}
+    {%- endif -%}
 
-    {% if song.rank|int < 4 %}
+    {%- if song.rank|int < 4 -%}
       <span class="{{ trophy_string(song) }}">&bull;</span>
-    {% endif %}
-  {% endif %}
-{%- endmacro %}
+    {%- endif -%}
+  {%- endif -%}
+{%- endmacro -%}
 
-{% macro get_duel_sort_value(song) -%}
+{%- macro get_duel_sort_value(song) -%}
   data-value="{{ song.year }}{{ song.month }}"
-{%- endmacro %}
+{%- endmacro -%}
 
-{% macro get_rank_sort_value(song) -%}
-  {% if song.rank == "ZZ" %}
+{%- macro get_rank_sort_value(song) -%}
+  {%- if song.rank == "ZZ" -%}
     data-value="99999999"
-  {% else %}
+  {%- else -%}
     data-value="{{ song.rank }}"
-  {% endif %}
-{%- endmacro %}
+  {%- endif -%}
+{%- endmacro -%}
 
-{% macro get_collaborator_links(artist, song) -%}
-  {% for other_artist in song.artists %}
-    {% if artist != other_artist %}
+{%- macro get_collaborator_links(artist, song) -%}
+  {%- for other_artist in song.artists -%}
+    {%- if artist != other_artist -%}
       {{ get_artist_link(other_artist) }}
-      {% if not loop.last %}
+      {%- if not loop.last -%}
         <br />
-      {% endif %}
-    {% endif %}
-  {% endfor %}
-{%- endmacro %}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endmacro -%}
 
-{% macro get_medley_game_links(game, song) -%}
-  {% for other_game in song.games %}
-    {% if game != other_game %}
+{%- macro get_medley_game_links(game, song) -%}
+  {%- for other_game in song.games -%}
+    {%- if game != other_game -%}
       {{ get_game_link(other_game) }}
-      {% if not loop.last %}
+      {%- if not loop.last -%}
         <br />
-      {% endif %}
-    {% endif %}
-  {% endfor %}
-{%- endmacro %}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endmacro -%}
 
-{% macro filter_input() -%}
+{%- macro filter_input() -%}
   <input id="filter" type="text" placeholder="Search"/>
-{%- endmacro %}
+{%- endmacro -%}
 
-{% macro get_artist_link_link(name, artist_links) -%}
-  {% if name in artist_links %}
+{%- macro get_artist_link_link(name, artist_links) -%}
+  {%- if name in artist_links -%}
     <a href="{{ artist_links[name] }}" target="_blank">
       <img src="/static/img/link.png"/>
     </a>
-  {% endif %}
-{%- endmacro %}
+  {%- endif -%}
+{%- endmacro -%}
 
-{% macro get_banner_artist_link(name, banner_artist_links) -%}
-  {% if name in banner_artist_links %}
+{%- macro get_banner_artist_link(name, banner_artist_links) -%}
+  {%- if name in banner_artist_links -%}
     <a href="{{ banner_artist_links[name] }}" target="_blank">
       {{ name }}
     </a>
-  {% endif %}
-{%- endmacro %}
+  {%- endif -%}
+{%- endmacro -%}
 
-{% macro get_player_button(song) -%}
+{%- macro get_player_button(song) -%}
   <img class="play-button" src="/static/img/play.svg" width="16px" height="16px" data-song-url="http://dwellingofduels.net{{ song.link | urlencode }}"/>
-{%- endmacro %}
+{%- endmacro -%}

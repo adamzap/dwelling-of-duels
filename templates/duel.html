@@ -1,36 +1,36 @@
-{% extends "base.html" %}
+{%- extends "base.html" -%}
 
-{% block title %}{{ prettify_duel(objs[0]) }}{% endblock %}
+{%- block title -%}{{ prettify_duel(objs[0]) }}{%- endblock -%}
 
-{% block content %}
+{%- block content -%}
 
 <h1 class="ctitle">
   {{ prettify_duel(objs[0]) }}
 
   <span class="duel-icons">
-    {% if objs[0].has_archive %}
+    {%- if objs[0].has_archive -%}
       <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.zip">
         <img src="/static/img/zip.svg" width="32px" height="32px" alt="ZIP Archive of Songs"/>
       </a>
-    {% endif %}
+    {%- endif -%}
 
-    {% if objs[0].has_log %}
+    {%- if objs[0].has_log -%}
       <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.log" target="_blank">
         <img src="/static/img/log.svg" width="32px" height="32px" alt="Listening Party Log"/>
       </a>
-    {% endif %}
+    {%- endif -%}
 
-    {% if objs[0].youtube_link %}
+    {%- if objs[0].youtube_link -%}
       <a href="{{ objs[0].youtube_link }}" target="_blank">
         <img src="/static/img/youtube-playlist.svg" width="32px" height="32px" alt="YouTube Playlist"/>
       </a>
-    {% endif %}
+    {%- endif -%}
 	
-	{% if objs[0].has_lyrics %}
+	{%- if objs[0].has_lyrics -%}
       <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/lyrics.txt" target="_blank">
         <img src="/static/img/quote-right-solid.svg" width="32px" height="32px" alt="Lyrics"/>
       </a>
-    {% endif %}
+    {%- endif -%}
   </span>
 </h1>
 
@@ -38,12 +38,12 @@
 
 <br />
 
-{% if objs[0].has_banner %}
-  {% if objs[0].banner_gif %}
-    {% set banner_url = "http://dwellingofduels.net/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".gif" %}
-  {% elif objs[0].banner_jpg %}
-    {% set banner_url = "http://dwellingofduels.net/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".jpg" %}
-  {% endif %}
+{%- if objs[0].has_banner -%}
+  {%- if objs[0].banner_gif -%}
+    {%- set banner_url = "http://dwellingofduels.net/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".gif" -%}
+  {%- elif objs[0].banner_jpg -%}
+    {%- set banner_url = "http://dwellingofduels.net/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".jpg" -%}
+  {%- endif -%}
 
   <!-- Social Meta Images -->
   <meta property="og:image"
@@ -58,12 +58,12 @@
       <img src="{{ banner_url }}"/>
     </a>
   </div>
-{% endif %}
+{%- endif -%}
 
 <br />
 <br />
 
-{% if not (voting and objs[0].month_dir == latest_month) %}
+{%- if not (voting and objs[0].month_dir == latest_month) -%}
   <div class="table-responsive">
     <table class="table" data-sortable>
       <thead>
@@ -76,29 +76,29 @@
         </tr>
       </thead>
       <tbody>
-      {% for obj in objs %}
-        <tr {% if obj.rank|int < 4 %}class="{{ trophy_string(obj) }}-row"{% endif %}>
+      {%- for obj in objs -%}
+        <tr {%- if obj.rank|int < 4 -%}class="{{ trophy_string(obj) }}-row"{%- endif -%}>
           <td>{{ get_player_button(obj) }}</td>
           <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, false) }}</td>
           <td>{{ get_song_link(obj) }}</td>
           <td>{{ get_artist_link(obj) }}</td>
           <td>{{ get_game_link(obj) }}</td>
         </tr>
-      {% endfor %}
+      {%- endfor -%}
       </tbody>
     </table>
   </div>
-{% endif %}
+{%- endif -%}
 
-{% if voting and objs[0].month_dir == latest_month %}
-  {% set main_entries = objs|rejectattr("rank", "equalto", "ZZ")|list %}
-  {% set alt_entries = objs|selectattr("rank", "equalto", "ZZ")|list %}
+{%- if voting and objs[0].month_dir == latest_month -%}
+  {%- set main_entries = objs|rejectattr("rank", "equalto", "ZZ")|list -%}
+  {%- set alt_entries = objs|selectattr("rank", "equalto", "ZZ")|list -%}
 
   <h1 class="ctitle">Voting</h1>
 
   <div class="hline-r"></div>
 
-  {% for obj in main_entries %}
+  {%- for obj in main_entries -%}
     <h4 class="voting">
       {{ get_player_button(obj) }} &nbsp; {{ obj.games|join(', ') }} - {{ get_song_link(obj) }}
       <small>
@@ -113,14 +113,14 @@
     <br />
     <br />
 
-    {% if not loop.last %}
+    {%- if not loop.last -%}
       <br />
-    {% endif %}
-  {% else %}
+    {%- endif -%}
+  {%- else -%}
     <p>
       There were no main entries this month
     </p>
-  {% endfor %}
+  {%- endfor -%}
 
   <h1 class="ctitle">Your Votes</h1>
 
@@ -137,20 +137,20 @@
 
   <div class="hline-r"></div>
 
-  {% for obj in alt_entries %}
+  {%- for obj in alt_entries -%}
     <h4 class="voting">
       {{ get_player_button(obj) }} &nbsp; {{ obj.games|join(', ') }} - {{ get_song_link(obj) }}
     </h4>
-  {% else %}
+  {%- else -%}
     <p>
       There were no alternate entries this month
     </p>
-  {% endfor %}
-{% endif %}
+  {%- endfor -%}
+{%- endif -%}
 
-{% endblock %}
+{%- endblock -%}
 
-{% block extra_js %}
+{%- block extra_js -%}
   make_player();
   make_voting();
-{% endblock %}
+{%- endblock -%}

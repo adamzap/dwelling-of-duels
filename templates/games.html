@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{%- extends "base.html" -%}
 
-{% set include_winners = true %}
+{%- set include_winners = true -%}
 
-{% block title %}Games{% endblock %}
+{%- block title -%}Games{%- endblock -%}
 
-{% block content %}
+{%- block content -%}
 
 <h1 class="ctitle">Games</h1>
 
@@ -21,18 +21,18 @@
       </tr>
     </thead>
     <tbody>
-    {% for game, song_list in objs|dictsort %}
+    {%- for game, song_list in objs|dictsort -%}
       <tr>
         <td>{{ get_game_link(game) }}</td>
         <td>{{ song_list|count }}</td>
       </tr>
-    {% endfor %}
+    {%- endfor -%}
     </tbody>
   </table>
 </div>
 
-{% endblock %}
+{%- endblock -%}
 
-{% block extra_js %}
+{%- block extra_js -%}
   make_filter();
-{% endblock %}
+{%- endblock -%}

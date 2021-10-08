@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{%- extends "base.html" -%}
 
-{% block title %}{{ key }}{% endblock %}
+{%- block title -%}{{ key }}{%- endblock -%}
 
-{% block content %}
+{%- block content -%}
 
-{% if objs|rejectattr("multiple_games")|list|length > 0 %}
+{%- if objs|rejectattr("multiple_games")|list|length > 0 -%}
   <h1 class="ctitle">Songs from {{ key }}</h1>
 
   <div class="hline-r"></div>
@@ -21,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-      {% for obj in objs|rejectattr("multiple_games")|sort(attribute='title') %}
+      {%- for obj in objs|rejectattr("multiple_games")|sort(attribute='title') -%}
         <tr>
           <td>{{ get_player_button(obj) }}</td>
           <td>{{ get_song_link(obj) }}</td>
@@ -29,15 +29,15 @@
           <td {{ get_duel_sort_value(obj) }}>{{ get_duel_link(obj) }}</td>
           <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, true) }}</td>
         </tr>
-      {% endfor %}
+      {%- endfor -%}
       </tbody>
     </table>
   </div>
-{% endif %}
+{%- endif -%}
 
 <br />
 
-{% if objs|selectattr("multiple_games")|list|length > 0 %}
+{%- if objs|selectattr("multiple_games")|list|length > 0 -%}
   <h1 class="ctitle">Medleys featuring {{ key }}</h1>
 
   <div class="hline-r"></div>
@@ -55,7 +55,7 @@
         </tr>
       </thead>
       <tbody>
-      {% for obj in objs|selectattr("multiple_games")|sort(attribute='title') %}
+      {%- for obj in objs|selectattr("multiple_games")|sort(attribute='title') -%}
         <tr>
           <td>{{ get_player_button(obj) }}</td>
           <td>{{ get_song_link(obj) }}</td>
@@ -64,14 +64,14 @@
           <td {{ get_duel_sort_value(obj) }}>{{ get_duel_link(obj) }}</td>
           <td {{ get_rank_sort_value(obj) }}>{{ get_rank(obj, true) }}</td>
         </tr>
-      {% endfor %}
+      {%- endfor -%}
       </tbody>
     </table>
   </div>
-{% endif %}
+{%- endif -%}
 
-{% endblock %}
+{%- endblock -%}
 
-{% block extra_js %}
+{%- block extra_js -%}
   make_player();
-{% endblock %}
+{%- endblock -%}
