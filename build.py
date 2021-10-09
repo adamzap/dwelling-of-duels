@@ -29,7 +29,14 @@ TEMPLATE_DIR = 'templates' + os.sep
 
 TEMPLATES = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
 
-TEMPLATES.filters['slugify'] = slugify
+slugify_cache = {}
+
+def slugify_with_cache(key):
+    if key not in slugify_cache:
+        slugify_cache[key] = slugify(key)
+    return slugify_cache[key]
+
+TEMPLATES.filters['slugify'] = slugify_with_cache
 
 CONFIG = configparser.ConfigParser()
 CONFIG.read('site.cfg')
@@ -85,7 +92,6 @@ JS_FILES = [s.replace('/', os.sep) for s in [
     'voting.js',
 	'randomPlayer.js'
 ]]
-
 
 def build_data():
     for d in os.listdir(ARCHIVE_DIR):
@@ -287,12 +293,12 @@ def build_pages(kind):
         
         #loop over all keys we've gone through and compare slugs
         for key2, val in dupeCheckDict.items():
-            if slugify(key) == slugify(key2):
+            if slugify_with_cache(key) == slugify_with_cache(key2):
                 print("dupe detected: {} vs {} \n  {}\n  {}".format(key, key2, song_list, val))
             
         dupeCheckDict[key] = song_list
 
-        path = os.path.join(kind, slugify(key))
+        path = os.path.join(kind, slugify_with_cache(key))
 
         write_page(kind.rstrip('s'), {'key': key, 'objs': song_list}, path)
 
