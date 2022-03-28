@@ -18,10 +18,10 @@
   {%- endfor -%}
 </p>
 
-{%- set current_year = 0 -%}
+{%- set ns = namespace(current_year=0) -%}
 
 {%- for duel, song_list in objs|dictsort|reverse -%}
-  {%- if song_list[0].year != current_year -%}
+  {%- if song_list[0].year != ns.current_year -%}
     {%- if not loop.first -%}
         </tbody>
       </table>
@@ -55,7 +55,7 @@
           <td>{{ song_list|count }}</td>
         </tr>
 
-  {%- set current_year = song_list[0].year -%}
+  {%- set ns.current_year = song_list[0].year -%}
 {%- endfor -%}
 
     </tbody>
