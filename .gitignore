@@ -7,3 +7,4 @@ templates/.eslintrc
 *.bat
 front-page.md
 site.cfg
+venv
