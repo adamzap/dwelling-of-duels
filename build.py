@@ -29,11 +29,13 @@ TEMPLATE_DIR = 'templates' + os.sep
 
 TEMPLATES = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
 
+SLUG_REPLACEMENTS = [["'", ""]]
+
 slugify_cache = {}
 
 def slugify_with_cache(key):
     if key not in slugify_cache:
-        slugify_cache[key] = slugify(key)
+        slugify_cache[key] = slugify(key, replacements=SLUG_REPLACEMENTS)
     return slugify_cache[key]
 
 TEMPLATES.filters['slugify'] = slugify_with_cache
