@@ -77,7 +77,8 @@ CSS_FILES = [
     'sortable.css',
     'slider.css',
     'style.css',
-	'nanoscroller.css'
+	'nanoscroller.css',
+    'other.css'
 ]
 
 JS_FILES = [s.replace('/', os.sep) for s in [

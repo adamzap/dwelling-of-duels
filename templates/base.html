@@ -156,6 +156,19 @@
     {%- endblock -%}
 
     <div class="container">
+
+        {%- if voting -%}
+        <a href="/duels/{{ latest_duel|slugify }}/">
+          <div class="listen-and-vote">
+              <h2>
+                  Current month entries are live!
+              </h2>
+              <p>
+                  Listen and vote now!
+              </p>
+          </div>
+        </a>
+    {%- endif -%}
       <div class="row">
         <div class="col-lg-{{ '8' if include_sidebar else '12' }}">
           {%- block content -%}{%- endblock -%}
