@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg855"
+   sodipodi:docname="twitch.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs859" />
+  <sodipodi:namedview
+     id="namedview857"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="16"
+     inkscape:cx="-2.6875"
+     inkscape:cy="15.90625"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="Layer 1"
+     style="display:inline">
+    <rect
+       style="fill:#fffeff;fill-opacity:1;stroke:none;stroke-width:1.36723;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:99"
+       id="rect2868"
+       width="27.010021"
+       height="24.5431"
+       x="3.0174444"
+       y="4.6434064" />
+    <path
+       d="m 13.236864,24.793125 2.720265,-2.711428 h 5.120263 l 3.199997,-3.189601 V 8.6861727 H 8.9166008 V 22.083033 h 4.3202632 z m 5.920262,-12.439178 h 1.920266 v 5.57646 h -1.920266 z m -5.120263,0 h 1.920266 v 5.57646 H 14.036863 Z M 25.337354,0.09375 H 6.5769047 l -6.65138308,0.01172125 c 0,0 -0.03331141,2.43897555 -0.04877741,6.66667355 -0.015466,4.2276982 0,18.6995052 0,18.6995052 l 0.0391253,6.703085 6.66103519,-0.02469 H 25.337354 l 6.798625,0.01496 -0.09847,-6.693355 c -0.03106,-4.235627 0.214671,-14.580931 0,-18.6995052 l 0.08219,-6.67132937 z m 0.860301,19.756027 -5.599994,5.581803 h -4.15946 l -2.721605,2.711428 H 10.836867 V 25.43158 H 5.7166041 V 10.439919 L 7.1571386,6.7721448 H 26.197655 Z"
+       id="path853"
+       style="fill:#430080;fill-opacity:1;stroke-width:1.33785"
+       sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccccccccc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     style="display:inline" />
+</svg>
