@@ -9,13 +9,13 @@
 
   <span class="duel-icons">
     {%- if objs[0].has_archive -%}
-      <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.zip">
+      <a href="{{ archive_url }}/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.zip">
         <img src="/static/img/zip.svg" width="32px" height="32px" alt="ZIP Archive of Songs"/>
       </a>
     {%- endif -%}
 
     {%- if objs[0].has_log -%}
-      <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.log" target="_blank">
+      <a href="{{ archive_url }}/{{ archive_dir }}/{{ objs[0].month_dir }}/{{ objs[0].month_dir }}.log" target="_blank">
         <img src="/static/img/log.svg" width="32px" height="32px" alt="Listening Party Log"/>
       </a>
     {%- endif -%}
@@ -27,7 +27,7 @@
     {%- endif -%}
 	
 	{%- if objs[0].has_lyrics -%}
-      <a href="http://dwellingofduels.net/{{ archive_dir }}/{{ objs[0].month_dir }}/lyrics.txt" target="_blank">
+      <a href="{{ archive_url }}/{{ archive_dir }}/{{ objs[0].month_dir }}/lyrics.txt" target="_blank">
         <img src="/static/img/quote-right-solid.svg" width="32px" height="32px" alt="Lyrics"/>
       </a>
     {%- endif -%}
@@ -40,9 +40,9 @@
 
 {%- if objs[0].has_banner -%}
   {%- if objs[0].banner_gif -%}
-    {%- set banner_url = "http://dwellingofduels.net/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".gif" -%}
+    {%- set banner_url = archive_url + "/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".gif" -%}
   {%- elif objs[0].banner_jpg -%}
-    {%- set banner_url = "http://dwellingofduels.net/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".jpg" -%}
+    {%- set banner_url = archive_url + "/" + archive_dir + "/" + objs[0].month_dir + "/" + objs[0].month_dir + ".jpg" -%}
   {%- endif -%}
 
   <!-- Social Meta Images -->

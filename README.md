@@ -23,6 +23,10 @@ It must be a date of the form `YYYY-MM-DD`. For example: `2016-01-31`.
 - `deadline_time` is the time displayed in the deadline section of the sidebar.
 - `archive_dir` is the name of the local directory that holds the DoD archive
 folder. It defaults to `dodarchive`. You probably don't need to change this.
+- `archive_url` is the url of the webhost where the `archive_dir` directory is 
+hosted. In testing, this will be `localhost`, while in production it will
+probably be something like `http://dwellingofduels.net`. This should
+not have a trailing slash.
 
 The `deadline_*` settings refer to the voting deadline when `voting` is set to
 `on` and the submission deadline when `voting` is set to off.

@@ -349,7 +349,7 @@
           </thead>
           <tbody>
             {%- for obj in objs -%}
-            <tr id = "{{obj.id}}" class="song" data-song='{"src":["http://dwellingofduels.net{{ obj.link|urlencode }}"], "artist":[
+            <tr id = "{{obj.id}}" class="song" data-song='{"src":["{{ archive_url }}{{ obj.link|urlencode }}"], "artist":[
             {%- for artist in obj.artists -%}
               {%- set sep = ', ' -%}
               {%- if loop.last -%}
@@ -358,7 +358,7 @@
               "{{artist|urlencode}}"{{sep}}
             {%- endfor -%}
             ], "title":"{{ obj.title|urlencode }}", "game":["{{ obj.games[0]|urlencode }}"], "duel":"{{obj.duel|urlencode}}"}'>
-            <td><span class="favBtn"><span class="fas fa-s fa-star"></span></span><a target="_blank" class="downloadBtn" href="http://dwellingofduels.net{{obj.link|urlencode}}"><span class="fas fa-s fa-download "></span></a></td>
+            <td><span class="favBtn"><span class="fas fa-s fa-star"></span></span><a target="_blank" class="downloadBtn" href="{{ archive_url }}{{obj.link|urlencode}}"><span class="fas fa-s fa-download "></span></a></td>
             <td>{{ obj.rank }}/{{obj.max_rank}} {{obj.title}}</td>
               <td>
               {%- for artist in obj.artists -%}

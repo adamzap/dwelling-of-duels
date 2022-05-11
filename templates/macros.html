@@ -13,7 +13,7 @@
 {%- endmacro -%}
 
 {%- macro get_song_link(song) -%}
-  <a href="http://dwellingofduels.net{{ song.link | urlencode }}">{{ song.title }}</a>
+  <a href="{{ archive_url }}{{ song.link | urlencode }}">{{ song.title }}</a>
 {%- endmacro -%}
 
 {%- macro get_artist_link(obj, sep="<br />") -%}
@@ -117,5 +117,5 @@
 {%- endmacro -%}
 
 {%- macro get_player_button(song) -%}
-  <img class="play-button" src="/static/img/play.svg" width="16px" height="16px" data-song-url="http://dwellingofduels.net{{ song.link | urlencode }}"/>
+  <img class="play-button" src="/static/img/play.svg" width="16px" height="16px" data-song-url="{{ archive_url }}{{ song.link | urlencode }}"/>
 {%- endmacro -%}
