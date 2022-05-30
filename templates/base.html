@@ -162,7 +162,7 @@
 
     <div class="container">
 
-        {%- if voting -%}
+        {%- if voting and include_voting_header -%}
         <a href="/duels/{{ latest_duel|slugify }}/">
           <div class="listen-and-vote">
               <h2>
@@ -173,7 +173,7 @@
               </p>
           </div>
         </a>
-    {%- endif -%}
+        {%- endif -%}
       <div class="row">
         <div class="col-lg-{{ '8' if include_sidebar else '12' }}">
           {%- block content -%}{%- endblock -%}
