@@ -50,6 +50,7 @@ DEADLINE_TIME = CONFIG['dod_site'].get('deadline_time')
 
 DATA = []
 
+# map of (find, replace)
 DUEL_REPLACEMENTS = [
     ('DoD04-CW', 'DoD04-10'),
     ('DoD05-JO', 'DoD05-07'),
@@ -64,13 +65,14 @@ DUEL_REPLACEMENTS = [
 ]
 
 MONTH_REPLACEMENTS = [
-    ('19-TS-TornadoOfSolos', '19-09-TornadoOfSolos')
+    #('19-TS-TornadoOfSolos', '19-09-TornadoOfSolos')
 ]
 
 # the generator uses parentheses as delimiters, use this to whitelist an artist name from the delimiting
 ARTIST_WHITELIST = [
     'Evil(I)(I)',
-    'Pokérus Project (Live!)'
+    'Pokérus Project (Live!)',
+    'Oded (Dedi) Ben-Isaac'
 ]
 
 CSS_FILES = [
@@ -110,8 +112,8 @@ def build_data():
 
 
 def fix_duel_name(duel):
-    for x, y in DUEL_REPLACEMENTS:
-        duel = duel.replace(x, y)
+    for find, replace in DUEL_REPLACEMENTS:
+        duel = duel.replace(find, replace)
 
     return duel
 
