@@ -150,8 +150,9 @@ def get_month_data(month_dir):
     banner_jpg = (month_dir_part + '.jpg' in month_files)
     banner_gif = (month_dir_part + '.gif' in month_files)
 
-    for f in song_filenames:
-        song_path = os.path.join(month_dir, f)
+    for song_filename in song_filenames:
+        song_path = os.path.join(month_dir, song_filename)
+        song_path_part = os.path.join(month_dir_part, song_filename)
 
         song_data = parse_id3.File(song_path)
 
@@ -162,7 +163,7 @@ def get_month_data(month_dir):
         artist = fix_artist(song_data.artist)
 
         songs.append({
-            'rank': f.split('-')[0].replace('tie', ''),
+            'rank': song_filename.split('-')[0].replace('tie', ''),
             'max_rank': max_rank,
             'artists': artist.split(', '),
             'multiple_artists': len(artist.split(', ')) > 1,
@@ -171,7 +172,7 @@ def get_month_data(month_dir):
             'title': song_data.title,
             'duration': song_data.duration,
             'duel': duel,
-            'link': '/' + song_path.replace('\\', '/'),
+            'link': '/' + song_path_part.replace('\\', '/'),
             'theme': duel.split(': ', 1)[1],
             'year': '20' + duel.split('-')[0],
             'month': month_number,
@@ -225,7 +226,7 @@ def set_template_globals():
     TEMPLATES.globals['voting'] = VOTING
     TEMPLATES.globals['deadline_date'] = get_deadline_date()
     TEMPLATES.globals['deadline_time'] = DEADLINE_TIME
-    TEMPLATES.globals['archive_dir'] = ARCHIVE_DIR
+    # TEMPLATES.globals['archive_dir'] = ARCHIVE_DIR
     TEMPLATES.globals['archive_url'] = ARCHIVE_URL
     TEMPLATES.globals['artist_links'] = parse_artist_links()
     TEMPLATES.globals['banner_artist_links'] = parse_banner_artist_links()

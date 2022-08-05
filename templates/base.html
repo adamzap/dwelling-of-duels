@@ -63,9 +63,9 @@
     <link href="/static/dod.{{ css_hash }}.css" rel="stylesheet">
 
     {%- if include_winners -%}
-      <style type="text/css">
+      <style>
         #twrap:before {
-          background-image: url(https://dwellingofduels-static-site.s3.amazonaws.com/{{ archive_dir }}/{{ winners_banner_month }}/{{ winners_banner_month }}.jpg);
+          background-image: url({{ archive_url }}/{{ winners_banner_month }}/{{ winners_banner_month }}.jpg);
         }
       </style>
     {%- endif -%}
