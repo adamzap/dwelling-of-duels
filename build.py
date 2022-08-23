@@ -101,7 +101,28 @@ JS_FILES = [s.replace('/', os.sep) for s in [
 ]]
 
 def build_data():
+    numberOfFolders = len(os.listdir(ARCHIVE_DIR))
+    currentFolderCount = 0
+    quarterCount = numberOfFolders / 4
+    quarter = False
+    half = False
+    threeQuarters = False
+    full = False
+
     for d in os.listdir(ARCHIVE_DIR):
+        currentFolderCount = currentFolderCount + 1
+        if currentFolderCount > quarterCount and quarter is False:
+            quarter = True
+            print("25%...", end='', flush=True)
+        if currentFolderCount > quarterCount*2 and half is False:
+            half = True
+            print("50%...", end='', flush=True)
+        if currentFolderCount > quarterCount*3 and threeQuarters is False:
+            threeQuarters = True
+            print("75%...", end='', flush=True)
+        if currentFolderCount >= numberOfFolders and full is False:
+            full = True
+            print("100%")
         path = os.path.join(ARCHIVE_DIR, d)
 
         if not os.path.isdir(path):
@@ -272,15 +293,22 @@ def build_site():
 
     os.mkdir(OUT_DIR)
 
+    print("css and js...")
     build_static()
 
+    print("duels...")
     build_pages('duels')
+    print("games...")
     build_pages('games')
+    print("artists...")
     build_pages('artists')
+    print("audio player...")
     build_random()
 
+    print("index...")
     build_index()
 
+    print("misc...")
     write_page('rules', {})
     write_page('faq', {})
     write_page('voting', {})
@@ -397,7 +425,9 @@ def combine_files(files, static_prefix):
 
 
 def build():
+    print("reading metadata from MP3 files...")
     build_data()
+    print("generating static site pages...")
     build_site()
 
 
