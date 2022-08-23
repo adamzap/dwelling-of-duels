@@ -47,6 +47,7 @@ VOTING = CONFIG['dod_site'].getboolean('voting')
 ARCHIVE_DIR = CONFIG['dod_site'].get('archive_dir')
 ARCHIVE_URL = CONFIG['dod_site'].get('archive_url')
 DEADLINE_TIME = CONFIG['dod_site'].get('deadline_time')
+LATEST_MONTH_OVERRIDE = CONFIG['dod_site'].get('latest_month_override')
 
 DATA = []
 
@@ -234,7 +235,11 @@ def set_template_globals():
     #sort DATA by month name so we always get the actual latest month
     DATA.sort(key=lambda x: x['month_dir'])
 
-    latest_month = DATA[-1]['month_dir']
+    if LATEST_MONTH_OVERRIDE:
+        latest_month = LATEST_MONTH_OVERRIDE
+        print("yeah latest is " + LATEST_MONTH_OVERRIDE)
+    else:
+        latest_month = DATA[-1]['month_dir']
 
     if VOTING:
         _d = lambda d: d['month_dir']
