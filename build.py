@@ -75,7 +75,8 @@ MONTH_REPLACEMENTS = [
 ARTIST_WHITELIST = [
     'Evil(I)(I)',
     'Pokérus Project (Live!)',
-    'Oded (Dedi) Ben-Isaac'
+    'Oded (Dedi) Ben-Isaac',
+    'Misty (the cat)'
 ]
 
 CSS_FILES = [
@@ -150,8 +151,11 @@ def fix_month_dir(month_dir):
 
 
 def fix_artist(artist):
-    if artist not in ARTIST_WHITELIST:
-        artist = artist.replace(' (', ', ').replace(')', '')
+    for whitelist_val in ARTIST_WHITELIST:
+        if whitelist_val in artist:
+            return artist
+
+    artist = artist.replace(' (', ', ').replace(')', '')
 
     return artist
 
