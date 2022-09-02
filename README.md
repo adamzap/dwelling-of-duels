@@ -27,6 +27,13 @@ folder. It defaults to `dodarchive`. You probably don't need to change this.
 hosted. In testing, this will be `localhost`, while in production it will
 probably be something like `http://dwellingofduels.net`. This should
 not have a trailing slash.
+- `winners_month_override` allows you to force a specific month to appear as the 
+winners block at the top of the page. Only needed if you run two duels at the 
+same time, like we did in Aug 2022 for Free + Dreamcast duels.
+- `latest_month_override` changes which duel is considered 'in voting'. This is
+the duel that gets sliders on its page, as well as being redirected to from the
+`/voting` route and other 'vote now' buttons. Only noticeable if `voting` is set 
+to `on`. 
 
 The `deadline_*` settings refer to the voting deadline when `voting` is set to
 `on` and the submission deadline when `voting` is set to off.
@@ -79,5 +86,4 @@ a duel.
 
 [Dwelling of Duels]: http://dwellingofduels.net/
 [Python 3]: https://www.python.org/
-[the latest release]: https://github.com/adamzap/dwelling-of-duels/releases/latest
 [Markdown]: https://daringfireball.net/projects/markdown/syntax

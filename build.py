@@ -48,6 +48,7 @@ ARCHIVE_DIR = CONFIG['dod_site'].get('archive_dir')
 ARCHIVE_URL = CONFIG['dod_site'].get('archive_url')
 DEADLINE_TIME = CONFIG['dod_site'].get('deadline_time')
 LATEST_MONTH_OVERRIDE = CONFIG['dod_site'].get('latest_month_override')
+WINNERS_MONTH_OVERRIDE = CONFIG['dod_site'].get('winners_month_override')
 
 DATA = []
 
@@ -258,9 +259,11 @@ def set_template_globals():
 
     if LATEST_MONTH_OVERRIDE:
         latest_month = LATEST_MONTH_OVERRIDE
-        print("yeah latest is " + LATEST_MONTH_OVERRIDE)
+        print("latest_month_override: " + LATEST_MONTH_OVERRIDE)
+        TEMPLATES.globals['latest_duel'] = [s for s in DATA if s['month_dir'] == latest_month][0]['duel']
     else:
         latest_month = DATA[-1]['month_dir']
+        TEMPLATES.globals['latest_duel'] = DATA[-1]['duel']
 
     if VOTING:
         _d = lambda d: d['month_dir']
@@ -269,10 +272,13 @@ def set_template_globals():
     else:
         winners_month = latest_month
 
+    if WINNERS_MONTH_OVERRIDE:
+        winners_month = WINNERS_MONTH_OVERRIDE
+        print("winners_month_override: " + WINNERS_MONTH_OVERRIDE)
+
     winners = [s for s in DATA if s['month_dir'] == winners_month]
     winners.sort(key=lambda s: s['rank'])
 
-    TEMPLATES.globals['latest_duel'] = DATA[-1]['duel']
     TEMPLATES.globals['latest_month'] = latest_month
     TEMPLATES.globals['latest_winners'] = winners
 
