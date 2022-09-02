@@ -3,6 +3,7 @@
 import os
 import re
 import sys
+import traceback
 import jinja2
 import shutil
 import hashlib
@@ -174,43 +175,48 @@ def get_month_data(month_dir):
     banner_gif = (month_dir_part + '.gif' in month_files)
 
     for song_filename in song_filenames:
-        song_path = os.path.join(month_dir, song_filename)
-        song_path_part = os.path.join(month_dir_part, song_filename)
 
-        song_data = parse_id3.File(song_path)
+        try:
+            song_path = os.path.join(month_dir, song_filename)
+            song_path_part = os.path.join(month_dir_part, song_filename)
 
-        duel = fix_duel_name(song_data.album).replace('DoD', '', 1)
+            song_data = parse_id3.File(song_path)
 
-        month_number = duel.split('-')[1].split(':')[0]
+            duel = fix_duel_name(song_data.album).replace('DoD', '', 1)
 
-        artist = fix_artist(song_data.artist)
+            month_number = duel.split('-')[1].split(':')[0]
 
-        songs.append({
-            'rank': song_filename.split('-')[0].replace('tie', ''),
-            'max_rank': max_rank,
-            'artists': artist.split(', '),
-            'multiple_artists': len(artist.split(', ')) > 1,
-            'games': song_data.genre.split(', '),
-            'multiple_games': len(song_data.genre.split(', ')) > 1,
-            'title': song_data.title,
-            'duration': song_data.duration,
-            'duel': duel,
-            'link': '/' + song_path_part.replace('\\', '/'),
-            'theme': duel.split(': ', 1)[1],
-            'year': '20' + duel.split('-')[0],
-            'month': month_number,
-            'month_name': calendar.month_name[int(month_number)],
-            'month_dir': month_dir_replaced,
-            'has_log': month_dir_part + '.log' in month_files,
-            'has_banner': banner_jpg or banner_gif,
-            'has_lyrics': 'lyrics.txt' in month_files,
-            'banner_jpg': banner_jpg,
-            'banner_gif': banner_gif,
-            'has_archive': month_dir_part + '.zip' in month_files,
-            'youtube_link': youtube_link,
-            'id': hashlib.md5((song_data.title+song_data.genre.split(', ')[0]+duel).encode()).hexdigest()[:10]
+            artist = fix_artist(song_data.artist)
 
-        })
+            songs.append({
+                'rank': song_filename.split('-')[0].replace('tie', ''),
+                'max_rank': max_rank,
+                'artists': artist.split(', '),
+                'multiple_artists': len(artist.split(', ')) > 1,
+                'games': song_data.genre.split(', '),
+                'multiple_games': len(song_data.genre.split(', ')) > 1,
+                'title': song_data.title,
+                'duration': song_data.duration,
+                'duel': duel,
+                'link': '/' + song_path_part.replace('\\', '/'),
+                'theme': duel.split(': ', 1)[1],
+                'year': '20' + duel.split('-')[0],
+                'month': month_number,
+                'month_name': calendar.month_name[int(month_number)],
+                'month_dir': month_dir_replaced,
+                'has_log': month_dir_part + '.log' in month_files,
+                'has_banner': banner_jpg or banner_gif,
+                'has_lyrics': 'lyrics.txt' in month_files,
+                'banner_jpg': banner_jpg,
+                'banner_gif': banner_gif,
+                'has_archive': month_dir_part + '.zip' in month_files,
+                'youtube_link': youtube_link,
+                'id': hashlib.md5((song_data.title+song_data.genre.split(', ')[0]+duel).encode()).hexdigest()[:10]
+            })
+        except BaseException as err:
+            print("error handling {0}: {1}".format(song_filename, err))
+            traceback.print_exc()
+            quit()
 
     return songs
 
