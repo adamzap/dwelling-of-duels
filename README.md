@@ -52,6 +52,9 @@ To build for deploying to a web server:
 To build for local testing:
 
 `python build.py test`
+or
+Double click on `localserver.bat` to build a test site and run a python server.
+You will then be able to visit `localhost:8000` in your browser and browse the site.
 
 In either of the above scenarios, you will find a `deploy` directory containing
 the newly-built site.
@@ -59,8 +62,8 @@ the newly-built site.
 ## Front Page Content
 
 Edit `front-page.md` to add content to the front page of the site under the
-banner image. An example has been provided for you as `site_example.cfg` and
-must be renamed before use.This file will be parsed as [Markdown] when you run
+banner image. An example has been provided for you as `front-page_example.cfg` and
+must be renamed before use. This file will be parsed as [Markdown] when you run
 `build.py`.
 
 ## DoD Lifecycle Example
