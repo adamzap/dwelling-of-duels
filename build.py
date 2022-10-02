@@ -328,6 +328,7 @@ def build_site():
     write_page('rules', {})
     write_page('faq', {})
     write_page('voting', {})
+    write_page('404', {}, '', '404.html')
 
 
 def build_pages(kind):
@@ -376,16 +377,19 @@ def build_index():
     write_page('index', {'the_content': content}, '')
 
 
-def write_page(template_name, context, path=None):
+def write_page(template_name, context, path=None, name=None):
     if path is None:
         path = template_name
+
+    if name is None:
+        name = 'index.html'
 
     dir_path = os.path.join(OUT_DIR, path)
 
     if not os.path.isdir(dir_path):
         os.mkdir(dir_path)
 
-    out_path = os.path.join(dir_path, 'index.html')
+    out_path = os.path.join(dir_path, name)
 
     template = TEMPLATES.get_template(template_name + '.html')
 
