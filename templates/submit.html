@@ -1,9 +1,22 @@
-<!DOCTYPE html>
-<head>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
-<body>
+{%- extends "base.html" -%}
+
+{%- set include_winners = true -%}
+{%- set include_sidebar = true -%}
+{%- set include_voting_header = true -%}
+
+{%- block title -%}Submit{%- endblock -%}
+
+{%- block content -%}
+<style>
+    input {
+        background: none;
+    }
+    button {
+        color: black;
+    }
+</style>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     function onSubmit(token) {
         let theWholeForm = document.getElementById("submit-form");
@@ -31,7 +44,8 @@
     }
 </script>
 
-Hi
+Submit a song!
+
 <form name="submit-form" id="submit-form" action="http://localhost:8080/" enctype="multipart/form-data" method="post" target="_blank">
     <label for="submitterEmail">Your email address</label><input name="submitterEmail" id="submitterEmail" type="email"><br>
     <label for="songTitle">Arrangement Title</label><input name="songTitle" id="songTitle" type="text"><br>
@@ -53,5 +67,4 @@ Hi
 <div>
     <p id="successBox"></p>
 </div>
-</body>
-</html>
+{%- endblock -%}
