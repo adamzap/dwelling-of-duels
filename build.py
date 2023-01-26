@@ -328,6 +328,7 @@ def build_site():
     write_page('rules', {})
     write_page('faq', {})
     write_page('voting', {})
+    write_page('submit', {})
     write_page('404', {}, '', '404.html')
 
 

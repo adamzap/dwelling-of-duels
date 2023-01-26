@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<script>
+    function onSubmit(token) {
+        let theWholeForm = document.getElementById("submit-form");
+        let submitButton = document.getElementById("submitButton");
+        let bodyFormData = new FormData(theWholeForm);
+        let successBox = document.getElementById("successBox");
+        successBox.innerText = "Submitting...";
+        axios({
+            method: "post",
+            url: "https://5fn6tt1ii8.execute-api.us-east-1.amazonaws.com/dev/submit",
+            data: bodyFormData,
+            headers: { "Content-Type": `multipart/form-data; boundary=${bodyFormData._boundary}` },
+        })
+            .then(function (response) {
+                //handle success
+                successBox.innerText = "Success!";
+                submitButton.disabled = true;
+                console.log("success", response);
+            })
+            .catch(function (response) {
+                //handle error
+                successBox.innerText = `Error :(\n${response.response.data}`;
+                console.log("error", response);
+            });
+    }
+</script>
+
+Hi
+<form name="submit-form" id="submit-form" action="http://localhost:8080/" enctype="multipart/form-data" method="post" target="_blank">
+    <label for="submitterEmail">Your email address</label><input name="submitterEmail" id="submitterEmail" type="email"><br>
+    <label for="songTitle">Arrangement Title</label><input name="songTitle" id="songTitle" type="text"><br>
+    <label for="artistNames">Artist names (separate with comma)</label><input name="artistNames" id="artistNames" type="text"><br>
+    <label for="gameNames">Game names (separate with comma)</label><input name="gameNames" id="gameNames" type="text"><br>
+    <label for="comments">Comments (optional)</label><input name="comments" id="comments" type="text"><br>
+    <label>Is it a Main or an Alt?</label><br>
+
+        <input id="isAltNo" name="isAlt" value="false" type="radio"><label for="IsAltNo">Main</label><br>
+        <input id="isAltYes" name="isAlt" value="true" type="radio"><label for="IsAltNo">Alt</label><br>
+    <label for="songFile">Songfile</label><input name="songFile" id="songFile" type="file"><br>
+    <button class="g-recaptcha"
+            data-sitekey="6Lc64iMkAAAAAOoU2SRnoXmHdqb5KvTLU7xONWGJ"
+            data-callback='onSubmit'
+            data-action='submitSong'
+            id="submitButton">Submit</button>
+
+</form>
+<div>
+    <p id="successBox"></p>
+</div>
+</body>
+</html>
