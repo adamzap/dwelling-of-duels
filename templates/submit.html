@@ -80,6 +80,7 @@
                 gameNames: bodyFormData.get("gameNames"),
                 isAlt: bodyFormData.get("isAlt"),
                 filename: bodyFormData.get("songFile").name,
+                comments: bodyFormData.get("comments"),
                 "g-recaptcha-response": token,
             },
             headers: { "Content-Type": `application/json` },
