@@ -1,8 +1,8 @@
 {%- extends "base.html" -%}
 
-{%- set include_winners = true -%}
-{%- set include_sidebar = true -%}
-{%- set include_voting_header = true -%}
+{%- set include_winners = false -%}
+{%- set include_sidebar = false -%}
+{%- set include_voting_header = false -%}
 
 {%- block title -%}Submit{%- endblock -%}
 
@@ -10,9 +10,19 @@
 <style>
     input {
         background: none;
+        border: 2px solid darkred;
+        border-radius: 5px;
+        padding: 0px 5px;
+    }
+    textarea {
+        background: none;
+        border: 2px solid darkred;
+        border-radius: 5px;
+        padding: 0px 5px;
     }
     button {
         color: black;
+        padding: 2px 7px;
     }
 </style>
 <script src="https://www.google.com/recaptcha/api.js"></script>
@@ -23,40 +33,99 @@
         let submitButton = document.getElementById("submitButton");
         let bodyFormData = new FormData(theWholeForm);
         let successBox = document.getElementById("successBox");
+
+        //ensure all fields filled in
+        console.log(bodyFormData)
+        if (bodyFormData.get("submitterEmail") === "" ||
+                bodyFormData.get("submitterEmailConfirm") === "" ||
+                bodyFormData.get("songTitle") === "" ||
+                bodyFormData.get("artistNames") === "" ||
+                bodyFormData.get("gameNames") === "" ||
+                bodyFormData.get("isAlt") === null ||
+                bodyFormData.get("songFile").size === 0){
+            successBox.innerText = "Must fill in all required fields!";
+            return;
+        }
+
+        if (bodyFormData.get("submitterEmail") !== bodyFormData.get("submitterEmailConfirm")){
+            successBox.innerText = "Email fields mismatch!";
+            return;
+        }
+
+        if (!bodyFormData.get("songFile").name.toLowerCase().endsWith(".mp3")){
+            successBox.innerText = "File must be an MP3";
+            return;
+        }
+
         successBox.innerText = "Submitting...";
         axios({
             method: "post",
             url: "https://5fn6tt1ii8.execute-api.us-east-1.amazonaws.com/dev/submit",
-            data: bodyFormData,
-            headers: { "Content-Type": `multipart/form-data; boundary=${bodyFormData._boundary}` },
+            //url: "http://localhost:8000/",
+            data: {
+                submitterEmail: bodyFormData.get("submitterEmail"),
+                songTitle: bodyFormData.get("songTitle"),
+                artistNames: bodyFormData.get("artistNames"),
+                gameNames: bodyFormData.get("gameNames"),
+                isAlt: bodyFormData.get("isAlt"),
+                filename: bodyFormData.get("songFile").name,
+                "g-recaptcha-response": token,
+            },
+            headers: { "Content-Type": `application/json` },
         })
             .then(function (response) {
-                //handle success
-                successBox.innerText = "Success!";
-                submitButton.disabled = true;
-                console.log("success", response);
+                if (!response.data.success) {
+                    throw response;
+                }
+
+                successBox.innerText = "Uploading file...";
+                axios({
+                    method: "put",
+                    url: response.data.fileURL,
+                    data: bodyFormData.get("songFile"),
+                }).then(function(response) {
+                    //handle success
+                    successBox.innerText = "Success! Please reload the page to submit another song";
+                    submitButton.disabled = true;
+                    console.log("success", response);
+                }).catch(function (response) {
+                    //handle error
+                    successBox.innerText = `Error :(\n${response.data.error}`;
+                    console.log("error", response);
+                });
+
             })
-            .catch(function (response) {
+            .catch(function (error) {
                 //handle error
-                successBox.innerText = `Error :(\n${response.response.data}`;
-                console.log("error", response);
+                successBox.innerText = `Error :(\n${error}`;
+                console.log("error", error);
             });
     }
 </script>
 
-Submit a song!
+    <h1>Submit a song!</h1>
+    <p>Check the following before submitting your entry:</p>
+    <ul>
+        <li>Your song fits the current month's theme</li>
+        <li>Your song is in MP3 format (recommend 320 kbps VBR/CBR)</li>
+        <li>Your song is at least 2 minutes in length (alt entries may be shorter)</li>
+        <li>You followed the rules about <a href="/faq/#can-i-submit-more-than-one-song-">being on more than one song</a></li>
+        <li>Your <a href="/games">game</a> and <a href="/artists">artist</a> names match the formatting found elsewhere on the site (for unlisted games, provide a title the same way Wikipedia would list it)</li>
+    </ul>
+    <br>
 
 <form name="submit-form" id="submit-form" action="http://localhost:8080/" enctype="multipart/form-data" method="post" target="_blank">
     <label for="submitterEmail">Your email address</label><input name="submitterEmail" id="submitterEmail" type="email"><br>
+    <label for="submitterEmailConfirm">Confirm email address</label><input name="submitterEmailConfirm" id="submitterEmailConfirm" type="email"><br>
     <label for="songTitle">Arrangement Title</label><input name="songTitle" id="songTitle" type="text"><br>
     <label for="artistNames">Artist names (separate with comma)</label><input name="artistNames" id="artistNames" type="text"><br>
     <label for="gameNames">Game names (separate with comma)</label><input name="gameNames" id="gameNames" type="text"><br>
-    <label for="comments">Comments (optional)</label><input name="comments" id="comments" type="text"><br>
+    <label for="comments">Comments (optional)</label><textarea name="comments" id="comments" type="text"></textarea><br>
     <label>Is it a Main or an Alt?</label><br>
 
         <input id="isAltNo" name="isAlt" value="false" type="radio"><label for="IsAltNo">Main</label><br>
         <input id="isAltYes" name="isAlt" value="true" type="radio"><label for="IsAltNo">Alt</label><br>
-    <label for="songFile">Songfile</label><input name="songFile" id="songFile" type="file"><br>
+    <label for="songFile">Songfile</label><input name="songFile" id="songFile" type="file" accept=".mp3, audio/mpeg"><br>
     <button class="g-recaptcha"
             data-sitekey="6Lc64iMkAAAAAOoU2SRnoXmHdqb5KvTLU7xONWGJ"
             data-callback='onSubmit'
