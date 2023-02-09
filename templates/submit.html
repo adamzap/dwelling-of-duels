@@ -24,6 +24,17 @@
         color: black;
         padding: 2px 7px;
     }
+    form {
+        display: grid;
+        max-width: 579px;
+        grid-template-columns: 1fr 1fr;
+    }
+    input[type='radio'] {
+        transform: scale(1.3);
+    }
+    #someRules {
+        max-width: 579px;
+    }
 </style>
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -105,7 +116,7 @@
 
     <h1>Submit a song!</h1>
     <p>Check the following before submitting your entry:</p>
-    <ul>
+    <ul id="someRules">
         <li>Your song fits the current month's theme</li>
         <li>Your song is in MP3 format (recommend 320 kbps VBR/CBR)</li>
         <li>Your song is at least 2 minutes in length (alt entries may be shorter)</li>
@@ -115,17 +126,18 @@
     <br>
 
 <form name="submit-form" id="submit-form" action="http://localhost:8080/" enctype="multipart/form-data" method="post" target="_blank">
-    <label for="submitterEmail">Your email address</label><input name="submitterEmail" id="submitterEmail" type="email"><br>
-    <label for="submitterEmailConfirm">Confirm email address</label><input name="submitterEmailConfirm" id="submitterEmailConfirm" type="email"><br>
-    <label for="songTitle">Arrangement Title</label><input name="songTitle" id="songTitle" type="text"><br>
-    <label for="artistNames">Artist names (separate with comma)</label><input name="artistNames" id="artistNames" type="text"><br>
-    <label for="gameNames">Game names (separate with comma)</label><input name="gameNames" id="gameNames" type="text"><br>
-    <label for="comments">Comments (optional)</label><textarea name="comments" id="comments" type="text"></textarea><br>
-    <label>Is it a Main or an Alt?</label><br>
+    <label for="submitterEmail">Your email address</label><input name="submitterEmail" id="submitterEmail" type="email">
+    <label for="submitterEmailConfirm">Confirm email address</label><input name="submitterEmailConfirm" id="submitterEmailConfirm" type="email">
+    <label for="songTitle">Arrangement Title</label><input name="songTitle" id="songTitle" type="text">
+    <label for="artistNames">Artist names (separate with comma)</label><input name="artistNames" id="artistNames" type="text">
+    <label for="gameNames">Game names (separate with comma)</label><input name="gameNames" id="gameNames" type="text">
+    <label for="comments">Comments (optional)</label><textarea name="comments" id="comments" type="text"></textarea>
+    <label>Is it a Main or an Alt submission?</label>
 
-        <input id="isAltNo" name="isAlt" value="false" type="radio"><label for="IsAltNo">Main</label><br>
-        <input id="isAltYes" name="isAlt" value="true" type="radio"><label for="IsAltNo">Alt</label><br>
-    <label for="songFile">Songfile</label><input name="songFile" id="songFile" type="file" accept=".mp3, audio/mpeg"><br>
+    <div><input id="isAltNo" name="isAlt" value="false" type="radio"><label for="IsAltNo">Main</label></div>
+    <div></div>
+    <div><input id="isAltYes" name="isAlt" value="true" type="radio"><label for="IsAltYes">Alt</label></div>
+    <label for="songFile">Songfile</label><input name="songFile" id="songFile" type="file" accept=".mp3, audio/mpeg">
     <button class="g-recaptcha"
             data-sitekey="6Lc64iMkAAAAAOoU2SRnoXmHdqb5KvTLU7xONWGJ"
             data-callback='onSubmit'
