@@ -36,6 +36,10 @@
     #someRules {
         max-width: 579px;
     }
+    progress {
+        width: 100%;
+        max-width: 579px;
+    }
 </style>
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -45,6 +49,7 @@
         let submitButton = document.getElementById("submitButton");
         let bodyFormData = new FormData(theWholeForm);
         let successBox = document.getElementById("successBox");
+        let progressBar = document.getElementById("progressBar");
 
         //ensure all fields filled in
         console.log(bodyFormData)
@@ -92,10 +97,16 @@
                 }
 
                 successBox.innerText = "Uploading file...";
+                progressBar.hidden = false;
                 axios({
                     method: "put",
                     url: response.data.fileURL,
                     data: bodyFormData.get("songFile"),
+                    onUploadProgress: (progressEvent) => {
+                       console.log(progressEvent.loaded + ' ' + progressEvent.total);
+                       progressBar.value = progressEvent.loaded / progressEvent.total;
+                       //this.updateProgressBarValue(progressEvent);
+                }
                 }).then(function(response) {
                     //handle success
                     successBox.innerText = "Success! Please reload the page to submit another song";
@@ -127,7 +138,7 @@
     </ul>
     <br>
 
-<form name="submit-form" id="submit-form" action="http://localhost:8080/" enctype="multipart/form-data" method="post" target="_blank">
+<form name="submit-form" id="submit-form" enctype="multipart/form-data">
     <label for="submitterEmail">Your email address</label><input name="submitterEmail" id="submitterEmail" type="email">
     <label for="submitterEmailConfirm">Confirm email address</label><input name="submitterEmailConfirm" id="submitterEmailConfirm" type="email">
     <label for="songTitle">Arrangement Title</label><input name="songTitle" id="songTitle" type="text">
@@ -149,5 +160,7 @@
 </form>
 <div>
     <p id="successBox"></p>
+    <progress id="progressBar" hidden=true></progress>
 </div>
+
 {%- endblock -%}
