@@ -16,31 +16,31 @@ const VOTING_LABELS = [
 // is_my_song: bool
 // returns string
 function format_vote (song, vote, is_my_song) {
-  var out = song + ' / ';
+  const out = song + ' / ';
 
   if (is_my_song) {
     return out + 'my song';
   }
 
-  var hundreds = Math.round(vote / 100);
-  var offset = '+' + ((vote - (hundreds * 100)) / 100).toFixed(2);
-  var label = VOTING_LABELS[hundreds].toLowerCase();
+  const hundreds = Math.round(vote / 100);
+  const offset = '+' + ((vote - (hundreds * 100)) / 100).toFixed(2);
+  const label = VOTING_LABELS[hundreds].toLowerCase();
 
   return out + label + ' ' + offset.replace('+-', '-');
 }
 
 // monthDateAndTheme: string
 function update_votes (monthDateAndTheme) {
-  var votes = '';
+  let votes = '';
 
   $('.voting-slider').each(function (i) {
-    var $el = $(this);
+    const $el = $(this);
 
-    var song = $el.data('song');
-    var vote = $el.data('ionRangeSlider').result.from;
+    const song = $el.data('song');
+    const vote = $el.data('ionRangeSlider').result.from;
 
-    var $checkbox = $('input[data-id="' + $el.data('id') + '"]');
-    var is_my_song = $checkbox.prop('checked');
+    const $checkbox = $('input[data-id="' + $el.data('id') + '"]');
+    const is_my_song = $checkbox.prop('checked');
 
     votes += format_vote(song, vote, is_my_song) + '\n';
     update_local_storage_vote(monthDateAndTheme, i, vote)
@@ -123,9 +123,9 @@ function make_voting (monthDateAndTheme) {
 
 
   $('input[type="checkbox"]').change(function (e) {
-    var $el = $(e.target);
-    var $sliders = $('.irs-with-grid');
-    var $slider = $sliders.eq($el.data('id'));
+    const $el = $(e.target);
+    const $sliders = $('.irs-with-grid');
+    const $slider = $sliders.eq($el.data('id'));
 
     update_votes();
 
