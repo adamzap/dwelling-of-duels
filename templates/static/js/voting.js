@@ -1,4 +1,4 @@
-var VOTING_LABELS = [
+const VOTING_LABELS = [
   'Terrible',
   'Bad',
   'Below Average',
@@ -8,6 +8,13 @@ var VOTING_LABELS = [
   'Incredible'
 ];
 
+//storedVote is an array of numbers, 0 index is the first song vote value in the list.
+
+// format_vote
+// song: string
+// vote: Number
+// is_my_song: bool
+// returns string
 function format_vote (song, vote, is_my_song) {
   var out = song + ' / ';
 
@@ -22,10 +29,11 @@ function format_vote (song, vote, is_my_song) {
   return out + label + ' ' + offset.replace('+-', '-');
 }
 
-function update_votes () {
+// monthDateAndTheme: string
+function update_votes (monthDateAndTheme) {
   var votes = '';
 
-  $('.voting-slider').each(function () {
+  $('.voting-slider').each(function (i) {
     var $el = $(this);
 
     var song = $el.data('song');
@@ -35,62 +43,89 @@ function update_votes () {
     var is_my_song = $checkbox.prop('checked');
 
     votes += format_vote(song, vote, is_my_song) + '\n';
+    update_local_storage_vote(monthDateAndTheme, i, vote)
   });
 
   $('#voting-result').val(votes.trim());
 }
 
-function update_empty_votes () {
-  var votes = '';
+// initialize_default_votes initializes all votes to the default value of 300 and stores in localStorage.
+// monthDateAndTheme: string // used as key for storing votes in local storage, should be like '20-01-brevity'
+function initialize_default_votes (monthDateAndTheme) {
+  let arrayOfVotes = [];
 
   $('.voting-slider').each(function () {
-    votes += format_vote($(this).data('song'), 300) + '\n';
+    arrayOfVotes.push(300);
   });
 
-  $('#voting-result').val(votes.trim());
+  localStorage.setItem(monthDateAndTheme, JSON.stringify(arrayOfVotes))
 }
 
-function make_voting () {
-  update_empty_votes();
+// load_stored_votes
+// monthDateAndTheme: string // used as key for retrieving from localstorage
+// returns []int
+function load_stored_votes(monthDateAndTheme) {
+  let storedVotes = localStorage.getItem(monthDateAndTheme);
+  if (storedVotes === null) {
+    initialize_default_votes(monthDateAndTheme);
+    storedVotes = localStorage.getItem(monthDateAndTheme);
+  }
+  return JSON.parse(storedVotes);
+}
 
-  $('.voting-slider').ionRangeSlider({
-    min: 0,
-    max: 600,
-    from: 300,
-    grid: true,
-    grid_snap: true,
-    hide_min_max: true,
-    hide_from_to: true,
+// monthDateAndTheme: string
+// index: int //index of song to update vote for
+// vote: int // the vote amount/slider amount the vote has now
+function update_local_storage_vote(monthDateAndTheme, index, vote) {
+  let storedVotes = JSON.parse(localStorage.getItem(monthDateAndTheme));
+  storedVotes[index] = vote;
+  localStorage.setItem(monthDateAndTheme, JSON.stringify(storedVotes));
+}
 
-    prettify: function (num) {
-      return num / 100;
-    },
+// make_voting
+// monthDateAndTheme: string // used as key for storing votes in local storage, should be like '20-01-brevity'
+function make_voting (monthDateAndTheme) {
+  let arrayOfStoredVotes = load_stored_votes(monthDateAndTheme);
 
-    prettify_labels: function (num) {
-      return num % 100 === 0 ? VOTING_LABELS[num / 100] : num;
-    },
+  $('.voting-slider').each(function(i, slider) {
+    console.debug(slider)
+    $(slider).ionRangeSlider({
+      min: 0,
+      max: 600,
+      from: arrayOfStoredVotes[i],
+      grid: true,
+      grid_snap: true,
+      hide_min_max: true,
+      hide_from_to: true,
 
-    grid_line_visible: function (num) {
-      return num % 100 === 0;
-    },
+      prettify: function (num) {
+        return num / 100;
+      },
 
-    additional_grid_line_class: function (num) {
-      return 'small';
-    },
+      prettify_labels: function (num) {
+        return num % 100 === 0 ? VOTING_LABELS[num / 100] : num;
+      },
 
-    onFinish: function (data) {
-      update_votes();
-    }
-  });
+      grid_line_visible: function (num) {
+        return num % 100 === 0;
+      },
+
+      additional_grid_line_class: function (num) {
+        return 'small';
+      },
+
+      onFinish: function (data) {
+        update_votes(monthDateAndTheme);
+      }
+    });
+  })
+
+
 
   $('input[type="checkbox"]').change(function (e) {
     var $el = $(e.target);
     var $sliders = $('.irs-with-grid');
     var $slider = $sliders.eq($el.data('id'));
-
-    // $('input[type="checkbox"]').not($el).prop('checked', false);
-
-    // $sliders.not($slider).removeClass('irs-disabled');
 
     update_votes();
 

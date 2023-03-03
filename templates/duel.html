@@ -152,5 +152,5 @@
 
 {%- block extra_js -%}
   make_player();
-  make_voting();
+  make_voting("{{ objs[0].month_dir }}");
 {%- endblock -%}
