@@ -132,3 +132,49 @@ function make_voting (monthDateAndTheme) {
     $slider[$el.prop('checked') ? 'addClass' : 'removeClass']('irs-disabled');
   });
 }
+
+
+// send_votes will POST the votes to the vote receiving endpoint
+function send_votes(token) {
+        let theWholeForm = document.getElementById("submit-form");
+        let submitButton = document.getElementById("submitButton");
+        let bodyFormData = new FormData(theWholeForm);
+        let votesTextArea = document.getElementById('voting-result');
+        let successBox = document.getElementById("successBox");
+
+        submitButton.disabled = true;
+
+        //ensure all fields filled in
+        console.log(bodyFormData)
+        if (bodyFormData.get("submitterEmail") === "" ||
+                bodyFormData.get("submitterEmailConfirm") === ""){
+            successBox.innerText = "Must fill in all required fields!";
+            return;
+        }
+
+        if (bodyFormData.get("submitterEmail") !== bodyFormData.get("submitterEmailConfirm")){
+            successBox.innerText = "Email fields mismatch!";
+            return;
+        }
+
+        successBox.innerText = "Submitting votes...";
+        axios({
+            method: "post",
+            url: "https://5fn6tt1ii8.execute-api.us-east-1.amazonaws.com/dev/vote",
+            //url: "http://localhost:8000/",
+            data: {
+                submitterEmail: bodyFormData.get("submitterEmail"),
+                votes: votesTextArea.value,
+                "g-recaptcha-response": token,
+            },
+            headers: { "Content-Type": `application/json` },
+        })
+        .then(function () {
+            successBox.innerText = "Votes submitted!";
+        })
+        .catch(function (error) {
+            //handle error
+            successBox.innerText = `Error :(\n${error}`;
+            console.log("error", error);
+        });
+    }
