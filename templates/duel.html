@@ -4,6 +4,38 @@
 
 {%- block content -%}
 
+    <style>
+    input {
+        background: none;
+        border: 2px solid darkred;
+        border-radius: 5px;
+        padding: 0px 5px;
+    }
+    textarea {
+        border: 2px solid darkred;
+        border-radius: 5px;
+        padding: 0px 5px;
+        color: white;
+
+    }
+    button {
+        color: black;
+        padding: 2px 7px;
+    }
+    form {
+        display: grid;
+        max-width: 579px;
+        grid-template-columns: 1fr 1fr;
+        grid-row-gap: 5px;
+    }
+    input[type='radio'] {
+        transform: scale(1.3);
+    }
+    progress {
+        width: 100%;
+        max-width: 579px;
+    }
+</style>
 <h1 class="ctitle">
   {{ prettify_duel(objs[0]) }}
 
@@ -91,6 +123,9 @@
 {%- endif -%}
 
 {%- if voting and objs[0].month_dir == latest_month -%}
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
   {%- set main_entries = objs|rejectattr("rank", "equalto", "ZZ")|list -%}
   {%- set alt_entries = objs|selectattr("rank", "equalto", "ZZ")|list -%}
 
@@ -128,7 +163,21 @@
 
   <textarea id="voting-result" rows="{{ main_entries|length }}"></textarea>
 
-  <p>Copy the text above and email it to <a href="mailto:dodsongs@gmail.com">dodsongs@gmail.com</a>
+  <form name="submit-form" id="submit-form" enctype="multipart/form-data">
+    <label for="submitterEmail">Your email address</label><input name="submitterEmail" id="submitterEmail" type="email">
+    <label for="submitterEmailConfirm">Confirm email address</label><input name="submitterEmailConfirm" id="submitterEmailConfirm" type="email">
+    <div></div>
+    <button class="g-recaptcha"
+            data-sitekey="6Lc64iMkAAAAAOoU2SRnoXmHdqb5KvTLU7xONWGJ"
+            data-callback='send_votes'
+            data-action='sendVotes'
+            id="submitButton">Submit your votes</button>
+
+  </form>
+
+    <div>
+    <p id="successBox"></p>
+    </div>
 
   <br />
   <br />
