@@ -87,6 +87,7 @@
                 isAlt: bodyFormData.get("isAlt"),
                 filename: bodyFormData.get("songFile").name,
                 comments: bodyFormData.get("comments"),
+                lyrics: bodyFormData.get("lyrics"),
                 "g-recaptcha-response": token,
             },
             headers: { "Content-Type": `application/json` },
@@ -144,6 +145,7 @@
     <label for="songTitle">Arrangement Title</label><input name="songTitle" id="songTitle" type="text">
     <label for="artistNames">Artist names (separate with comma)</label><input name="artistNames" id="artistNames" type="text">
     <label for="gameNames">Game names (separate with comma)</label><input name="gameNames" id="gameNames" type="text">
+    <label for="lyrics">Lyrics (optional)</label><textarea name="lyrics" id="lyrics" type="text"></textarea>
     <label for="comments">Comments (optional)</label><textarea name="comments" id="comments" type="text"></textarea>
     <label>Is it a Main or an Alt submission?</label>
 
