@@ -78,6 +78,9 @@ function load_stored_votes(monthDateAndTheme) {
 // vote: int // the vote amount/slider amount the vote has now
 function update_local_storage_vote(monthDateAndTheme, index, vote) {
   let storedVotes = JSON.parse(localStorage.getItem(monthDateAndTheme));
+  if (storedVotes === null) {
+      return;
+  }
   storedVotes[index] = vote;
   localStorage.setItem(monthDateAndTheme, JSON.stringify(storedVotes));
 }
@@ -88,7 +91,7 @@ function make_voting (monthDateAndTheme) {
   let arrayOfStoredVotes = load_stored_votes(monthDateAndTheme);
 
   $('.voting-slider').each(function(i, slider) {
-    console.debug(slider)
+    console.debug(slider);
     $(slider).ionRangeSlider({
       min: 0,
       max: 600,
@@ -127,7 +130,7 @@ function make_voting (monthDateAndTheme) {
     const $sliders = $('.irs-with-grid');
     const $slider = $sliders.eq($el.data('id'));
 
-    update_votes();
+    update_votes(monthDateAndTheme);
 
     $slider[$el.prop('checked') ? 'addClass' : 'removeClass']('irs-disabled');
   });
