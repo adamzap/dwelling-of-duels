@@ -161,7 +161,9 @@
 
   <div class="hline-r"></div>
 
-  <textarea id="voting-result" rows="{{ main_entries|length }}"></textarea>
+    <p><i>No more manually emailing votes! Just fill in the form below this vote preview and hit Submit.</i></p>
+
+  <textarea readonly id="voting-result" rows="{{ main_entries|length }}"></textarea>
 
   <form name="submit-form" id="submit-form" enctype="multipart/form-data">
     <label for="submitterEmail">Your email address</label><input name="submitterEmail" id="submitterEmail" type="email">
