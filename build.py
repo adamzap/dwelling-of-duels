@@ -14,10 +14,9 @@ import functools
 import collections
 import configparser
 
-from urllib.parse import urlparse
 from slugify import slugify
 from hsaudiotag import id3v2, auto as parse_id3
-
+from typing import List
 
 open = functools.partial(open, encoding='utf-8')
 
@@ -77,6 +76,12 @@ ARTIST_WHITELIST = [
     'Pokérus Project (Live!)',
     'Oded (Dedi) Ben-Isaac',
     'Misty (the cat)'
+]
+
+# the generator uses commas as delimiters, use this to whitelist a game name from the delimiting
+GAME_WHITELIST = [
+    'Hey You, Pikachu!',
+    "Flower, Sun, and Rain"
 ]
 
 CSS_FILES = [
@@ -160,6 +165,24 @@ def fix_artist(artist):
     return artist
 
 
+def split_games(genre: str) -> List[str]:
+    allGames = []
+    for whitelist_val in GAME_WHITELIST:
+        if whitelist_val in genre:
+            allGames.append(whitelist_val)
+            genre = genre.replace(whitelist_val, '')
+            genre = genre.replace(' ,', '')
+            genre = genre.lstrip(', ')
+            genre = genre.rstrip(', ')
+
+    rest = genre.split(', ')
+    if len(rest) == 1:
+        return allGames
+
+    allGames.extend(rest)
+    return allGames
+
+
 def get_month_data(month_dir):
     songs = []
 
@@ -192,13 +215,15 @@ def get_month_data(month_dir):
 
             artist = fix_artist(song_data.artist)
 
+            games = split_games(song_data.genre)
+
             songs.append({
                 'rank': song_filename.split('-')[0].replace('tie', ''),
                 'max_rank': max_rank,
                 'artists': artist.split(', '),
                 'multiple_artists': len(artist.split(', ')) > 1,
-                'games': song_data.genre.split(', '),
-                'multiple_games': len(song_data.genre.split(', ')) > 1,
+                'games': games,
+                'multiple_games': len(games) > 1,
                 'title': song_data.title,
                 'duration': song_data.duration,
                 'duel': duel,
