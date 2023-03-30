@@ -175,10 +175,10 @@ def split_games(genre: str) -> List[str]:
             genre = genre.lstrip(', ')
             genre = genre.rstrip(', ')
 
-    rest = genre.split(', ')
-    if len(rest) == 1:
+    if len(genre) == 0:
         return allGames
 
+    rest = genre.split(', ')
     allGames.extend(rest)
     return allGames
 
