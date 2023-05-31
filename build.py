@@ -188,7 +188,7 @@ def get_month_data(month_dir):
 
     month_files = os.listdir(month_dir)
 
-    song_filenames = [f for f in month_files if f.endswith('.mp3')]
+    song_filenames = [f for f in month_files if f.lower().endswith('.mp3')]
 
     max_rank = max([f.split("-")[0] for f in song_filenames if not f.startswith('ZZ')], default=0)
 
