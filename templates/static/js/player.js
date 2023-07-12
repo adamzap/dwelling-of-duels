@@ -39,4 +39,8 @@ function make_player () {
       }
     }
   });
+
+  $(player).on('ended', function () {
+    $('.play-button').attr('src', play_src);
+  });
 }
